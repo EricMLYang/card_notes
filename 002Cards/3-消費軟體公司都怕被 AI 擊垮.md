@@ -1,8 +1,4 @@
----
-tags:
-  - permanent-note
----
-# 500-消費軟體公司都怕被 AI 擊垮  
+#
 
 Travis ( Uber 創辦人）在  All-In Podcast 提到，
 

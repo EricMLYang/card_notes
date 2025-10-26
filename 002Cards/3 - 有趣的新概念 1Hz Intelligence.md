@@ -1,8 +1,4 @@
----
-tags:
-  - permanent-note
----
-# 250 - 有趣的新概念 1Hz Intelligence
+
 
 
 
