@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "000Inbox/299 -【 AI 時代下我的軟體工程成長策略】.md",
+                "file": "002Cards/1-產品開發的深刻的洞察.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "299 -【 AI 時代下我的軟體工程成長策略】"
+              "title": "1-產品開發的深刻的洞察"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "000Inbox/299 -【 AI 時代下我的軟體工程成長策略】.md",
+                "file": "002Cards/1-產品開發的深刻的洞察.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 299 -【 AI 時代下我的軟體工程成長策略】"
+              "title": "Backlinks for 1-產品開發的深刻的洞察"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "000Inbox/299 -【 AI 時代下我的軟體工程成長策略】.md",
+                "file": "002Cards/1-產品開發的深刻的洞察.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 299 -【 AI 時代下我的軟體工程成長策略】"
+              "title": "Outline of 1-產品開發的深刻的洞察"
             }
           }
         ],
@@ -172,9 +172,10 @@
   },
   "active": "77db6756c1c0872d",
   "lastOpenFiles": [
+    "000Inbox/299 -【 AI 時代下我的軟體工程成長策略】.md",
+    "002Cards/1-產品開發的深刻的洞察.md",
     "000Inbox/301 - AI 時代 - 深入軟體工程與架構知識的價值.md",
     "000Inbox/302 - 有 AI 代理，還要學程式嗎!.md",
-    "000Inbox/299 -【 AI 時代下我的軟體工程成長策略】.md",
     "000Inbox/303- 採用 Tailwind 作為 Vibe Coding 的首選.md",
     "002Cards/3-MCP 應用，工具太多成為核心挑戰.md",
     "002Cards/3-Bloomberg 應用MCP Gateway 案例.md",
@@ -197,7 +198,6 @@
     "002Cards/3 - 知識圖譜與 LLM.md",
     "002Cards/3 - 有趣的新概念 1Hz Intelligence.md",
     "002Cards/6-都更合建服務.md",
-    "002Cards/1-反過來想，總是反過來想.md",
     "002Cards",
     "003Write",
     "Cards",
