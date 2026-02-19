@@ -1,0 +1,1 @@
+AWS發布Amazon S3 Vectors, 讓你AI最難搞的Vector Store問題直接S3幫你搞定！

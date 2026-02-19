@@ -1,0 +1,1 @@
+# **Google Antigravity is an ‘agent-first’ coding tool built for Gemini 3**

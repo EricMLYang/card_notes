@@ -1,0 +1,226 @@
+---
+tags:
+  - vms
+---
+# VMS 會議記錄
+
+## \[ User Question \]
+
+- client very care about the system right, they not want to be controlled by partner
+
+- Data Frequency:
+
+   - 1-10 s, but there is a SIM upper limit
+
+   -  real-time:
+
+      - Event(second): Make sure the event data is not necessary VMS judge ( very high-frequency data, and need to judge the abnormal)
+
+      - except the Event: There is no high real-time requirement at begin
+
+- IDEA - 目標是要在未來區分出 :
+
+   - n1% 數據可以每 60 分鐘 (以上) 批次處理 ( Job )
+
+   - n2% 數據原則有數據就希望處理，但不要求太即時 x秒 - 60分鐘 (視運算資源而定 )
+
+   - n3% 數據希望秒級處理時間，越快越好
+      ( VMS 系統尚屬於數據分析治理性質，暫不處理比秒級更快即時性 )
+
+- 數據傳輸方式以下都可以談  ?
+
+   - 客戶 IT 用 AWS SDK 傳輸數據
+
+   - 客戶 呼叫 VMS API 傳輸
+
+   - 或是客戶有計畫建構比較完整的 API 來提供數據 ?
+
+- 認證與授權管理需: 需結合客戶其他權限系統 & SSO ?
+
+- 雲端資源區域選擇相關問題
+
+   - Head Office should not use this system, User and EV all in Taiwan
+
+   - 是否有成本考量 ( 選最便宜的區域 )
+
+   - 最新技術推出速度考量 ( 以系統最快的演化進步為主 )
+
+   - 延遲考量: 客戶其他雲端區域( 使用端延遲)、以電車活動區域為主(數據處理延遲)
+
+
+
+## First
+
+- 專案目標：與 Isuzu 研發新世代電動貨車管理系統，對標其客戶電動貨車宅配需求，預計於台灣領先推出完整電動貨車解決方案
+
+- 現階段主要動作：評估報價協助
+
+- Stakeholder ：
+
+   - DAHO ( 台北合眾子公司 ):  
+
+      - Chris 電動車業務負責人
+
+      - Edward 電動車產品相關負責人 
+
+      - IT Head James  ( 另有一個 Jack?)：系統和作主對象
+
+      - 買電動貨車客戶( 送貨的物流業)
+
+   - AUO: 
+
+      - VMS**( Vehicle Management System )**
+
+      - **未來希望提供** CDC ( Cockpit Domain Controller ? ) 
+
+   - RIRT:
+
+      - TBOX ( 含其他感測器）
+
+      - **Demo 用 FMS (Fleet Management System)** 
+
+- Milestone :
+
+   - 報價 ：提供 CAN 範例數據、與 DAHO IT Head 會議、報價、專案輪廓確認
+
+   - 10-年底推出電動車：期望充電地圖可以先出
+
+   - 明年 Q1 - Q2 交車， 可能會是 VMS Phase 1 正式推出日
+
+- VMS Scope ( 粗 ):
+
+   - DAHO 內部使用，未來移交要有某種程度的調整彈性 ( EX: 報表調整 ）
+
+      - 移轉的輪廓跟 James 談 ( 維運…等問題）
+
+      - UI Dashboard 或是頻繁變動項目要 DAHO 可以自行調整
+
+   - 完整接受 DAHO 解譯後 CAN 數據 和 DAHO 內部系統的相關保修數據 …等
+
+   - 數據接收、治理、分析、報表、建模、串接其他系統(FMS)
+
+      - 初期會以有明確目的、好的數據處理、報表設計的分析報表為主，其中要細部探討數據接收頻率
+
+         - EX: 需要緊急通知或處理的訊號 - 10 秒內要通知
+
+         - EX: 未來要做電池分析用 - 10 分鐘？
+
+         - …
+
+      - 未來(收集一定數據後）會有一些期望的分析模型，其中以保修診斷為大宗
+
+         - EX : 電池衰退趨勢、原因、保固預測 …等
+
+         - EX : 不同的故障訊號組合起來的原因
+
+         - …
+
+   - 
+
+- 產業：
+
+   - 電動貨車可能也有國產化規定，目前是嚴禁陸資公司引入電動車
+
+   - 目前國產要求可能 35％ 以下
+
+   - 國產的零件目前就是比較貴
+
+   - 電動車的銷售跟其他人力需求比油車低很多，大禾 巴西 年銷 500 台（算很多了），只需要 1 主管，3銷售，司機交車）
+
+## Second
+
+- James - What is VMS 
+
+   - 數據分析 (dns code?)
+
+   - TA: 非原本系統給一線的功能，要有進階價值
+
+   - CAN:  數據來源，下個月測試 T-BOX 有機會抓一些數據嗎
+
+   - Error Code DAHO IT 有原廠
+
+- 報告內容需求(下一步確認）
+
+   - B: 有些手動可以報表可以解決
+
+- 品情：
+
+   - 重要目的之一，是跟原廠溝通的重要依據，客戶反應有一些問題跟故障碼，準備收集資料跟原廠談責任問題
+
+   - 柴油車的資料可以某個比例類比到電車
+
+- 分析的內容 AUO 要有一些諮詢
+
+- 下一步：
+
+   - 功能性選單: 初版,   R&R
+
+   - 對街項目(與 jack）
+
+   - 19 試跑的資料先給 ( 原廠是否也有？）
+
+   - 
+
+- 充電地圖 ⇒   FMS. or. VMS
+
+   - 呈現：車上、官網…等
+
+- 保修紀錄：先看有哪些欄位
+
+## 09/20
+
+會議記錄重點整理 (大禾 & AUO)
+
+專案目標: 開發電動巴士車輛管理系統 (VMS)
+
+第一階段重點:
+
+電池管理、馬達能耗管理、故障管理、充電地圖
+
+基於 AUO 提供的 6 個模組進行開發
+
+資料來源: 大禾 DMS 系統 & T-BOX CAN 資訊 (大禾解譯)
+
+6 個模組:
+
+車輛管理 (車體、動力、電池、保險)
+
+維護 (保養、異常事件、CAN bus logs)
+
+Alarm 觸發 (事件設定、通知名單、規則設定)
+
+事故管理 (Phase II 開發)
+
+報告 (AUO 分析)
+
+診斷 (T-BOX 資訊)
+
+VMS 使用者:
+
+大禾內部管理階層
+
+維修廠接待 (授權帳號，資料依車廠區隔)
+
+其他重點:
+
+Trouble code & 原廠 CAN 資訊 10/E 提供 (Edward)
+
+AUO 需提供第一次報價 (Bonnie)
+
+時程: Phase I 2025/3/E, Phase II 2025/6/E
+
+大禾提供 DMS screenshot (James)
+
+充電分析因子: 28KW or 90KW (Eric)
+
+車歷工單收費金額: AUO 資料庫與大禾 DMS 串接 (後續依需求呈現)
+
+待辦事項:
+
+細化討論推播告警需求
+
+大禾內部討論維修廠推播設定
+
+確認車歷資料呈現需求
+
+希望以上整理對您有所幫助!
