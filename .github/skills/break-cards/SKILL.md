@@ -3,7 +3,7 @@ name: break-cards
 description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelkasten 方法論。適用於用戶說「幫我拆解文章」「拆成卡片」或處理 Inbox 中的文章時。Use when user asks to break down articles into atomic cards.
 ---
 
-# Skill Instructions
+# Skill: Break Cards（卡片拆解）
 
 ## 目標
 將長文章或筆記拆解成可獨立理解、可互相連結、可重組的原子化卡片（Zettel），建立高價值的知識網絡節點。
@@ -135,17 +135,16 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 
 ## 操作指引
 
-### 觸發時機
-當用戶說：
-- 「幫我拆解本文章」
-- 「拆成卡片」
-- 「Break down this article」
+**觸發條件**：
+- 用戶說「幫我拆解本文章」
+- 用戶說「拆成卡片」
+- 用戶說「Break down this article」
 - 正在處理 `/000Inbox` 中的文章
 
-### 輸出位置
-**將拆解結果附加在原文件末尾**（不要覆蓋原文）
+**輸出位置**：
+將拆解結果附加在原文件末尾（不要覆蓋原文）
 
-### 文件命名建議
+**文件命名建議**：
 拆解完成後，建議修改檔名加上 "break" 標記：
 - 原文：`文章標題.md`
 - 改名：`文章標題-break.md`
@@ -153,7 +152,7 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 ## 後續流程提示
 
 拆解完成後，主動提示用戶：
-1. 「拆解完成！我可以幫你把序號 X, Y, Z 放到 /002Cards」
+1. 「拆解完成！我可以幫你把序號 X, Y, Z 放到 /003_2Cards」
 2. 「需要我更新對應的索引嗎？」
 
 ## 品質檢查
