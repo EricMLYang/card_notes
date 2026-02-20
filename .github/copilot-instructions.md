@@ -175,6 +175,11 @@
 - `fact-check`：查證引用與細節
 - `high-res-summary`：高解析度摘要
 - `create-skill`：建立新的 Agent Skill
+- `gather-cards`：搜集卡片素材（給定主題，自動搜尋知識庫找出相關卡片）
+- `write-pipeline`：寫作自動化主控台（串接 W0-W8 全流程，3 個人工檢查點）
+- `resume-draft`：草稿狀態管理器（列出進行中草稿，快速恢復寫作進度）
+- `process-inbox`：Inbox 自動處理（拆卡片→建檔→連結→更新索引→歸檔原文，一鍵完成）
+- `scout-news`：智慧新聞搜集（根據 context 訊號上網搜尋相關新聞，存入 Inbox）
 
 ### Chatmodes（互動角色）
 需要多輪對話、探索發想的任務：
@@ -188,6 +193,7 @@
 - `DeepReader`：深度文章導讀
 - `AudienceResearcher`：受眾研究員
 - `HackerReporter`：黑客報告
+- `WritingCoach`：寫作教練（Pipeline 檢查點決策支援）
 
 ### Prompts（單次任務）
 輸入→輸出的一次性任務，位於 `.github/prompts/`：
@@ -197,9 +203,91 @@
 
 ---
 
+## 自動化寫作 Pipeline
+
+### 概述
+`write-pipeline` 將手動的 8+ 次觸發降為 3 個人工決策檢查點，自動串接 W0-W8 全流程，同時讓卡片系統（207+ 張卡片）成為文章的第一手素材來源。
+
+### 流程
+```
+主題 → gather-cards → W2 發想 → W3 標題 → W4 鉤子
+    → 【檢查點 1】選標題+鉤子+角度
+    → W5 框架+主體 → W6 收尾
+    → 【檢查點 2】審閱草稿
+    → W7 風格+人味 → fact-check
+    → 【檢查點 3】最終確認
+    → format-article → W8 圖片 → break-cards → 發佈
+```
+
+### Draft Frontmatter Schema
+Pipeline 使用 `/004_1Draft/` 中的 YAML frontmatter 追蹤進度：
+
+```yaml
+---
+pipeline_stage: "INTAKE"  # INTAKE | IDEATION | TITLE_HOOK | CP1 | FRAMEWORK | BODY_CLOSE | CP2 | POLISH | CP3 | PUBLISH | DONE
+topic: "文章主題"
+scenario: ""  # knowledge_article | opinion | tutorial | case_study | trend_analysis | comparison | storytelling
+selected_cards: []
+chosen_title: ""
+chosen_hook: ""
+chosen_framework: ""  # explosive_formula | opinion_type | pastor | universal_writing
+created: 2026-01-01
+last_updated: 2026-01-01
+status: "drafting"  # drafting | reviewing | polishing | published
+---
+```
+
+### 觸發方式
+- 新文章：說「寫新文章」「開始寫作」→ 啟動 `write-pipeline`
+- 繼續草稿：說「我的草稿」「繼續寫作」→ 啟動 `resume-draft`
+- 搜集素材：說「搜集素材」「找相關卡片」→ 啟動 `gather-cards`
+- 決策支援：在檢查點切換到 `WritingCoach` chatmode
+
+---
+
+## Inbox 自動處理 Pipeline
+
+### 概述
+`process-inbox` 將 Inbox 文章的處理從 5+ 次手動操作簡化為 1 個人工檢查點，自動完成拆卡片→建檔→連結→更新索引→歸檔原文的完整 CODE 流程。
+
+### 流程
+```
+掃描 Inbox → 選擇檔案 → break-cards 拆解
+    → 【檢查點】確認卡片清單和分類
+    → 建立卡片檔案 → link-cards 連結 → 更新索引 → 歸檔原文
+```
+
+### 觸發方式
+- 說「處理 Inbox」「整理收件匣」→ 啟動 `process-inbox`
+
+---
+
+## 智慧新聞搜集
+
+### 概述
+`scout-news` 根據用戶的問題意識、草稿、近期發佈、索引熱區等 context 訊號，自動產生中英文搜尋查詢，上網搜集相關新聞與文章，篩選後存入 `/000Inbox/`。
+
+### 流程
+```
+分析 context 訊號 → 生成搜尋查詢
+    → 【檢查點】確認搜尋方向
+    → 上網搜尋 → 篩選高價值結果 → 存入 Inbox
+```
+
+### 觸發方式
+- 說「找新聞」「搜集新資訊」→ 啟動 `scout-news`
+- 指定方向：「找 AI Agent 最新新聞」→ 帶參數啟動
+
+### 完整知識閉環
+`scout-news` → `/000Inbox/` → `process-inbox` → 卡片 + 歸檔 → `write-pipeline` → 發佈
+
+---
+
 ## 輔助提示詞
 
 當用戶不確定如何操作時，主動建議：
+- 「需要我根據你最近的寫作方向，搜集相關新聞嗎？」
+- 「Inbox 中有 X 個待處理檔案，需要我啟動 process-inbox 幫你一鍵處理嗎？」
 - 「這些內容可以萃取成卡片放到 /003_2Cards，需要我建立嗎？」
 - 「要我更新對應的索引嗎？」
 - 「這是資源類內容，建議放到 /005_1Resource/[分類]/」
