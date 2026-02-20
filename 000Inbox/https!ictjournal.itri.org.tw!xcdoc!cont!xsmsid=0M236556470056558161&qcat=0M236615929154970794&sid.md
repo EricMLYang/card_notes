@@ -1,1 +1,0 @@
-# https://ictjournal.itri.org.tw/xcdoc/cont?xsmsid=0M236556470056558161&qcat=0M236615929154970794&sid=0N177528546035886831

@@ -1,3 +1,0 @@
-# AI 取代中階主管
-
-<https://www.linkedin.com/posts/daniel-chang-95a46223_ai%E8%A3%81%E5%93%A1%E6%BD%AE%E4%BC%81%E6%A5%AD%E8%B3%BA%E6%84%88%E5%A4%9A%E5%8D%BB%E4%B8%8D%E6%96%B7%E8%A3%81%E5%93%A1%E4%B8%8A%E7%8F%AD%E6%97%8F%E6%84%88%E4%BE%86%E6%84%88%E8%8B%A6%E5%93%88%E4%BD%9B%E6%95%99%E6%8E%88%E5%93%A1%E5%B7%A5%E8%A2%AB%E8%BF%AB%E6%89%BF%E6%93%943%E4%BA%BA%E5%B7%A5%E4%BD%9C%E9%87%8F-activity-7344235396215558148-0poa?utm_source=share&utm_medium=member_android&rcm=ACoAAAexhx4BYYI0T3f_yMkkekeQfAanbjcKA10>
