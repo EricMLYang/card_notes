@@ -154,6 +154,7 @@
 /Product_Business/- 產品管理、商業模式、策略
 /Reference/       - 學習資源、閱讀清單、概念說明
 /IoT_Domain/      - IoT、車載、Beacon、數位看板
+/文章拆解/        - 文章寫作技法拆解分析（teardown-article skill 輸出）
 /Projects_Misc/   - 其他專案雜項
 （以及按專案/領域建立的子資料夾）
 ```
@@ -180,6 +181,7 @@
 - `resume-draft`：草稿狀態管理器（列出進行中草稿，快速恢復寫作進度）
 - `process-inbox`：Inbox 自動處理（拆卡片→建檔→連結→更新索引→歸檔原文，一鍵完成）
 - `scout-news`：智慧新聞搜集（根據 context 訊號上網搜尋相關新聞，存入 Inbox）
+- `teardown-article`：文章寫作技法拆解（分析欣賞的文章技巧，萃取可複用結構模板，存入 `005_1Resource/文章拆解/`）
 
 ### Chatmodes（互動角色）
 需要多輪對話、探索發想的任務：
