@@ -149,6 +149,7 @@ Governance + Security：從 prompt injections 到協議層/工具鏈漏洞的分
 針對長任務/多代理的「可重現性」：用標準化 traces + system-level signals 觀察 run-to-run variance，把架構差異（而非只換模型）當成主要可控變因。
 把「工具」當成新 API 設計題：命名空間、回傳高訊號欄位、concise/detailed response formats、與 evaluation-driven 的持續優化流程。
 把「安全」當成架構層而非審查層：特別是多工具串接後的 emergent attack paths（toxic flows），需要在設計時就決定 sandbox、provenance、動態信任與權限邊界。
+
 反方觀點與爭議
 爭議不是「agent 會不會成功」，而是「現在是不是被過度承諾」。例如 Reuters 引述 Gartner 的報告指出：到 2027 年底，超過 40% 的 agentic AI 專案可能因成本上升與價值不清而被取消，且市場存在大量「agent washing」（把聊天機器人重新包裝成 agent 的行銷）。
 
@@ -174,90 +175,100 @@ MCP 與 agent 工具鏈安全：從規格到攻擊面建模
 
 ---
 
-## 萃取卡片（待確認方向）
+# 拆解結果
 
-### 卡片 1
+## A. 主脈絡（論證骨架）
 
-# Agent 工程化的核心轉向：從「寫流程」到「建迴路」
+- 本文的核心主張是：AI Agent 的工程瓶頸已經從「能不能做」翻轉為「能不能當成非確定性系統來運維」——重心從寫流程變成建立可觀測、可評估、可治理的執行迴路。
+- 推論路徑：先用架構論文（文2）確立「cognition 與 execution 必須分離」的原則 → 再用 Amazon（文1）與 MAESTRO（文3）說明分離後各環節怎麼量測 → 接著用 Anthropic（文4、5）處理工具層膨脹的工程解法 → 最後用安全（文10）與企業現實（文8）說明落地的隱性門檻。
+- 作者挑戰的預設：「換更強的模型就能解決 agent 問題」是錯的——架構選擇對成本-延遲-準確性的影響常常大於換模型；工具設計靠人類直覺也是錯的——必須靠 evaluation-driven loop 迭代。
+- 反方不是否定 agent，而是警告「過度承諾」：40%+ 專案可能被砍、半數卡在 PoC、安全威脅面遠超 prompt injection。
 
-**類型**: Principle
+## B. 卡片（Zettel）
 
-## 概念
-要讓 AI Agent 在企業環境真正運作，核心不在「再堆更多 agent」，而在「把 agent 當成非確定性系統來工程化」。工程重心從寫出正確流程，轉向建立可觀測、可評估、可治理的執行迴路（perception → planning → action → feedback）。
+序號 1
+- 標題：Agent 的 production failure mode 藏在工具層，不在模型層
+- 類型：Principle
+- 概念（50–300 字）：Amazon 在企業級 agentic systems 的實戰經驗指出，agent 上線後最先爆的不是「模型回答品質差」，而是工具層的連環出錯：選錯工具（tool selection accuracy）、填錯參數（tool parameter accuracy）、多輪函式呼叫序列斷裂（multi-turn function calling accuracy）、記憶檢索該撈的沒撈到或撈太多（context retrieval precision/recall）。因此他們把這些環節各自拆成可追蹤的 metrics，接上 dashboard/告警 + 人工稽核（HITL）流程，形成持續評估骨架。這套做法的底層邏輯是：agent 是非確定性系統，你無法從 code review 推斷它在 production 的行為，只能靠「把每個環節變成可量測維度」來迭代。
+- 重要性（1 句）：這張卡直接提供了「agent 上線後該量什麼」的指標清單，是從 demo 推到 production 的必要骨架。
+- 邊界/反例（1–2 句）：僅適用於已有工具呼叫的 agent；純對話型 chatbot 的 failure mode 不在這裡。指標體系本身也需要 trace infrastructure 支撐，沒有 trace 就沒有資料可算。
+- 可連結關鍵詞：#AgentEvaluation #ToolUseMetrics #ProductionAgent #Observability #HITL
 
-## 重要性
-這個轉向決定了團隊的投資方向：不是花更多時間寫 prompt 或串更多工具，而是優先建立 trace、evaluation、governance 的基礎設施。沒有這層認知，agent 會永遠停在「demo 很酷但上不了線」。
+序號 2
+- 標題：分離 cognition 與 execution——用 typed tool interfaces 當契約
+- 類型：Principle
+- 概念（50–300 字）：arXiv 論文主張 production-grade LLM agent 必須在架構上把「思考」（意圖理解、規劃、決策）與「執行」（呼叫外部系統、讀寫資料）切開，中間以 typed tool interfaces 作為契約層。這不是軟體工程的老生常談——它的特殊性在於 cognition 層的輸出本質非確定，如果直接讓模型「想到什麼就做什麼」，execution 面的可重現性、可稽核性、可測試性全部崩掉。分離後，execution 面可以獨立做 schema validation、input/output logging、sandbox，而 cognition 面可以獨立做 planning 品質評估。論文同時把 observability、governance、reproducibility 納入「硬化清單」，主張這些是架構設計時的一等公民，不是事後補丁。
+- 重要性（1 句）：這是把 agent 從「會聊天的模型」升級為「可維運軟體系統」的架構分界線。
+- 邊界/反例（1–2 句）：過度分離會增加延遲與通訊開銷，特別是需要 cognition 與 execution 高頻互動的場景（如即時 code interpreter）需要權衡。早期 prototype 階段強制分離可能拖慢迭代速度。
+- 可連結關鍵詞：#AgentArchitecture #TypedInterfaces #CognitionExecution #Reproducibility #GovernanceByDesign
 
-## 邊界/反例
-- 若任務本質是確定性的（規則引擎就能解），不需要用 agent 架構
-- 單輪生成場景（如翻譯、摘要）不需要閉環控制迴路
-- 迴路本身也有成本：過度儀表化會拖慢開發速度，需取捨
+序號 3
+- 標題：多代理架構主導 cost-latency-accuracy，比換模型影響更大
+- 類型：Warning
+- 概念（50–300 字）：MAESTRO 論文對多代理系統（MAS）做標準化評估後發現一個反直覺結論：MAS 的 resource profile、reproducibility、cost-latency-accuracy trade-off 主要由「架構」決定，而不是由「用哪個模型」決定。具體來說，MAS 執行可能「結構穩定但時間序列不穩定」——同一組輸入、同一個架構，跑十次的 run-to-run variance 可以很大。這代表你在做技術選型時，把精力花在「要不要從 single-agent 切到 multi-agent」「sub-agent 之間怎麼通訊」「誰負責 planning 誰負責 execution」上，回報遠大於花同樣時間評估「該用 GPT-4o 還是 Claude Opus」。
+- 重要性（1 句）：直接改變技術選型的優先順序——先選架構，再選模型。
+- 邊界/反例（1–2 句）：當架構已固定、只能微調時，模型能力差異仍然重要。此外，MAESTRO 的實驗範圍有限，極端簡單或極端複雜的任務可能不符合此規律。
+- 可連結關鍵詞：#MultiAgent #ArchitectureFirst #CostLatencyAccuracy #RunToRunVariance #TechSelection
 
-## 標籤
-#AgentEngineering #非確定性系統 #可觀測性 #工程化落地
+序號 4
+- 標題：大工具庫的三件套——Tool Search / Programmatic Calling / Examples
+- 類型：Heuristic
+- 概念（50–300 字）：當 MCP/工具庫規模上百上千時，最先死的不是模型智商，而是 context window 被工具定義塞爆，以及工具選擇與參數的錯誤率飆升。Anthropic 提出三層解法：(1) Tool Search Tool——不把所有工具定義塞進 prompt，而是讓模型先搜尋再載入需要的工具，解 context bloat（內部測試 Opus 4 從 49% → 74%）；(2) Programmatic Tool Calling——讓模型輸出程式碼來組合多步工具呼叫，避免 intermediate results 汙染上下文；(3) Tool Use Examples——用範例補 schema 表達力不足，提升參數正確性。這三件事的優先順序是：先解空間問題（塞不下）、再解汙染問題（中間結果干擾）、最後補精度問題（參數錯）。
+- 重要性（1 句）：這是 2026 年 agentic 工程處理「工具爆炸」最可操作的分層策略，通常比換更強模型更快見效。
+- 邊界/反例（1–2 句）：工具數量少（< 20）時，直接全部塞進 context 反而更簡單可靠，三件套帶來的複雜度不划算。Tool Search 本身也可能選錯工具，需要額外的 eval 來監控。
+- 可連結關鍵詞：#ToolExplosion #ContextWindow #MCP #ToolSearch #ProgrammaticToolCalling #TokenEfficiency
 
----
+序號 5
+- 標題：工具設計是「確定性系統與非確定性 agent 的契約」——靠 eval loop 迭代，不靠直覺
+- 類型：Model
+- 概念（50–300 字）：Anthropic 工程師 Ken Aizawa 把「寫工具給 agent 用」重新定義為一種新型軟體工程：你的使用者不是人類，是一個非確定性系統，因此工具的 ergonomics（agent 是否好用）無法靠人類直覺判斷，必須靠 evaluation-driven loop 持續迭代。具體原則包括：用命名空間縮小錯誤表面積、回傳高訊號資訊而非 raw dump、控制 response 的 concise/detailed 格式、避免 cryptic IDs（僅把 UUID 轉成人類可理解的識別就能顯著降低幻覺）。eval 指標不只看 accuracy，還要抓 tool call runtime、呼叫數量、token 消耗、tool errors。這套思維的核心翻轉是：工具品質不是寫完就定了，而是跟模型一起在 eval loop 裡共演化。
+- 重要性（1 句）：把工具設計從「寫完交差」變成「持續迭代的工程紀律」，是 agent 系統可靠性的隱性槓桿。
+- 邊界/反例（1–2 句）：eval loop 需要足夠的測試案例與 trace 基礎設施，冷啟動階段可能先靠人類 code review 更務實。內部工具若使用頻率極低，投資 eval loop 的 ROI 不高。
+- 可連結關鍵詞：#ToolDesign #EvalDrivenDevelopment #AgentErgonomics #NonDeterministicSystem #HallucinationReduction
 
-### 卡片 2
+序號 6
+- 標題：Tracing 從「出事才看」變成 Agent 開發的 Day-1 基礎設施
+- 類型：Principle
+- 概念（50–300 字）：LangChain 創辦人 Harrison Chase 直言：Agent 是非確定性黑箱，「你不能只看代碼…你必須真的把它跑起來」才能理解行為。這意味著 tracing 不再是 production 出事後的除錯工具，而是從開發第一天就必須存在的基礎設施。原因是：傳統軟體可以靠讀 code + 寫 unit test 推斷行為，但 agent 的行為由模型推理、工具呼叫序列、記憶檢索、上下文壓縮等多個非確定環節交互決定，任何一個環節的微小變化都可能導致完全不同的執行路徑。Chase 同時區分「framework」與「harness」：harness 是有主張的最佳實踐集合（內建 planning、compaction、檔案系統工具等原語），而非無偏好的抽象層。
+- 重要性（1 句）：這張卡改變團隊的基礎設施優先順序——trace pipeline 應該比 agent 邏輯本身更早建好。
+- 邊界/反例（1–2 句）：極簡 agent（單工具、無記憶、單輪）的行為可預測性高，trace 的邊際價值低。Trace 本身也會產生儲存與延遲成本，需要設計取樣策略。
+- 可連結關鍵詞：#Tracing #Observability #NonDeterministic #AgentDevOps #Day1Infrastructure #HarnessVsFramework
 
-# Agent 評估的五個可操作維度
+序號 7
+- 標題：Toxic Flows——每個工具合規，串起來就是攻擊路徑
+- 類型：Warning
+- 概念（50–300 字）：Snyk 提出「toxic flows」概念，指出 agent 安全的真正盲區不在單一工具，而在工具串接後浮現的 emergent attack paths。每個工具單獨看可能都通過安全審查，但當 agent 把它們串成「從不可信指令 → 存取敏感資料 → 外洩出口」的路徑時，就形成了設計時沒預見的風險。Invariant Labs 已實際展示針對 GitHub MCP 整合的攻擊：一個惡意 issue 就能劫持 agent 並外洩私有 repo 資料。ICT Express 的綜述把這類威脅放進更大的 taxonomy——從 prompt injection 一路延伸到協議層漏洞——並主張必須用分層防禦（動態信任管理、cryptographic provenance tracking、sandboxed agentic interfaces）來處理，而不是只在輸入層擋。
+- 重要性（1 句）：這是多數團隊做 agent 時完全忽略的攻擊面，且隨著工具數量增加，組合爆炸會讓威脅面指數成長。
+- 邊界/反例（1–2 句）：僅使用內部可信工具且不接受外部輸入的 agent，toxic flow 風險較低。分層防禦本身有工程成本，早期 PoC 可能先靠最小權限原則 + 人工審核。
+- 可連結關鍵詞：#ToxicFlows #AgentSecurity #EmergentRisk #MCP #ToolChainVulnerability #LayeredDefense
 
-**類型**: Framework
+序號 8
+- 標題：Demo 到 Production 的鴻溝——企業 Agent 的經濟帳算不過來
+- 類型：Warning
+- 概念（50–300 字）：36氪的報導把企業 agent 落地的經濟現實講得很直白：每進一個新客戶或新場景，就要付出定制、資料適配、甚至微調的成本，但收益端往往只剩降本增效，導致定價與付費意願成為落地瓶頸。常見商業模式（license、SaaS、outcome-based）都有各自的困境——outcome-based 定價聽起來最合理但仍在探索階段，企業付費比想像中保守。Gartner 預測到 2027 年底超過 40% 的 agentic AI 專案可能因成本上升與價值不清而被取消；Dynatrace 調查指出約半數專案仍卡在 PoC，主要阻礙是安全/隱私/合規（52%）與規模化技術挑戰（51%）。把「炫酷 demo 變成穩定創造價值的工具」，中間的落差遠大於技術人員的想像。
+- 重要性（1 句）：這張卡是寫年度規劃或投資評估時的現實校準器，防止把 PoC 成功誤判為可大規模複製的產能。
+- 邊界/反例（1–2 句）：高度標準化的場景（如固定格式的報告生成、已有清晰 SOP 的合規檢查）邊際成本較低，可能較快過損益平衡。此外，隨著模型能力提升與工具標準化，定制成本可能逐年下降。
+- 可連結關鍵詞：#EnterpriseLanding #AgentWashing #DemoToProduction #BusinessModel #PoCTrap
 
-## 概念
-Amazon 的實戰經驗指出，agent 評估不能只看最終輸出品質，必須拆成五個可量測維度：(1) tool selection accuracy（選對工具）、(2) tool parameter accuracy（參數正確）、(3) tool call error rate（呼叫錯誤率）、(4) multi-turn function calling accuracy（多輪呼叫正確性）、(5) memory context retrieval 的 precision/recall（記憶檢索品質）。
+序號 9
+- 標題：Agent 工程的收斂堆疊——六層責任分工
+- 類型：Model
+- 概念（50–300 字）：本文綜合多篇文獻，歸納出一個正在收斂的 agent 工程堆疊，可作為架構討論的共同語言：(1) Cognition 層（LLM/推理模型）——負責意圖理解、規劃與決策，輸出本質非確定；(2) Control loop / Orchestration 層——讓模型在迴圈中運行，管理上下文取用、工具呼叫、壓縮與重試；(3) Tool layer——以 typed schema 建立「模型↔世界」契約；(4) Memory / Context engineering——短期與長期記憶，外加壓縮與檔案系統外部化；(5) Evals + Observability——以 traces 為事實來源，離線基準 + 線上監控；(6) Governance + Security——分層防禦，特別處理多工具串接的 emergent attack paths。這六層的關鍵洞見是：每層的工程成熟度不同步，但你不能跳過任何一層就上 production。
+- 重要性（1 句）：這是目前最完整的 agent 系統責任分工框架，可直接用於架構 review 與團隊分工。
+- 邊界/反例（1–2 句）：這是理想態的分層；實務上小團隊可能把多層合併實作。層與層之間的邊界在快速迭代期也會模糊。
+- 可連結關鍵詞：#AgentStack #ReferenceArchitecture #SystemDesign #EngineeringMaturity #SixLayers
 
-## 重要性
-這五個維度讓團隊可以精準定位 agent 在 production 中的失敗模式——到底是選錯工具、傳錯參數、還是記憶檢索不準？沒有這種拆解，debug 只能靠「重跑看看」。
+## C. 連結建議（組裝藍圖）
 
-## 邊界/反例
-- 這套指標假設 agent 有工具呼叫與記憶機制；純對話型 agent 不完全適用
-- 指標本身需要 trace 基礎設施支撐，若沒有 tracing 管線則無法收集
-- 指標數字好不代表使用者滿意，仍需搭配 end-to-end 的品質評估
+- 卡片 1（工具層 failure mode）+ 卡片 5（工具設計 eval loop）+ 卡片 4（大工具庫三件套）→ 可組成：**「Agent Tool Engineering 完整方法論」**——從設計原則、到規模化策略、到量測指標的閉環
+- 卡片 2（cognition/execution 分離）+ 卡片 9（六層堆疊）→ 可組成：**「Agent 參考架構與硬化清單」**——從原則到分層的完整架構觀
+- 卡片 6（tracing as day-1）+ 卡片 3（架構主導 cost-latency）→ 可組成：**「Agent 可觀測性工程」**——為什麼要追蹤、追蹤什麼、追蹤結果怎麼影響架構決策
+- 卡片 7（toxic flows）+ 卡片 2（typed interfaces）→ 可組成：**「Agent 安全架構」**——從契約設計到分層防禦
+- 卡片 8（demo-to-production gap）+ 卡片 3（架構 > 模型）→ 可組成：**「Agent 落地現實檢查」**——技術選型與商業可行性的雙重校準
+- 與現有知識庫的潛在連結：[[Zettelkasten 方法論]]（知識管理系統化）、[[槓桿點思維]]（卡片 4 的三件套是典型槓桿操作）、[[好策略壞策略]]（卡片 8 的現實校準呼應 Crux 診斷）
 
-## 標籤
-#AgentEvaluation #ToolUse #Metrics #Production #Amazon
+## D. 可執行的下一步
 
----
-
-### 卡片 3
-
-# 大工具庫的三層解法：搜尋、程式化呼叫、示例
-
-**類型**: Framework
-
-## 概念
-當 MCP/工具庫規模達上百甚至上千時，最先崩潰的不是模型能力，而是 context window 被工具定義吃光、以及工具選擇/參數錯誤率飆升。Anthropic 提出三層解法：(1) Tool Search Tool——按需發現工具而非全塞進上下文；(2) Programmatic Tool Calling——避免中間結果污染上下文；(3) Tool Use Examples——用範例補 schema 表達力不足的缺口。
-
-## 重要性
-這三層直接對應 2026 年 agentic 工程的主戰場：token 成本控制、工具選擇正確性、參數精準度。在內部測試中，僅 Tool Search Tool 就讓 Opus 4 在 MCP 評估上從 49% 提升到 74%。換更強的模型不如先優化工具層。
-
-## 邊界/反例
-- 工具數量少（<20）時，直接全放 context 可能更簡單有效
-- Tool Search Tool 本身也可能選錯，形成二次錯誤
-- 這三層是 Anthropic 平台的設計，其他平台的實作路徑可能不同
-
-## 標籤
-#ToolUse #ContextEngineering #MCP #TokenOptimization #Anthropic
-
----
-
-### 卡片 4
-
-# Agent 安全的新威脅面：Toxic Flows 與協議層漏洞
-
-**類型**: Concept
-
-## 概念
-Agent 的安全威脅不只是 prompt injection。當多個工具透過協議串接後，每個工具單看可能合規，但串成「不可信指令 → 敏感資料 → 外洩出口」的路徑後，會形成 emergent risk（稱為 toxic flows）。防禦需要從審查層提升到架構層：動態信任管理、可驗證 provenance、sandboxed 介面、權限邊界。
-
-## 重要性
-多數團隊只防「模型輸出會不會幻覺」，卻忽略工具鏈串接後產生的跨工具攻擊路徑。Invariant Labs 已示範過針對 GitHub MCP 整合的攻擊：惡意 issue 可劫持 agent 並外洩私有 repo 資料。這類威脅會隨 agent 工具數量增加而指數成長。
-
-## 邊界/反例
-- 若 agent 不連接外部工具或僅連接可信內部系統，風險面較小
-- 過度 sandboxing 會限制 agent 的實用性，需在安全與功能間取捨
-- 目前防禦方案多為概念性框架，實務落地的成熟方案仍有限
-
-## 標籤
-#AgentSecurity #ToxicFlows #MCP #PromptInjection #分層防禦
+1. **建立 trace-first 資料管線**：在你的 agent 系統中，先把 tool selection / parameter / memory retrieval 的 trace 跑起來，再談優化——對應卡片 1 + 6
+2. **用「架構 A/B test」取代「模型 A/B test」**：下次技術選型時，先比較 single-agent vs multi-agent 架構的 cost-latency-accuracy，再決定模型——對應卡片 3
+3. **對你的工具庫做 token 審計**：算一次所有工具定義吃掉多少 context window，超過 30% 就該導入 Tool Search——對應卡片 4
