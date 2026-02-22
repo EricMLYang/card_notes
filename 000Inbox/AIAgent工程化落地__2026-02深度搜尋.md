@@ -171,3 +171,93 @@ MCP 與 agent 工具鏈安全：從規格到攻擊面建模
 
 大工具庫時代的 Tool UX：工具搜尋、程式化呼叫、示例驅動的參數正確性
 如果你的 agent 要接企業內部一堆系統（CRM/ERP/工單/監控/數據倉儲），工具定義很快會膨脹成 context window 的主要成本來源；同時錯 tool、錯參數會成為主要 failure mode。沿著 Anthropic 的三件套（Tool Search Tool / Programmatic Tool Calling / Tool Use Examples）去做 engineering pattern 的拆解與內部化，通常比換更強模型更快見效。
+
+---
+
+## 萃取卡片（待確認方向）
+
+### 卡片 1
+
+# Agent 工程化的核心轉向：從「寫流程」到「建迴路」
+
+**類型**: Principle
+
+## 概念
+要讓 AI Agent 在企業環境真正運作，核心不在「再堆更多 agent」，而在「把 agent 當成非確定性系統來工程化」。工程重心從寫出正確流程，轉向建立可觀測、可評估、可治理的執行迴路（perception → planning → action → feedback）。
+
+## 重要性
+這個轉向決定了團隊的投資方向：不是花更多時間寫 prompt 或串更多工具，而是優先建立 trace、evaluation、governance 的基礎設施。沒有這層認知，agent 會永遠停在「demo 很酷但上不了線」。
+
+## 邊界/反例
+- 若任務本質是確定性的（規則引擎就能解），不需要用 agent 架構
+- 單輪生成場景（如翻譯、摘要）不需要閉環控制迴路
+- 迴路本身也有成本：過度儀表化會拖慢開發速度，需取捨
+
+## 標籤
+#AgentEngineering #非確定性系統 #可觀測性 #工程化落地
+
+---
+
+### 卡片 2
+
+# Agent 評估的五個可操作維度
+
+**類型**: Framework
+
+## 概念
+Amazon 的實戰經驗指出，agent 評估不能只看最終輸出品質，必須拆成五個可量測維度：(1) tool selection accuracy（選對工具）、(2) tool parameter accuracy（參數正確）、(3) tool call error rate（呼叫錯誤率）、(4) multi-turn function calling accuracy（多輪呼叫正確性）、(5) memory context retrieval 的 precision/recall（記憶檢索品質）。
+
+## 重要性
+這五個維度讓團隊可以精準定位 agent 在 production 中的失敗模式——到底是選錯工具、傳錯參數、還是記憶檢索不準？沒有這種拆解，debug 只能靠「重跑看看」。
+
+## 邊界/反例
+- 這套指標假設 agent 有工具呼叫與記憶機制；純對話型 agent 不完全適用
+- 指標本身需要 trace 基礎設施支撐，若沒有 tracing 管線則無法收集
+- 指標數字好不代表使用者滿意，仍需搭配 end-to-end 的品質評估
+
+## 標籤
+#AgentEvaluation #ToolUse #Metrics #Production #Amazon
+
+---
+
+### 卡片 3
+
+# 大工具庫的三層解法：搜尋、程式化呼叫、示例
+
+**類型**: Framework
+
+## 概念
+當 MCP/工具庫規模達上百甚至上千時，最先崩潰的不是模型能力，而是 context window 被工具定義吃光、以及工具選擇/參數錯誤率飆升。Anthropic 提出三層解法：(1) Tool Search Tool——按需發現工具而非全塞進上下文；(2) Programmatic Tool Calling——避免中間結果污染上下文；(3) Tool Use Examples——用範例補 schema 表達力不足的缺口。
+
+## 重要性
+這三層直接對應 2026 年 agentic 工程的主戰場：token 成本控制、工具選擇正確性、參數精準度。在內部測試中，僅 Tool Search Tool 就讓 Opus 4 在 MCP 評估上從 49% 提升到 74%。換更強的模型不如先優化工具層。
+
+## 邊界/反例
+- 工具數量少（<20）時，直接全放 context 可能更簡單有效
+- Tool Search Tool 本身也可能選錯，形成二次錯誤
+- 這三層是 Anthropic 平台的設計，其他平台的實作路徑可能不同
+
+## 標籤
+#ToolUse #ContextEngineering #MCP #TokenOptimization #Anthropic
+
+---
+
+### 卡片 4
+
+# Agent 安全的新威脅面：Toxic Flows 與協議層漏洞
+
+**類型**: Concept
+
+## 概念
+Agent 的安全威脅不只是 prompt injection。當多個工具透過協議串接後，每個工具單看可能合規，但串成「不可信指令 → 敏感資料 → 外洩出口」的路徑後，會形成 emergent risk（稱為 toxic flows）。防禦需要從審查層提升到架構層：動態信任管理、可驗證 provenance、sandboxed 介面、權限邊界。
+
+## 重要性
+多數團隊只防「模型輸出會不會幻覺」，卻忽略工具鏈串接後產生的跨工具攻擊路徑。Invariant Labs 已示範過針對 GitHub MCP 整合的攻擊：惡意 issue 可劫持 agent 並外洩私有 repo 資料。這類威脅會隨 agent 工具數量增加而指數成長。
+
+## 邊界/反例
+- 若 agent 不連接外部工具或僅連接可信內部系統，風險面較小
+- 過度 sandboxing 會限制 agent 的實用性，需在安全與功能間取捨
+- 目前防禦方案多為概念性框架，實務落地的成熟方案仍有限
+
+## 標籤
+#AgentSecurity #ToxicFlows #MCP #PromptInjection #分層防禦
