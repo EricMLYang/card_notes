@@ -1,21 +1,18 @@
----
-tags:
-  - ai-coding
-  - architecture
----
-# Multi-Repo AI Agent 架構
+# 4-Multi-Repo AI Agent 架構
 
-## 類型
-系統架構、AI Agent
+**類型**：Model
 
 ## 概念
-Meta AI 團隊的經驗：在大型組織中，Multi-repo 架構搭配 AI Agent 更有效。每個 Repo 作為一個工作單元 (Worker Unit)，AI Agent 在各 Repo 中獨立運作，透過明確的 API 契約協作。優勢：(1) 隔離性——一個 Agent 出錯不影響全局；(2) 專業化——每個 Agent 專注一個領域；(3) 可擴展——新增 Agent 不影響現有系統。這種架構對應 Conway's Law：系統結構反映組織結構。
+Multi-repo Agent 架構的核心不是拆 repo，而是拆責任邊界：能力模組、執行流程、環境配置、知識資產各自獨立版本化。這能降低 context 汙染、縮小變更半徑，讓不同 Agent 在明確契約下協作。
 
 ## 重要性
-提供大規模 AI 代理部署的架構參考。
+它決定 Agent 系統能否從單次 demo 走向可維護產品。
 
-## 邊界
-適用於大型組織；小團隊可能過度設計。
+## 邊界/反例
+團隊規模小、問題單純時，過早多 repo 會增加協作成本。若沒有明確 interface 契約，多 repo 只會把混亂分散到更多地方。
+
+## 知識鉤子
+可與 `#Repo-as-Worker` 連成可維護代理工作流，並對接 `#MCP 工具治理` 的權限與版本策略。
 
 ## 標籤
-#ai-coding #architecture #multi-repo #agent #meta
+#MultiRepo #Agent架構 #模組化 #版本治理 #Context管理

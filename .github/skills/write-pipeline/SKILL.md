@@ -29,7 +29,8 @@ Step 4 FRAMEWORK  → Step 5 BODY+CLOSE
 ## Draft 檔管理
 
 ### 檔案位置
-所有草稿存放在 `/004_1Draft/`，檔名格式：`[主題關鍵字].md`
+所有草稿存放在 `/004_1Draft/`，檔名格式：`YYYYMMDD_[主題關鍵字].md`
+- 範例：`20260223_AI_Agent_產品探索.md`
 
 ### Frontmatter 結構
 每個 Draft 檔的 YAML frontmatter 用於追蹤 pipeline 進度：
@@ -205,12 +206,12 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 1. **排版**：呼叫 `format-article` skill 進行社群媒體排版
 2. **圖片生成**：使用 `W8_點綴_圖片生成.prompt.md` 生成配圖 prompt
-3. **移動檔案**：將最終版本移到 `/004_2Express/`，檔名格式：`【標題】.md`
+3. **移動檔案**：將最終版本移到 `/004_2Express/`，檔名格式：`YYYYMMDD_【標題】.md`
 4. **回饋卡片**：呼叫 `break-cards` skill，從文章中萃取新的知識卡片回饋到卡片系統
 5. **更新索引**：如果產生了新卡片，更新對應的索引檔
 
 **產出**：
-- `/004_2Express/【標題】.md` — 最終發佈版
+- `/004_2Express/YYYYMMDD_【標題】.md` — 最終發佈版
 - `/003_2Cards/` — 新萃取的卡片（如有）
 - `/004_1Draft/` 中的原始 Draft 檔保留作為歷史紀錄
 
