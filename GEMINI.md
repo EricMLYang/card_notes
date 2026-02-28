@@ -57,7 +57,7 @@
 ### 建立卡片文件
 
 - 當用戶說「幫我放到卡片資料夾」或「建立卡片」時，執行此流程
-- 卡片文件命名：`編號-標題.md`（編號見「編號分類對照表」）
+- 卡片文件命名：`編號-標題.md`（編號分類規則詳見 `.github/skills/break-cards/SKILL.md`「編號分類對照表」）
 - 範例：`3-AI 工程兩層拆解：技術實現 vs 需求定義.md`
 - 一篇文章可能產生多個類別的卡片，需分別使用對應編號
 
@@ -71,38 +71,6 @@
 
 - 有價值但非卡片的內容 → 移到 `/005_1Resource/` 或 `/001_X/`
 - 已萃取完成的原文 → 刪除或移到 `/006Archive/`
-
----
-
-## 編號分類對照表
-
-| 編號 | 索引文件 | 主題範疇 |
-|------|----------|----------|
-| **1-** | `Idx_1-CoreConcepts.md` | 通用原則與底層思維（策略、決策、槓桿、第一性原理）；跨領域可重用的判斷框架優先放這裡。 |
-| **2-** | `Idx_2-PersonKnowledgeManage.md` | 個人知識管理與能力成長（學習法、職涯定位、創作者工作流、心智升級）。 |
-| **3-** | `Idx_3-AiApplication.md` | AI 應用與產品化實戰（Agent/LLM 應用、產品策略、評估方法、商業化落地）。 |
-| **4-** | `Idx_4-AiCoding.md` | AI Coding 與開發工作流（程式開發協作模式、工程師角色轉型、Coding Agent 實務）。 |
-| **5-** | `Idx_5-BusinessDataScience.md` | 商業分析與數據決策（因果推論、統計方法、實驗設計、Decision Science）。 |
-| **6-** | `Idx_6-Databricks.md` | Databricks 生態與資料平台實作（Lakehouse、Delta、治理、產品化平台）。 |
-| **7-** | `idx_7-ProductManager.md` | 產品管理與 PMF（需求洞察、驗證框架、產品策略、跨部門推進）。 |
-| **8-** | `Idx_8-系統架構知識.md` | 系統架構與分散式設計（系統邊界、元件關係、架構取捨）。 |
-| **9-** | `Idx_9-軟體工程知識.md` | 軟體工程方法與品質（Code Review、設計原則、開發規範、工程治理）。 |
-| **10-** | `Idx_10-系統驗測與維運.md` | 測試、監控與維運（Observability、SRE、部署治理、故障處理）。 |
-| **11-** | `Idx_11-投資理財房地產.md` | 投資、資產配置與房地產（資本配置、風險管理、財務思維）。 |
-| **12-** | `Idx_12-個人效率與成長.md` | 個人效率與習慣系統（時間管理、習慣設計、能量管理）。 |
-| **13-** | `Idx_13-AI寫作.md` | AI 寫作與表達設計（敘事、Hook、文案結構、內容傳播）。 |
-| **14-** | `Idx_14-世界政經科技趨勢.md` | 宏觀趨勢與產業轉向（全球政經科技、勞動市場變化、不可逆結構性趨勢）。 |
-
-**分類判斷順序（避免重複分類）**：
-1. 先判斷是否為「宏觀趨勢/產業結構變化」：是則優先 `14-`。
-2. 再判斷是否為明確專業域：Databricks (`6-`)、軟體工程方法 (`9-`)、架構 (`8-`)、測維 (`10-`)。
-3. AI 主題再細分：AI 產品/應用 (`3-`) vs AI Coding/開發工作流 (`4-`)。
-4. 非特定技術域但可跨域重用的思維框架：歸 `1-`。
-5. 若是個人成長、知識管理、寫作表達：依內容落在 `2-`、`12-`、`13-`。
-
-**衝突處理**：
-- 同時命中多類時，只選一個主分類，原則為「這張卡片最常被用來做哪種決策」。
-- 以「用途」優先於「來源」：同一篇文章可拆出不同編號卡片。
 
 ---
 
@@ -131,7 +99,7 @@
 ## AI 輔助工具
 
 ### Skills（自動化流程）
-- `break-cards`：拆解文章成原子化卡片
+- `break-cards`：拆解文章成原子化卡片（含編號分類對照表，為分類規則的唯一來源）
 - `link-cards`：連結相關卡片
 - `format-article`：社群媒體排版
 - `fact-check`：查證引用與細節
@@ -143,12 +111,20 @@
 - `process-inbox`：Inbox 自動處理（觸發：「處理 Inbox」「整理收件匣」）
 - `scout-news`：智慧新聞搜集（觸發：「找新聞」「搜集新資訊」）
 - `teardown-article`：文章寫作技法拆解
+- `update-profile`：閱讀偏好更新器
 - `filename-prefix-guard`：檔名前綴守門
+- `sync-agent-instructions`：Agent 指令同步（以 `copilot-instructions.md` 為主軸同步至 CLAUDE.md / AGENTS.md / GEMINI.md）
 
-### Chatmodes（互動角色）
-- `FiveKeyTopicGenerator`、`Hooker`、`TitleMaster`、`GoldenSentence`、`StoryLineBreak`
-- `Editor`、`AISenior`、`DeepReader`、`AudienceResearcher`、`HackerReporter`
+### Agents（互動角色，位於 `.github/agents/`）
+- `Editor`：責任編輯（懂程式開發的讀者視角審閱）
+- `DeepReader`：深度文章導讀（七步驟批判性分析）
+- `FiveKeyTopicGenerator`：五大選題產生器
+- `AudienceResearcher`：受眾研究員
+- `HackerReporter`：黑客報告（深度研究夥伴）
 - `WritingCoach`：寫作教練（Pipeline 檢查點決策支援）
 
-### Prompts（單次任務）
-位於 `.github/prompts/`：W 系列（寫作各階段）、P 系列（產品相關）、Tool 系列（通用工具）
+### Prompts（單次任務，位於 `.github/prompts/`）
+命名規則：`{系列}_{序號}_{英文簡稱}.prompt.md`
+- **W 系列**（W0-W8）：寫作各階段（情境、選題、發想、標題、鉤子、主體、收尾、補強、點綴）
+- **P 系列**（P1-P8）：產品與商業（商業模式、定位、產品、漏斗、文案、落地頁）
+- **Tool 系列**：通用工具（深度研究、書籍推薦、文章分析）

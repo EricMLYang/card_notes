@@ -62,7 +62,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 1. **確認主題**：如果用戶沒有明確主題，引導用戶釐清想寫什麼
 2. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
-3. **確認寫作情境**：參考 `W0_情境_7大寫作情境.prompt.md`，問用戶這篇文章屬於哪種情境：
+3. **確認寫作情境**：參考 `W0_02_SevenScenarios.prompt.md`，問用戶這篇文章屬於哪種情境：
    - 知識文（knowledge_article）
    - 觀點文（opinion）
    - 教學文（tutorial）
@@ -80,10 +80,10 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 2: IDEATION（發想）
 **模式**：全自動
 
-1. **卡片素材整理**：使用 `W2_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
-2. **價值維度發想**：參考 `W2發想_料感與4種價值.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位
-3. **乾貨維度發想**：參考 `W2發想_三大乾貨_知識_經驗_框架.prompt.md`，從知識、經驗、框架三個維度發想素材
-4. **觀點深化**：參考 `W2_2發想` 系列 prompt，選擇合適的思考方式深化觀點
+1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
+2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位
+3. **乾貨維度發想**：參考 `W2_04_ThreeDryGoods.prompt.md`，從知識、經驗、框架三個維度發想素材
+4. **觀點深化**：參考 `W2_06` ~ `W2_10` 系列 prompt，選擇合適的思考方式深化觀點
 
 **產出**：在 Draft 檔追加 `## 素材地圖`（CardWeaver 結果）和 `## 發想筆記`
 **更新**：`pipeline_stage: "IDEATION"` → `"TITLE_HOOK"`
@@ -93,9 +93,9 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 3: TITLE+HOOK（標題與鉤子）
 **模式**：全自動
 
-1. **爆款標題 × 5**：使用 `W3_標題_爆款文標題大師.prompt.md` 生成 5 個爆款標題
-2. **超具體標題 × 5**：使用 `W3_標題_超具體標題大師.prompt.md` 生成 5 個超具體標題
-3. **鉤子 × 9**：使用 `W4_前言_鉤子寫作機.prompt.md` 為排名前 3 的標題各生成 3 個鉤子
+1. **爆款標題 × 5**：使用 `W3_01_ExplosiveTitle.prompt.md` 生成 5 個爆款標題
+2. **超具體標題 × 5**：使用 `W3_02_UltraSpecificTitle.prompt.md` 生成 5 個超具體標題
+3. **鉤子 × 9**：使用 `W4_01_HookWriter.prompt.md` 為排名前 3 的標題各生成 3 個鉤子
 4. **整理選項**：將所有標題和鉤子整理成清晰的選項列表
 
 **產出**：在 Draft 檔追加 `## 標題鉤子選項`
@@ -125,10 +125,10 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 4: FRAMEWORK（選框架）
 **模式**：半自動
 
-1. **推薦框架**：根據寫作情境（scenario），參考 `W5_主體_決定文章框架.prompt.md` 推薦合適的框架：
-   - 知識文/教學文 → 萬能寫作法（`W5_主體_萬能寫作法教練.prompt.md`）
+1. **推薦框架**：根據寫作情境（scenario），參考 `W5_01_FrameworkSelector.prompt.md` 推薦合適的框架：
+   - 知識文/教學文 → 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
    - 觀點文/趨勢分析 → 觀點型框架
-   - 案例分析/故事型 → 爆文公式（`W5_主體_爆文模板.prompt.md`）
+   - 案例分析/故事型 → 爆文公式（`W5_02_ExplosiveTemplate.prompt.md`）
    - 比較文 → PASTOR 框架
 2. **用戶確認**：展示推薦框架和理由，讓用戶確認或更換
 
@@ -144,7 +144,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 嵌入 CardWeaver 整理好的卡片素材
    - 確保框架、論據、類比、案例自然融入
    - 用選定的標題和鉤子作為開頭
-2. **收尾撰寫**：使用 `W6_收尾_金句大師.prompt.md` 撰寫文章收尾
+2. **收尾撰寫**：使用 `W6_01_GoldenQuote.prompt.md` 撰寫文章收尾
    - 參考 CardWeaver 的 (e) 收尾素材
    - 產出 2-3 個收尾版本供後續選擇
 
@@ -176,10 +176,11 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 6: POLISH（打磨）
 **模式**：全自動
 
-1. **風格轉換**：使用 `W7_補強_風格轉換_加恩版.prompt.md` 調整文章風格
-2. **人味化**：使用 `W7_補強_人味轉換器.prompt.md` 增加人味，減少 AI 感
-3. **減少冗贅**：使用 `W7_補強_不是而是減少器.prompt.md` 精簡文字
-4. **事實查證**：呼叫 `fact-check` skill 查證文章中的具體細節
+1. **風格轉換**：使用 `W7_05_StyleTransferMyself.prompt.md` 調整文章風格
+2. **人味化**：使用 `W7_01_Humanizer.prompt.md` 增加人味，減少 AI 感
+3. **減少冗贅**：使用 `W7_02_NotButReducer.prompt.md` 精簡文字
+4. **符號排版**：使用 `W7_formatting.prompt.md` 調整標題與段落符號格式
+5. **事實查證**：呼叫 `fact-check` skill 查證文章中的具體細節
 
 **產出**：在 Draft 檔追加 `## Draft v2`（打磨後的文章）+ `## 查證報告`
 **更新**：`pipeline_stage: "POLISH"` → `"CP3"`
@@ -205,7 +206,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **模式**：全自動
 
 1. **排版**：呼叫 `format-article` skill 進行社群媒體排版
-2. **圖片生成**：使用 `W8_點綴_圖片生成.prompt.md` 生成配圖 prompt
+2. **圖片生成**：使用 `W8_01_ImagePrompt.prompt.md` 生成配圖 prompt
 3. **移動檔案**：將最終版本移到 `/004_2Express/`，檔名格式：`YYYYMMDD_【標題】.md`
 4. **回饋卡片**：呼叫 `break-cards` skill，從文章中萃取新的知識卡片回饋到卡片系統
 5. **更新索引**：如果產生了新卡片，更新對應的索引檔
@@ -239,6 +240,18 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **恢復觸發**：
 - 用戶說「繼續寫」「繼續 pipeline」
 - 用戶選擇了 `resume-draft` 列出的草稿
+
+## 異常處理
+
+| 情境 | 處理方式 |
+|------|----------|
+| `gather-cards` 找不到任何相關卡片 | 告知用戶知識庫中無相關素材，詢問是否（a）無卡片繼續寫、（b）先用 `scout-news` 搜集資料再回來、（c）換主題 |
+| 用戶在 CP1 拒絕全部標題/鉤子 | 詢問用戶偏好方向，重新執行 Step 3（不重複 Step 1-2） |
+| 用戶在 CP2 要求大幅重寫 | 將回饋記錄到 Draft 檔，回退到 Step 5 重新撰寫主體，保留原始 Draft v1 作為參考 |
+| 用戶在 CP3 退回 | 回退到 Step 6 重新打磨，或根據用戶指示回退到更早的階段 |
+| `fact-check` 發現重大事實錯誤 | 在 CP3 呈現查證報告時標記，等用戶決定是否修正後再發佈 |
+
+---
 
 ## 禁止事項
 
