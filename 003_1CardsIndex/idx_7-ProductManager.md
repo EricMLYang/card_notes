@@ -20,3 +20,7 @@
 [[7-B2B PM 的三步用戶反饋框架]]
 [[7-從 GenAI 功能到可收費 Agent 的三層演進]]
 [[7-好 PM 的核心：讓產品發生的人]]
+
+## PM 角色轉型
+
+[[7-PM 從 Project Manager 到 Possibility Maker：三個 Master 升級路線]]

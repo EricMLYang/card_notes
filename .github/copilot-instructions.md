@@ -122,6 +122,7 @@
 - `AudienceResearcher`：受眾研究員
 - `HackerReporter`：黑客報告（深度研究夥伴）
 - `WritingCoach`：寫作教練（Pipeline 檢查點決策支援）
+- `ThinkingCoach`：思考教練（陪伴探索問題、引導問出好問題）
 
 ### Prompts（單次任務，位於 `.github/prompts/`）
 命名規則：`{系列}_{序號}_{英文簡稱}.prompt.md`
