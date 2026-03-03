@@ -1,0 +1,194 @@
+```yaml
+schema_version: "1.0"
+last_updated: "2026-03-03"
+
+skills:
+  # === Zettelkasten 核心流程 ===
+  - name: "卡片拆解"
+    alias: "break-cards"
+    trigger: "當需要將長文拆解成原子化卡片時"
+    description: "將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelkasten 方法論"
+    mode: hybrid
+    estimated_effort: medium
+    category: zettelkasten
+    path: ".github/skills/break-cards/SKILL.md"
+
+  - name: "卡片連結"
+    alias: "link-cards"
+    trigger: "當需要為卡片建立知識網絡連結時"
+    description: "分析當前卡片並在知識庫中找出最值得連結的相關卡片"
+    mode: hybrid
+    estimated_effort: low
+    category: zettelkasten
+    path: ".github/skills/link-cards/SKILL.md"
+
+  - name: "Inbox 自動處理"
+    alias: "process-inbox"
+    trigger: "當需要一鍵處理 Inbox 中的文章時"
+    description: "自動拆解卡片、建立檔案、更新索引、歸檔原文"
+    mode: interactive
+    estimated_effort: medium
+    category: zettelkasten
+    path: ".github/skills/process-inbox/SKILL.md"
+
+  - name: "文章歸檔"
+    alias: "archive-article"
+    trigger: "當需要把文章依 Projects→Area→Resource→Archive 順序歸檔時"
+    description: "依固定優先順序歸檔文章，並在非 Archive 情境同步累積到電子書筆記"
+    mode: interactive
+    estimated_effort: low
+    category: maintenance
+    path: ".github/skills/archive-article/SKILL.md"
+
+  - name: "卡片素材搜集"
+    alias: "gather-cards"
+    trigger: "當需要為寫作主題搜集相關卡片時"
+    description: "給定主題，自動搜尋卡片庫找出最相關的 5-15 張卡片"
+    mode: autonomous
+    estimated_effort: low
+    category: zettelkasten
+    path: ".github/skills/gather-cards/SKILL.md"
+
+  # === 寫作 Pipeline ===
+  - name: "寫作自動化主控台"
+    alias: "write-pipeline"
+    trigger: "當需要開始新文章寫作流程時"
+    description: "串接 W0-W8 所有環節，用 Draft 檔 YAML frontmatter 追蹤進度"
+    mode: interactive
+    estimated_effort: high
+    category: writing
+    path: ".github/skills/write-pipeline/SKILL.md"
+
+  - name: "草稿狀態管理"
+    alias: "resume-draft"
+    trigger: "當需要查看或恢復草稿寫作進度時"
+    description: "列出所有進行中草稿的 pipeline 狀態，讓用戶快速恢復寫作"
+    mode: autonomous
+    estimated_effort: low
+    category: writing
+    path: ".github/skills/resume-draft/SKILL.md"
+
+  # === 內容處理與分析 ===
+  - name: "高解析度摘要"
+    alias: "high-res-summary"
+    trigger: "當需要對 PDF 或長文進行詳細摘要時"
+    description: "對 PDF 或長文進行高解析度摘要，保留所有具體細節"
+    mode: autonomous
+    estimated_effort: medium
+    category: content
+    path: ".github/skills/high-res-summary/SKILL.md"
+
+  - name: "文章技法拆解"
+    alias: "teardown-article"
+    trigger: "當需要學習優質文章的寫作技巧時"
+    description: "拆解欣賞的文章，分析寫作技法並萃取可複用結構模板"
+    mode: hybrid
+    estimated_effort: medium
+    category: content
+    path: ".github/skills/teardown-article/SKILL.md"
+
+  - name: "事實查證"
+    alias: "fact-check"
+    trigger: "當需要查證文章中的具體細節時"
+    description: "查證文章中的具體細節、人名、引述是否真實有據"
+    mode: autonomous
+    estimated_effort: low
+    category: content
+    path: ".github/skills/fact-check/SKILL.md"
+
+  - name: "社群媒體排版"
+    alias: "format-article"
+    trigger: "當需要將文章排版用於社群媒體時"
+    description: "將文章進行社群媒體排版，插入空行和隱形符號增加可讀性"
+    mode: autonomous
+    estimated_effort: low
+    category: content
+    path: ".github/skills/format-article/SKILL.md"
+
+  # === 資訊搜集與偏好 ===
+  - name: "智慧新聞搜集"
+    alias: "scout-news"
+    trigger: "當需要根據知識庫 context 搜集相關新聞時"
+    description: "根據卡片、草稿、問題意識等 context，自動上網搜尋相關新聞"
+    mode: interactive
+    estimated_effort: medium
+    category: research
+    path: ".github/skills/scout-news/SKILL.md"
+
+  - name: "閱讀偏好更新"
+    alias: "update-profile"
+    trigger: "當需要分析喜歡的文章並更新閱讀偏好時"
+    description: "分析用戶喜歡的文章，萃取閱讀偏好，更新 MY_PROFILE.md"
+    mode: hybrid
+    estimated_effort: low
+    category: research
+    path: ".github/skills/update-profile/SKILL.md"
+
+  # === 系統維護 ===
+  - name: "Repo 健康檢查"
+    alias: "repo-healthcheck"
+    trigger: "當需要從角色 Repo 視角檢查資料夾結構與治理一致性時"
+    description: "檢查橋接入口、.ai 治理層、技能索引與命名規範，輸出修復建議"
+    mode: autonomous
+    estimated_effort: low
+    category: maintenance
+    path: ".github/skills/repo-healthcheck/SKILL.md"
+
+  - name: "檔名前綴守門"
+    alias: "filename-prefix-guard"
+    trigger: "當需要檢查或修正檔名日期前綴時"
+    description: "統一檢查與修正 000Inbox、004_1Draft、004_2Express 的檔名日期前綴"
+    mode: autonomous
+    estimated_effort: low
+    category: maintenance
+    path: ".github/skills/filename-prefix-guard/SKILL.md"
+
+  - name: "Agent 指令同步"
+    alias: "sync-agent-instructions"
+    trigger: "當 AGENTS.md 有修改需要同步橋接檔案時"
+    description: "以 AGENTS.md 為主軸同步到所有橋接檔案（copilot-instructions.md、CLAUDE.md、GEMINI.md）"
+    mode: interactive
+    estimated_effort: low
+    category: maintenance
+    path: ".github/skills/sync-agent-instructions/SKILL.md"
+
+  - name: "Copilot 橋接同步"
+    alias: "copilot-sync"
+    trigger: "當需要同步 Copilot 橋接檔案時"
+    description: "參考 RoleFoundry 的選擇性同步策略（保留供未來架構升級參考）"
+    mode: hybrid
+    estimated_effort: low
+    category: maintenance
+    deprecated: true
+    note: "目前使用 sync-agent-instructions，本 skill 保留供未來 Framework v2 升級參考"
+    path: ".github/skills/copilot-sync/SKILL.md"
+
+  # === Meta 技能 ===
+  - name: "技能建立"
+    alias: "create-skill"
+    trigger: "當需要建立新的 Agent Skill 時"
+    description: "根據需求建立符合規範的新 Skill 文件"
+    mode: interactive
+    estimated_effort: medium
+    category: meta
+    path: ".github/skills/create-skill/SKILL.md"
+
+  - name: "技能擴充"
+    alias: "skill-expand"
+    trigger: "當需要將重複性工作流程固化成技能時"
+    description: "將經常執行的任務轉換為可復用的 Skill"
+    mode: interactive
+    estimated_effort: medium
+    category: meta
+    path: ".github/skills/skill-expand/SKILL.md"
+
+# === 分類說明 ===
+categories:
+  zettelkasten: "Zettelkasten 卡片盒方法相關的核心流程"
+  writing: "文章寫作流程與草稿管理"
+  content: "內容處理、分析、格式化"
+  research: "資訊搜集與閱讀偏好研究"
+  maintenance: "系統維護與檔案管理"
+  meta: "技能本身的建立與擴充"
+
+```

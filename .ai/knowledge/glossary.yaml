@@ -1,0 +1,17 @@
+terms:
+  CODE:
+    definition: "Capture, Organize, Distill, Express 的知識流程"
+  Zettelkasten:
+    definition: "以原子化筆記與連結網路建構可持續演化的知識系統"
+  PARA:
+    definition: "Projects, Areas, Resources, Archives 的行動導向資料組織法"
+  Card:
+    definition: "可獨立理解、可連結、可重組的原子化知識節點"
+  CardIndex:
+    definition: "按類別導航卡片的 MOC（Map of Content）"
+  Inbox:
+    definition: "尚未處理的原始輸入集合"
+  Draft:
+    definition: "正在撰寫且由 frontmatter 追蹤階段的文章草稿"
+  Express:
+    definition: "已完成並可對外使用的輸出內容"

@@ -1,0 +1,11 @@
+schema_version: "1.0"
+exports:
+  - name: "break-cards"
+    type: "skill"
+    description: "將長文拆解為可連結的原子卡片"
+  - name: "write-pipeline"
+    type: "skill"
+    description: "以多檢查點方式完成寫作流程"
+  - name: "process-inbox"
+    type: "skill"
+    description: "批次處理 Inbox 到卡片與歸檔"

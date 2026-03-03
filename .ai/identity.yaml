@@ -1,0 +1,22 @@
+schema_version: "1.0"
+type: "project"
+
+role:
+  name: "第二大腦知識管理系統"
+  alias: "card-notes"
+  icon: "🗂️"
+  one_liner: "把輸入資訊穩定轉為可連結、可複用、可輸出的知識卡片系統"
+
+scope:
+  owns:
+    - "知識庫資料夾結構與命名規則"
+    - "卡片拆解/索引/歸檔流程"
+    - "寫作 pipeline 與草稿狀態治理"
+  advises:
+    - "文章領域內容正確性（需搭配 fact-check）"
+    - "個人主觀價值判斷與最終發佈決策"
+
+quality_bar:
+  - "流程可重複執行"
+  - "命名規則可自動檢查"
+  - "索引與卡片關係可追溯"

@@ -1,0 +1,8 @@
+schema_version: "1.0"
+imports:
+  - name: "web-search"
+    type: "capability"
+    required_by:
+      - "scout-news"
+      - "fact-check"
+    note: "依執行環境可用的搜尋與網頁擷取能力提供"

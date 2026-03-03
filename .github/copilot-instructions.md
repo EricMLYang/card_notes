@@ -1,5 +1,7 @@
 # Copilot Instructions - 第二大腦知識管理系統
 
+本檔為 AGENTS.md 的橋接摘要，完整規範以根目錄 AGENTS.md 為準。
+
 ## 專案概述
 
 這是一個結合 **Building a Second Brain (CODE)** 與 **Zettelkasten（卡片盒筆記法）** 的知識管理系統，使用 Obsidian 進行管理。

@@ -1,4 +1,6 @@
-# Copilot Instructions - 第二大腦知識管理系統
+# AGENTS.md — 第二大腦知識管理系統
+
+> 本文件是本 Repo 的核心指令源。完整規範以此為準。
 
 ## 專案概述
 
