@@ -20,6 +20,15 @@
 
 /001_1Projects/   - Organize-專案：正在進行且有截止日期的任務相關資源
 /001_2Area/       - Organize-領域：需長期維護的責任範疇相關資源
+  /AI知識管理和寫作/  - Zettelkasten、PKM、Second Brain、AI 輔助寫作、Build in Public
+  /Agent/          - AI Agent 應用、Agentic 工作流
+  /AI_Trend/       - AI 趨勢觀察與策略研究
+  /AISoftwareEngineering/ - AI 軟體工程實踐
+  /BussinessDataScience/  - 商業資料科學
+  /Databricks/     - Databricks 平台
+  /IoT_Domain/     - IoT、車載領域
+  /Product_Business/ - 產品管理、商業策略
+  /AWS/ /Azure/    - 雲端平台實踐
 
 /003_1CardsIndex/ - Distill-索引：知識分類索引（Zettelkasten MOC）
 /003_2Cards/      - Distill-卡片：已萃取的原子化卡片（永久筆記）
@@ -77,6 +86,24 @@
 ---
 
 ## 資源文件處理
+
+### `/001_2Area/` 子分類依據
+
+| 子資料夾 | 收錄範疇 | 典型觸發關鍵詞 |
+|----------|---------|----------------|
+| `AI知識管理和寫作` | Zettelkasten、PKM、Second Brain 方法論、AI 輔助寫作流程、寫作技法、Build in Public | 知識管理、卡片筆記、寫作流程、第二大腦、輸出策略 |
+| `Agent` | AI Agent 設計、Agentic 工作流、MCP、評估框架 | Agent、Agentic、eval、工作流 |
+| `AI_Trend` | AI 產業趨勢、模型發布、策略觀察 | AI趨勢、大模型、產業 |
+| `AISoftwareEngineering` | AI 輔助開發、Coding Agent、工程實踐 | Cursor、Copilot、TDD、AI開發 |
+| `BussinessDataScience` | 商業資料分析、資料工程 | 資料科學、分析、Pipeline |
+| `Databricks` | Databricks 平台操作與架構 | Databricks、Spark |
+| `IoT_Domain` | IoT、車載、Beacon、數位看板 | IoT、車載、Beacon |
+| `Product_Business` | 產品管理、商業模式、策略 | 產品、商業模式、策略 |
+| `AWS` / `Azure` | 雲端服務實踐與架構 | AWS、Azure、雲端 |
+
+> `Area` vs `Resource` 判斷原則：若此主題是你**持續在做、需長期維護**的工作域 → `Area`；若只是參考資料或一次性輸入 → `Resource`。
+
+---
 
 ### `/005_1Resource/` 分類結構
 

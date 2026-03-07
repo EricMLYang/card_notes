@@ -34,8 +34,23 @@ description: 依固定優先順序歸檔文章（Projects → Area → Resource 
 
 ### Step 2: 主歸檔執行
 1. 移動原文到主歸檔目錄。
-2. 若主歸檔是 `Resource`，選定子分類（如 `AI`、`LLM_Tools`、`Dev_Engineering` 等）。
-3. 保留原檔名，不主動改名（除非用戶要求）。
+2. 若主歸檔是 `Area`，依下表選定子資料夾：
+
+   | 文章主題 | 目標子資料夾 |
+   |---------|-------------|
+   | 知識管理、Zettelkasten、PKM、Second Brain、AI 輔助寫作、寫作流程、Build in Public、輸出策略 | `AI知識管理和寫作` |
+   | AI Agent、Agentic 工作流、MCP、eval 評估 | `Agent` |
+   | AI 趨勢、模型發布、產業策略 | `AI_Trend` |
+   | AI 輔助開發、Coding Agent、TDD | `AISoftwareEngineering` |
+   | 資料科學、商業分析、資料工程 | `BussinessDataScience` |
+   | Databricks、Spark | `Databricks` |
+   | IoT、車載、Beacon | `IoT_Domain` |
+   | 產品管理、商業模式、策略 | `Product_Business` |
+   | AWS 服務與架構 | `AWS` |
+   | Azure 服務與架構 | `Azure` |
+
+3. 若主歸檔是 `Resource`，選定子分類（如 `AI`、`LLM_Tools`、`Dev_Engineering` 等）。
+4. 保留原檔名，不主動改名（除非用戶要求）。
 
 ### Step 3: 電子書同步
 1. 偵測是否為電子書內容（書名、章節、書摘語境）。
