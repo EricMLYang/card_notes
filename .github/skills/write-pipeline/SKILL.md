@@ -83,7 +83,12 @@ status: "drafting"  # drafting | reviewing | polishing | published
 1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
 2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位
 3. **乾貨維度發想**：參考 `W2_04_ThreeDryGoods.prompt.md`，從知識、經驗、框架三個維度發想素材
-4. **觀點深化**：參考 `W2_06` ~ `W2_10` 系列 prompt，選擇合適的思考方式深化觀點
+4. **觀點深化**：依現況選一個 prompt 深化觀點
+   - 沒有具體故事 → `W2_06`（niche down 到真實故事再登高提煉）
+   - 問題角度太模糊 → `W2_07`（加關鍵字讓問題可回答）
+   - 有草稿但太空洞 → `W2_08`（12 維度橫向擴充）
+   - 有材料但缺新觀點 → `W2_09`（五種視角重新發想）
+   - 有觀點但論述不深 → `W2_10`（七大心智模型強化邏輯）
 
 **產出**：在 Draft 檔追加 `## 素材地圖`（CardWeaver 結果）和 `## 發想筆記`
 **更新**：`pipeline_stage: "IDEATION"` → `"TITLE_HOOK"`
