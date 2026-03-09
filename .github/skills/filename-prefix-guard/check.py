@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Filename Prefix Guard - 檔名前綴檢查腳本
-檢查 000Inbox、004_1Draft、004_2Express 的檔名是否符合 YYYYMMDD_[title].md 格式
+檢查 003_Capture、015_Write/Draft、015_Write/Publish 的檔名是否符合 YYYYMMDD_[title].md 格式
 """
 import argparse
 import datetime as dt
@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 
-TARGET_DIRS = ("000Inbox/", "004_1Draft/", "004_2Express/")
+TARGET_DIRS = ("003_Capture/", "015_Write/Draft/", "015_Write/Publish/")
 NAME_RE = re.compile(r"^(\d{8})_(.+)\.md$")
 
 
@@ -45,7 +45,7 @@ def staged_files():
 def all_files():
     """取得目標資料夾下所有 .md 檔案"""
     paths = []
-    for d in ("000Inbox", "004_1Draft", "004_2Express"):
+    for d in ("003_Capture", "015_Write/Draft", "015_Write/Publish"):
         root = Path(d)
         if not root.exists():
             continue

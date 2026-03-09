@@ -1,26 +1,17 @@
 ```yaml
 schema_version: "1.0"
-last_updated: "2026-03-03"
+last_updated: "2026-03-09"
 
 skills:
   # === Zettelkasten 核心流程 ===
   - name: "卡片拆解"
     alias: "break-cards"
     trigger: "當需要將長文拆解成原子化卡片時"
-    description: "將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelkasten 方法論"
+    description: "將 005_PARA (Projects/Areas) 中的長文拂解成原子化卡片，遵循 Zettelkasten 方法論。拆解完成後將原始檔案重命名為 YYYYMMDD_CoreNote_原本檔名"
     mode: hybrid
     estimated_effort: medium
     category: zettelkasten
     path: ".github/skills/break-cards/SKILL.md"
-
-  - name: "卡片連結"
-    alias: "link-cards"
-    trigger: "當需要為卡片建立知識網絡連結時"
-    description: "分析當前卡片並在知識庫中找出最值得連結的相關卡片"
-    mode: hybrid
-    estimated_effort: low
-    category: zettelkasten
-    path: ".github/skills/link-cards/SKILL.md"
 
   - name: "Inbox 自動處理"
     alias: "process-inbox"
@@ -40,10 +31,10 @@ skills:
     category: maintenance
     path: ".github/skills/archive-article/SKILL.md"
 
-  - name: "卡片素材搜集"
+  - name: "卡片素材搜集與連結"
     alias: "gather-cards"
-    trigger: "當需要為寫作主題搜集相關卡片時"
-    description: "給定主題，自動搜尋卡片庫找出最相關的 5-15 張卡片"
+    trigger: "當需要為寫作主題搜集相關卡片，或為當前卡片建立連結時"
+    description: "模式 A：給定主題，搜尋 5-15 張相關卡片按角色分類。模式 B：分析當前卡片，找出 3-7 張值得連結的卡片並說明連結理由"
     mode: autonomous
     estimated_effort: low
     category: zettelkasten
@@ -53,7 +44,7 @@ skills:
   - name: "寫作自動化主控台"
     alias: "write-pipeline"
     trigger: "當需要開始新文章寫作流程時"
-    description: "串接 W0-W8 所有環節，用 Draft 檔 YAML frontmatter 追蹤進度"
+    description: "串接 W0-W8 所有環節，用 015_Write/Draft 資料夾中的 YAML frontmatter 追蹤進度，最終發佈至 015_Write/Publish"
     mode: interactive
     estimated_effort: high
     category: writing
@@ -109,7 +100,7 @@ skills:
   - name: "智慧新聞搜集"
     alias: "scout-news"
     trigger: "當需要根據知識庫 context 搜集相關新聞時"
-    description: "根據卡片、草稿、問題意識等 context，自動上網搜尋相關新聞"
+    description: "根據卡片、草稿、問題意識等 context，自動上網搜尋相關新聞，篩選後存入 003_Capture。偏好設定由 000_MyContext/capture_profile.md 控制"
     mode: interactive
     estimated_effort: medium
     category: research
@@ -118,7 +109,7 @@ skills:
   - name: "閱讀偏好更新"
     alias: "update-profile"
     trigger: "當需要分析喜歡的文章並更新閱讀偏好時"
-    description: "分析用戶喜歡的文章，萃取閱讀偏好，更新 MY_PROFILE.md"
+    description: "分析用戶喜歡的文章，萃取閱讀偏好，更新 000_MyContext/capture_profile.md"
     mode: hybrid
     estimated_effort: low
     category: research
@@ -137,7 +128,7 @@ skills:
   - name: "檔名前綴守門"
     alias: "filename-prefix-guard"
     trigger: "當需要檢查或修正檔名日期前綴時"
-    description: "統一檢查與修正 000Inbox、004_1Draft、004_2Express 的檔名日期前綴"
+    description: "統一檢查與修正 003_Capture、015_Write/Draft、015_Write/Publish 的檔名日期前綴 (YYYYMMDD_)"
     mode: autonomous
     estimated_effort: low
     category: maintenance

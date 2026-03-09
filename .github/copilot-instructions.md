@@ -16,31 +16,26 @@
 ## 目錄結構
 
 ```
-/000Inbox/        - Capture：待處理的原始文章與筆記
+000_MyContext/    - 個人化配置：閱讀偏好、拆卡偏好、問題意識
+003_Capture/      - Capture：待處理的原始文章與筆記
 
-/001_1Projects/   - Organize-專案：正在進行且有截止日期的任務相關資源
-/001_2Area/       - Organize-領域：需長期維護的責任範疇相關資源
-  /AI知識管理和寫作/  - Zettelkasten、PKM、Second Brain、AI 輔助寫作、Build in Public
-  /Agent/          - AI Agent 應用、Agentic 工作流
-  /AI_Trend/       - AI 趨勢觀察與策略研究
-  /AISoftwareEngineering/ - AI 軟體工程實踐
-  /BussinessDataScience/  - 商業資料科學
-  /Databricks/     - Databricks 平台
-  /IoT_Domain/     - IoT、車載領域
-  /Product_Business/ - 產品管理、商業策略
-  /AWS/ /Azure/    - 雲端平台實踐
+005_PARA/         - PARA 架構：系統化的行動導向組織
+  01_Projects/    - Organize-專案：正在進行且有截止日期的任務相關資源
+  02_Areas/       - Organize-領域：需長期維護的責任範疇相關資源
+    AI_Software_Data/       - AI 工程、軟體開發、資料科學
+    Domains_and_Industries/ - IoT、車載、產業領域
+    Personal_Thinking_and_Growth/ - 個人成長、知識管理、思維框架
+    Product_Business_Strategy/    - 產品管理、商業策略
+  03_Resources/   - Resources：長期參考資源（可含子資料夾分類）
+  04_Archives/    - Archives：已完成或不再需要的歷史資料
 
-/003_1CardsIndex/ - Distill-索引：知識分類索引（Zettelkasten MOC）
-/003_2Cards/      - Distill-卡片：已萃取的原子化卡片（永久筆記）
+010_CardNotes/    - Zettelkasten 卡片系統
+  01_Index/       - Distill-索引：知識分類索引（idx_*.md）
+  02_Cards/       - Distill-卡片：已萃取的原子化卡片（永久筆記）
 
-/004_0Question/   - Express-問題：我的問題意識與探索方向
-/004_1Draft/      - Express-草稿：正在撰寫的內容草稿
-/004_2Express/    - Express-發佈：已完成發佈的輸出作品
-
-/005_1Resource/   - Resources：長期參考資源（可含子資料夾分類）
-/005_2Ebook/      - Resources-書籍：書籍筆記與持續彙整
-
-/006Archive/      - Archives：已完成或不再需要的歷史資料
+015_Write/        - 寫作輸出流程
+  Draft/          - Express-草稿：正在撰寫的內容草稿
+  Publish/        - Express-發佈：已完成發佈的輸出作品
 ```
 
 ---
@@ -48,9 +43,9 @@
 ## 檔名規範（必須）
 
 新增檔案到以下資料夾時，檔名一律加上日期前綴：
-- `/000Inbox/`：`YYYYMMDD_[標題簡稱].md`
-- `/004_1Draft/`：`YYYYMMDD_[主題關鍵字].md`
-- `/004_2Express/`：`YYYYMMDD_【標題】.md`
+- `003_Capture/`：`YYYYMMDD_[標題簡稱].md`
+- `015_Write/Draft/`：`YYYYMMDD_[主題關鍵字].md`
+- `015_Write/Publish/`：`YYYYMMDD_【標題】.md`
 
 規則：`YYYYMMDD` 以建立當天日期為準，日期後用底線 `_` 分隔。已存在的舊檔可保留原格式。
 
@@ -60,10 +55,10 @@
 
 ### 完整流程
 
-1. **拆解文章**：將 `/000Inbox` 中的長文拆解成原子化卡片
-2. **建立卡片文件**：將卡片存放到 `/003_2Cards`
-3. **更新索引**：在 `/003_1CardsIndex/Idx_X-類別.md` 中記錄卡片連結
-4. **清理原文**：處理完成後刪除或歸檔原始文章
+1. **拆解文章**：將 `005_PARA` (Projects/Areas) 中的長文拆解成原子化卡片
+2. **建立卡片文件**：將卡片存放到 `010_CardNotes/02_Cards`
+3. **更新索引**：在 `010_CardNotes/01_Index/idx_X-類別.md` 中記錄卡片連結
+4. **清理原文**：處理完成後將原始檔案重命名為 `YYYYMMDD_CoreNote_原本檔名.md`，以標記為「已提取核心筆記」
 
 ### 建立卡片文件
 
@@ -74,75 +69,57 @@
 
 ### 更新索引
 
-- 根據卡片編號，更新對應的 `/003_1CardsIndex/Idx_X-類別.md`
+- 根據卡片編號，更新對應的 `010_CardNotes/01_Index/idx_X-類別.md`
 - 使用 Obsidian 連結格式：`[[卡片檔名]]`（不含 .md）
 - 將卡片連結加到對應索引的適當主題區塊下
 
 ### 清理原文
 
-- 有價值但非卡片的內容 → 移到 `/005_1Resource/` 或 `/001_X/`
-- 已萃取完成的原文 → 刪除或移到 `/006Archive/`
+- 有價值但非卡片的內容 → 移到 `005_PARA/03_Resources/` 或 `005_PARA/02_Areas/`
+- 已萃取完成的原文 → 重命名為 `YYYYMMDD_CoreNote_原檔名.md`，或移到 `005_PARA/04_Archives/`
 
 ---
 
 ## 資源文件處理
 
-### `/001_2Area/` 子分類依據
+### `005_PARA/02_Areas/` 子分類依據
 
-| 子資料夾 | 收錄範疇 | 典型觸發關鍵詞 |
-|----------|---------|----------------|
-| `AI知識管理和寫作` | Zettelkasten、PKM、Second Brain 方法論、AI 輔助寫作流程、寫作技法、Build in Public | 知識管理、卡片筆記、寫作流程、第二大腦、輸出策略 |
-| `Agent` | AI Agent 設計、Agentic 工作流、MCP、評估框架 | Agent、Agentic、eval、工作流 |
-| `AI_Trend` | AI 產業趨勢、模型發布、策略觀察 | AI趨勢、大模型、產業 |
-| `AISoftwareEngineering` | AI 輔助開發、Coding Agent、工程實踐 | Cursor、Copilot、TDD、AI開發 |
-| `BussinessDataScience` | 商業資料分析、資料工程 | 資料科學、分析、Pipeline |
-| `Databricks` | Databricks 平台操作與架構 | Databricks、Spark |
-| `IoT_Domain` | IoT、車載、Beacon、數位看板 | IoT、車載、Beacon |
-| `Product_Business` | 產品管理、商業模式、策略 | 產品、商業模式、策略 |
-| `AWS` / `Azure` | 雲端服務實踐與架構 | AWS、Azure、雲端 |
+主要分類（細節見各子資料夾內的 README.md）：
+- `AI_Software_Data/`：AI 工程、軟體開發、資料科學
+- `Domains_and_Industries/`：IoT、車載、產業領域
+- `Personal_Thinking_and_Growth/`：個人成長、知識管理、思維框架
+- `Product_Business_Strategy/`：產品管理、商業策略
 
 > `Area` vs `Resource` 判斷原則：若此主題是你**持續在做、需長期維護**的工作域 → `Area`；若只是參考資料或一次性輸入 → `Resource`。
 
 ---
 
-### `/005_1Resource/` 分類結構
+### `005_PARA/03_Resources/` 分類結構
 
-```
-/AI/              - AI 趨勢、策略、產業影響
-/LLM_Tools/       - Claude、Anthropic、LLM 應用/框架
-/Dev_Engineering/ - 軟體開發、架構、資安、前後端
-/Product_Business/- 產品管理、商業模式、策略
-/Reference/       - 學習資源、閱讀清單、概念說明
-/IoT_Domain/      - IoT、車載、Beacon、數位看板
-/文章拆解/        - 文章寫作技法拆解分析
-/Projects_Misc/   - 其他專案雜項
-```
-
-### `/005_2Ebook/` 書籍筆記
-
-- 每本書一個文件，持續彙整閱讀筆記
-- 可從書籍筆記萃取卡片到 `/003_2Cards`
+參考 `005_PARA/03_Resources/README.md` 的完整分類說明。主要分類包含：
+- 閱讀清單與學習資源
+- 書籍筆記（持續彙整）
+- 英文學習資源
 
 ---
 
 ## AI 輔助工具
 
 ### Skills（自動化流程）
-- `break-cards`：拆解文章成原子化卡片（含編號分類對照表，為分類規則的唯一來源）
-- `link-cards`：連結相關卡片
+- `break-cards`：拆解文章成原子化卡片（含編號分類對照表，為分類規則的唯一來源）。拆解完成後將原始檔案重命名為 `YYYYMMDD_CoreNote_原本檔名.md`
+- `gather-cards`：搜集卡片素材與建立連結（雙模式：模式 A 為寫作搜集 5-15 張卡片，模式 B 為當前卡片連結 3-7 張相關卡片）
 - `format-article`：社群媒體排版
 - `fact-check`：查證引用與細節
 - `high-res-summary`：高解析度摘要
 - `create-skill`：建立新的 Agent Skill
-- `gather-cards`：搜集卡片素材
 - `write-pipeline`：寫作自動化主控台（觸發：「寫新文章」「開始寫作」）
 - `resume-draft`：草稿狀態管理器（觸發：「我的草稿」「繼續寫作」）
-- `process-inbox`：Inbox 自動處理（觸發：「處理 Inbox」「整理收件匣」）
-- `scout-news`：智慧新聞搜集（觸發：「找新聞」「搜集新資訊」）
+- `process-inbox`：Capture 自動處理（觸發：「處理 Capture」「整理收件匣」）
+- `scout-news`：智慧新聞搜集（觸發：「找新聞」「搜集新資訊」）。根據 `000_MyContext/capture_profile.md` 搜尋相關新聞
 - `teardown-article`：文章寫作技法拆解
-- `update-profile`：閱讀偏好更新器
+- `update-profile`：閱讀偏好更新器，分析喜歡的文章並更新 `000_MyContext/capture_profile.md`
 - `filename-prefix-guard`：檔名前綴守門
-- `sync-agent-instructions`：Agent 指令同步（以 `copilot-instructions.md` 為主軸同步至 CLAUDE.md / AGENTS.md / GEMINI.md）
+- `sync-agent-instructions`：Agent 指令同步（以 AGENTS.md 為主軸同步至 copilot-instructions.md / CLAUDE.md / GEMINI.md）
 
 ### Agents（互動角色，位於 `.github/agents/`）
 - `Editor`：責任編輯（懂程式開發的讀者視角審閱）

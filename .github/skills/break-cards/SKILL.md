@@ -1,6 +1,6 @@
 ---
 name: break-cards
-description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelkasten 方法論。適用於用戶說「幫我拆解文章」「拆成卡片」或處理 Inbox 中的文章時。
+description: 將長文或筆記拆解成原子化卡片，遵循 Zettelkasten 方法論。適用於 005_PARA (Projects/Areas) 內用戶指定範圍的檔案，或檔名包含 WaitBreakCard 的檔案。用戶說「幫我拆解文章」「拆成卡片」時觸發。
 ---
 
 # Skill: Break Cards（卡片拆解）
@@ -8,10 +8,15 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 ## 目標
 將長文章或筆記拆解成可獨立理解、可互相連結、可重組的原子化卡片（Zettel），建立高價值的知識網絡節點。
 
+## 適用範圍
+- **主要來源**：`005_PARA/01_Projects/` 和 `005_PARA/02_Areas/` 內用戶指定的檔案或資料夾範圍
+- **待處理標記**：檔名包含 `WaitBreakCard` 的檔案（表示等待拆解成卡片）
+- **使用時機**：當用戶明確指出要拆解的文章或範圍時
+
 ## 個人化偏好來源
-- 優先讀取同層檔案：`MY_PROFILE.md`
+- 優先讀取檔案：`000_MyContext/break_cards_profile.md`
 - 用途：在 Step 3（候選洞見篩選）決定提取視角與優先級。
-- **絕對限制**：命中偏好方向僅代表「優先處理」，**絕不允許降低收錄門檻**。若 `MY_PROFILE.md` 缺失，僅使用本檔的通用高訊號規則。
+- **絕對限制**：命中偏好方向僅代表「優先處理」，**絕不允許降低收錄門檻**。若該檔案缺失，僅使用本檔的通用高訊號規則。
 
 ## 核心原則
 
@@ -44,11 +49,11 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 ### Step 2: 提取主脈絡與個人映射
 用 4–8 行寫出：
 1. **論證骨架**：作者怎麼推論到結論，挑戰了什麼預設。
-2. **個人化映射**：這篇文章的核心邏輯，如何補充、挑戰或顛覆 `MY_PROFILE.md` 中定義的「槓桿型系統建造者」視角？具體價值在哪？
+2. **個人化映射**：這篇文章的核心邏輯，如何補充、挑戰或顛覆 `000_MyContext/break_cards_profile.md` 中定義的「槓桿型系統建造者」視角？具體價值在哪？
 
 ### Step 3: 候選洞見嚴格篩選
 - 列出候選洞見。
-- 主動尋找文章內容與 `MY_PROFILE.md` 「高權重方向」的交叉點。
+- 主動尋找文章內容與 `000_MyContext/break_cards_profile.md` 「高權重方向」的交叉點。
 - 嚴格套用「高訊號篩選器」雙重標準淘汰低價值項，**寧缺勿濫**。
 
 ### Step 4: 產出卡片
@@ -99,20 +104,20 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 
 | 編號 | 索引文件 | 主題範疇 |
 |------|----------|----------|
-| **1-** | `Idx_1-CoreConcepts.md` | 通用原則與底層思維（策略、決策、槓桿、第一性原理）；跨領域可重用的判斷框架優先放這裡。 |
-| **2-** | `Idx_2-PersonKnowledgeManage.md` | 個人知識管理與能力成長（學習法、職涯定位、創作者工作流、心智升級）。 |
-| **3-** | `Idx_3-AiApplication.md` | AI 應用與產品化實戰（Agent/LLM 應用、產品策略、評估方法、商業化落地）。 |
-| **4-** | `Idx_4-AiCoding.md` | AI Coding 與開發工作流（程式開發協作模式、工程師角色轉型、Coding Agent 實務）。 |
-| **5-** | `Idx_5-BusinessDataScience.md` | 商業分析與數據決策（因果推論、統計方法、實驗設計、Decision Science）。 |
-| **6-** | `Idx_6-Databricks.md` | Databricks 生態與資料平台實作（Lakehouse、Delta、治理、產品化平台）。 |
-| **7-** | `idx_7-ProductManager.md` | 產品管理與 PMF（需求洞察、驗證框架、產品策略、跨部門推進）。 |
-| **8-** | `Idx_8-系統架構知識.md` | 系統架構與分散式設計（系統邊界、元件關係、架構取捨）。 |
-| **9-** | `Idx_9-軟體工程知識.md` | 軟體工程方法與品質（Code Review、設計原則、開發規範、工程治理）。 |
-| **10-** | `Idx_10-系統驗測與維運.md` | 測試、監控與維運（Observability、SRE、部署治理、故障處理）。 |
-| **11-** | `Idx_11-投資理財房地產.md` | 投資、資產配置與房地產（資本配置、風險管理、財務思維）。 |
-| **12-** | `Idx_12-個人效率與成長.md` | 個人效率與習慣系統（時間管理、習慣設計、能量管理）。 |
-| **13-** | `Idx_13-AI寫作.md` | AI 寫作與表達設計（敘事、Hook、文案結構、內容傳播）。 |
-| **14-** | `Idx_14-世界政經科技趨勢.md` | 宏觀趨勢與產業轉向（全球政經科技、勞動市場變化、不可逆結構性趨勢）。 |
+| **1-** | `idx_mental_models.md` | 通用原則與底層思維（策略、決策、槓桿、第一性原理）；跨領域可重用的判斷框架優先放這裡。 |
+| **2-** | `idx_knowledge_management.md` | 個人知識管理與能力成長（學習法、職涯定位、創作者工作流、心智升級）。 |
+| **3-** | `idx_ai_engineering.md` | AI 應用與產品化實戰（Agent/LLM 應用、產品策略、評估方法、商業化落地）。 |
+| **4-** | `idx_ai_coding_and_agents.md` | AI Coding 與開發工作流（程式開發協作模式、工程師角色轉型、Coding Agent 實務）。 |
+| **5-** | `idx_data_engineering_and_analytics.md` | 商業分析與數據決策（因果推論、統計方法、實驗設計、Decision Science）。 |
+| **6-** | `idx_databricks.md` | Databricks 生態與資料平台實作（Lakehouse、Delta、治理、產品化平台）。 |
+| **7-** | `idx_product_management.md` | 產品管理與 PMF（需求洞察、驗證框架、產品策略、跨部門推進）。 |
+| **8-** | `idx_system_architecture.md` | 系統架構與分散式設計（系統邊界、元件關係、架構取捨）。 |
+| **9-** | `idx_software_engineering.md` | 軟體工程方法與品質（Code Review、設計原則、開發規範、工程治理）。 |
+| **10-** | `idx_testing_and_operations.md` | 測試、監控與維運（Observability、SRE、部署治理、故障處理）。 |
+| **11-** | `idx_finance_and_investment.md` | 投資、資產配置與房地產（資本配置、風險管理、財務思維）。 |
+| **12-** | `idx_personal_growth.md` | 個人效率與習慣系統（時間管理、習慣設計、能量管理）。 |
+| **13-** | `idx_market_and_growth.md` | AI 寫作與表達設計（敘事、Hook、文案結構、內容傳播）。 |
+| **14-** | `idx_domains_and_industries.md` | 宏觀趨勢與產業轉向（全球政經科技、勞動市場變化、不可逆結構性趨勢）。 |
 
 ### 分類判斷順序（避免重複分類）
 
@@ -171,6 +176,18 @@ description: 將 /000Inbox 中的長文拆解成原子化卡片，遵循 Zettelk
 
 ### 輸出位置（依使用情境）
 
-- **獨立使用時**：附加在原文件末尾（不要覆蓋原文），完成後主動詢問用戶是否需要將特定序號的卡片移至 `/003_2Cards` 並更新索引。
+- **獨立使用時**：附加在原文件末尾（不要覆蓋原文），完成後主動詢問用戶是否需要將特定序號的卡片移至 `010_CardNotes/02_Cards` 並更新 `010_CardNotes/01_Index` 中的對應索引。
 - **被 `process-inbox` 或其他 pipeline 呼叫時**：輸出到對話或 Draft 檔，**不修改原文**。由呼叫方負責後續檔案操作。
+
+### 完成後檔案重命名
+
+卡片拆解完成後，將原始來源檔案重命名以標記為「已提取核心筆記」：
+
+- **命名格式**：`YYYYMMDD_CoreNote_原本檔名.md`
+- **日期規則**：原檔名有日期前綴不變，沒有就使用拆解完成當天的日期（YYYYMMDD 格式）
+- **範例**：
+  - 原檔名：`AI Agent 設計原則.md`
+  - 重命名為：`20260309_CoreNote_AI Agent 設計原則.md`
+- **適用範圍**：所有經過 break-cards 拆解的來源檔案，無論是獨立使用或被 pipeline 呼叫
+- **執行時機**：在完成卡片移動與索引更新後執行重命名
 

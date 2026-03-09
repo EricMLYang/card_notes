@@ -29,7 +29,7 @@ Step 4 FRAMEWORK  → Step 5 BODY+CLOSE
 ## Draft 檔管理
 
 ### 檔案位置
-所有草稿存放在 `/004_1Draft/`，檔名格式：`YYYYMMDD_[主題關鍵字].md`
+所有草稿存放在 `015_Write/Draft/`，檔名格式：`YYYYMMDD_[主題關鍵字].md`
 - 範例：`20260223_AI_Agent_產品探索.md`
 
 ### Frontmatter 結構
@@ -70,7 +70,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 趨勢分析（trend_analysis）
    - 比較文（comparison）
    - 故事型（storytelling）
-4. **建立 Draft 檔**：在 `/004_1Draft/` 建立新的 `.md` 檔，寫入 frontmatter 和 gather-cards 的結果
+4. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter 和 gather-cards 的結果
 
 **產出**：Draft 檔建立，含 frontmatter + `## 原始素材`（gather-cards 結果）
 **更新**：`pipeline_stage: "INTAKE"` → `"IDEATION"`
@@ -207,14 +207,12 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 1. **排版**：呼叫 `format-article` skill 進行社群媒體排版
 2. **圖片生成**：使用 `W8_01_ImagePrompt.prompt.md` 生成配圖 prompt
-3. **移動檔案**：將最終版本移到 `/004_2Express/`，檔名格式：`YYYYMMDD_【標題】.md`
-4. **回饋卡片**：呼叫 `break-cards` skill，從文章中萃取新的知識卡片回饋到卡片系統
-5. **更新索引**：如果產生了新卡片，更新對應的索引檔
+3. **移動檔案**：將最終版本移到 `015_Write/Publish/`，檔名格式：`YYYYMMDD_【標題】.md`
 
 **產出**：
-- `/004_2Express/YYYYMMDD_【標題】.md` — 最終發佈版
-- `/003_2Cards/` — 新萃取的卡片（如有）
-- `/004_1Draft/` 中的原始 Draft 檔保留作為歷史紀錄
+- `015_Write/Publish/YYYYMMDD_【標題】.md` — 最終發佈版
+- `010_CardNotes/02_Cards/` — 新萃取的卡片（如有）
+- `015_Write/Draft/` 中的原始 Draft 檔保留作為歷史紀錄
 
 **更新**：`pipeline_stage: "PUBLISH"` → `"DONE"`，`status: "published"`
 
@@ -266,5 +264,4 @@ Pipeline 完成後確認：
 - ✅ Draft 檔的 frontmatter 完整且準確
 - ✅ 三個檢查點都有人工介入
 - ✅ 卡片素材有自然融入文章（不是生硬引用）
-- ✅ 最終版本已移到 `/004_2Express/`
-- ✅ `break-cards` 已執行，新知識回饋到卡片系統
+- ✅ 最終版本已移到 `015_Write/Publish/`
