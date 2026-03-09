@@ -143,6 +143,15 @@ skills:
     category: maintenance
     path: ".github/skills/sync-agent-instructions/SKILL.md"
 
+  - name: "工作區統計與變更回顧"
+    alias: "workspace-stats"
+    trigger: "當需要查看工作區統計或最近變更時"
+    description: "統計核心資料夾檔案數量，顯示最近 git 變更歷史與活躍度分析，幫助回顧近期工作重點"
+    mode: autonomous
+    estimated_effort: low
+    category: maintenance
+    path: ".github/skills/workspace-stats/SKILL.md"
+
   - name: "Copilot 橋接同步"
     alias: "copilot-sync"
     trigger: "當需要同步 Copilot 橋接檔案時"

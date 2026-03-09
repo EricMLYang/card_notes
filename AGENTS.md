@@ -133,6 +133,7 @@
 - `update-profile`：閱讀偏好更新器，分析喜歡的文章並更新 `000_MyContext/capture_profile.md`
 - `filename-prefix-guard`：檔名前綴守門
 - `sync-agent-instructions`：Agent 指令同步（以 AGENTS.md 為主軸同步至 copilot-instructions.md / CLAUDE.md / GEMINI.md）
+- `workspace-stats`：工作區統計與變更回顧（觸發：「統計工作區」「查看最近變動」「工作區回顧」）。快速統計各資料夾檔案數並顯示 git 變更歷史
 
 ### Agents（互動角色，位於 `.github/agents/`）
 - `Editor`：責任編輯（懂程式開發的讀者視角審閱）
