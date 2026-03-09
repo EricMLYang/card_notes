@@ -49,7 +49,7 @@ description: 先將長文或筆記拆成候選卡片（lite），再呼叫 refin
 ### 4. 路徑一致
 所有後續正式卡與索引更新，統一使用以下路徑：
 - 索引目錄：`010_CardNotes/01_Index/`
-- 正式卡目錄：`010_CardNotes/02_Cards/`
+- 正式卡目錄：`010_CardNotes/02_Cards/{分類資料夾}/`（按索引對應的分類資料夾存放，如 `ai_engineering/`、`mental_models/` 等）
 
 ## 執行流程（強制順序）
 
@@ -111,13 +111,13 @@ refine 完成後，**不得直接寫入正式卡檔案**。
 - 每張卡的目標檔名與目標路徑
 
 並明確詢問 user：
-- 是否要正式寫入 `010_CardNotes/02_Cards/`
+- 是否要正式寫入 `010_CardNotes/02_Cards/{分類資料夾}/`
 - 是否要更新 `010_CardNotes/01_Index/`
 - 是否要將原文改名為 `CoreNote`
 
 ### Step 6: 只有在 user 明確確認後才執行落檔
 若 user 明確確認，才執行：
-1. 將正式卡寫入 `010_CardNotes/02_Cards/`
+1. 將正式卡寫入 `010_CardNotes/02_Cards/{分類資料夾}/`（根據索引對應的分類資料夾）
 2. 依分類更新 `010_CardNotes/01_Index/` 對應索引檔
 3. 將原始來源檔案改名為 `YYYYMMDD_CoreNote_原本檔名.md`
 

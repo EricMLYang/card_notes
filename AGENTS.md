@@ -56,20 +56,21 @@
 ### 完整流程
 
 1. **拆解文章**：將 `005_PARA` (Projects/Areas) 中的長文拆解成原子化卡片
-2. **建立卡片文件**：將卡片存放到 `010_CardNotes/02_Cards`
+2. **建立卡片文件**：將卡片存放到 `010_CardNotes/02_Cards/{分類資料夾}/`（按主題分類存放）
 3. **更新索引**：在 `010_CardNotes/01_Index/idx_X-類別.md` 中記錄卡片連結
 4. **清理原文**：處理完成後將原始檔案重命名為 `YYYYMMDD_CoreNote_原本檔名.md`，以標記為「已提取核心筆記」
 
 ### 建立卡片文件
 
 - 當用戶說「幫我放到卡片資料夾」或「建立卡片」時，執行此流程
-- 卡片文件命名：`編號-標題.md`（編號分類規則詳見 `.github/skills/break-cards/SKILL.md`「編號分類對照表」）
-- 範例：`3-AI 工程兩層拆解：技術實現 vs 需求定義.md`
+- 卡片文件命名：`編號-標題.md`（編號分類規則詳見 `.github/skills/refine-cards/SKILL.md`「編號分類對照表」）
+- 範例：`3-001_AI產品化的核心挑戰.md`
 - 一篇文章可能產生多個類別的卡片，需分別使用對應編號
+- 卡片存放路徑：`010_CardNotes/02_Cards/{編號_分類名稱}/`，例如 `010_CardNotes/02_Cards/03_ai_applications_and_productization/`
 
 ### 更新索引
 
-- 根據卡片編號，更新對應的 `010_CardNotes/01_Index/idx_X-類別.md`
+- 根據卡片編號，更新對應的 `010_CardNotes/01_Index/{編號}_分類名稱.md`（例如 `03_ai_applications_and_productization.md`）
 - 使用 Obsidian 連結格式：`[[卡片檔名]]`（不含 .md）
 - 將卡片連結加到對應索引的適當主題區塊下
 
