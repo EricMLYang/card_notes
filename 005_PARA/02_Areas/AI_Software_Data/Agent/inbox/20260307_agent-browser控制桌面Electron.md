@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-11
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 agent-browser 一定要學！它能控制你任何桌面上的 Electron 應用，包括 slack ！ 
 
 agent-browser 可控制任何 Electron 應用，有人用它讓 Claude Code 控制 Slack 自動發送訊息，打通桌面應用自動化。
@@ -20,11 +35,11 @@ ent-browser/electron
 
 
 其实原理很简单：
-几乎所有的 Electron 应用都会暴露 Chrome DevTools Protocol (CDP) 端口，通常是 --remote-debugging-port=9222 或类似端口，然后使用 CDP  协议进行控制，一旦连上，就跟控制普通 headless Chrome 几乎一样。
+几乎所有的 Electron 应用都会暴露 Chrome DevTools Protocol (CDP) 端口，通常是 --remote-debugging-port=9222 或类似端口，然后使用 CDP  协议進行控制，一旦連上，就跟控制普通 headless Chrome 幾乎一樣。
 
-所以任何浏览器自动化工具都是可以控制的，比如 Playwright 或者  Puppeteer。
+所以任何瀏覽器自動化工具都是可以控制的，比如 Playwright 或者  Puppeteer。
 
-但是还是一个很棒自动化的思路。 
+但是還是一個很棒自動化的思路。 
 
 The "holy shit" moment when I realized agent-browser can control Slack
 
