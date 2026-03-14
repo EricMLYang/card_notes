@@ -1,12 +1,13 @@
 # idx_ai_coding_and_agents
 
-主題：AI Coding and Agents
+主題：AI Coding and Agent Workflows
 
-關聯 Area：`005_PARA/02_Areas/AI_Software_Data/AI_Coding_and_Agents`
+關聯 Area：`005_PARA/02_Areas/AI_Software_Data/AI_Coding`、`005_PARA/02_Areas/AI_Software_Data/Agent`
 
 ## Topics
 
-- coding agent workflow
+- AI-assisted coding workflow
+- vibe coding
 - repo context
 - agent skills
 - automated development loop

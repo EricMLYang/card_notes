@@ -4,7 +4,7 @@ last_review: 2026-03-09
 ---
 
 ## [重點]
-請貼上你認為的重點
+Rivet 的 Sandbox Agent SDK，提供統一 API 層讓開發者寫一次整合、跨多個 Agent runtime 部署（Claude Code、Codex、OpenCode、Amp）
 
 ## [摘要]
 

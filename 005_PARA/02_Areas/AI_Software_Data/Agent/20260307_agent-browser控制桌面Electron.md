@@ -4,7 +4,7 @@ last_review: 2026-03-11
 ---
 
 ## [重點]
-請貼上你認為的重點
+agent-browser  去控制任何 Electron based 的 App，也可以 agent 操作瀏覽器做驗測
 
 ## [摘要]
 

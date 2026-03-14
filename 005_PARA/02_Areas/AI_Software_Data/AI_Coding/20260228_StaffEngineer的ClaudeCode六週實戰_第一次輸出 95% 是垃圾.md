@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-14
+---
+
+## [重點]
+三步迭代模型（95% 垃圾→50% 垃圾→可用起點），以及三步 review 流程（AI 自審→人工審查架構/業務邏輯→團隊標準 review）
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 8. Staff Engineer 的 Claude Code 六週實戰：第一次輸出 95% 是垃圾
 
 來源：Vincent Quigley, Staff Software Engineer @ Sanity

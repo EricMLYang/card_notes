@@ -69,8 +69,9 @@ description: 處理 003_Capture 中的檔案：自動加上標頭元資料並分
 #### 02_Areas 子分類
 - `AI_Software_Data/AI知識管理和寫作/inbox/` - Zettelkasten、PKM、Second Brain、AI 輔助寫作、Build in Public
 - `AI_Software_Data/Agent/inbox/` - AI Agent 設計、Agentic 工作流、MCP、評估框架
+- `AI_Software_Data/AI_Coding/01_inbox/` - AI 輔助 Coding 實踐、vibe coding、AI 寫程式的架構控制、AI 時代的 code review
 - `AI_Software_Data/AI_Trend/inbox/` - AI 產業趨勢、模型發布、策略觀察
-- `AI_Software_Data/AISoftwareEngineering/inbox/` - AI 輔助開發、Coding Agent、工程實踐
+- `AI_Software_Data/Software_Engineering/01_inbox/` - 傳統軟體工程、框架架構、部署、資安、權限管理
 - `AI_Software_Data/BussinessDataScience/inbox/` - 商業資料分析、資料工程
 - `AI_Software_Data/Databricks/inbox/` - Databricks 平台操作與架構
 - `Domains_and_Industries/IoT_Domain/inbox/` - IoT、車載、Beacon、數位看板
