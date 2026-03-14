@@ -74,7 +74,11 @@ description: 處理 003_Capture 中的檔案：自動加上標頭元資料並分
 - `AI_Software_Data/Software_Engineering/01_inbox/` - 傳統軟體工程、框架架構、部署、資安、權限管理
 - `AI_Software_Data/BussinessDataScience/inbox/` - 商業資料分析、資料工程
 - `AI_Software_Data/Databricks/inbox/` - Databricks 平台操作與架構
-- `Domains_and_Industries/IoT_Domain/inbox/` - IoT、車載、Beacon、數位看板
+- `Domains_and_Industries/Edge_and_IoT/01_inbox/` - Edge AI、嵌入式、TinyML、IoT 通訊協議
+- `Domains_and_Industries/Vehicle_and_Mobility/01_inbox/` - 車載、移動出行
+- `Domains_and_Industries/Retail_Media_and_AdTech/01_inbox/` - 零售媒體、廣告科技
+- `Domains_and_Industries/Construction_and_RealEstate/01_inbox/` - 工程計畫書、營造、土地、不動產
+- `Domains_and_Industries/01_inbox/` - 其他產業相關但尚未特別分類的內容
 - `Product_Business_Strategy/Product_Business/inbox/` - 產品管理、商業模式、策略
 - `AI_Software_Data/AWS/inbox/` 或 `Azure/inbox/` - 雲端服務實踐與架構
 
