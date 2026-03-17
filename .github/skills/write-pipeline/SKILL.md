@@ -39,6 +39,7 @@ Step 4 FRAMEWORK  → Step 5 BODY+CLOSE
 ---
 pipeline_stage: "INTAKE"  # INTAKE | IDEATION | TITLE_HOOK | CP1 | FRAMEWORK | BODY_CLOSE | CP2 | POLISH | CP3 | PUBLISH | DONE
 topic: "文章主題"
+target_reader: ""  # 假想的具體寫作對象（一個人），留空表示不設定
 scenario: ""  # knowledge_article | opinion | tutorial | case_study | trend_analysis | comparison | storytelling
 selected_cards: []
 chosen_title: ""
@@ -60,9 +61,13 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 1: INTAKE（進場）
 **模式**：半自動
 
-1. **確認主題**：如果用戶沒有明確主題，引導用戶釐清想寫什麼
-2. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
-3. **確認寫作情境**：參考 `W0_02_SevenScenarios.prompt.md`，問用戶這篇文章屬於哪種情境：
+1. **設定假想讀者**：請用戶提供 **1 位具體的寫作對象**（例如：「剛轉職的 PM 朋友小王」「三年經驗的後端工程師」「我老闆」）。
+   - 目的：心裡有一個具體的人，能讓文章切入角度更深、語氣更精準，避免寫出「對所有人說話＝對沒有人說話」的空泛文章。
+   - **這不是要讓文章去跟該對象互動**，文章的本質和形式不變，只是寫作時心裡假想「這篇是寫給他/她看的」。
+   - 如果用戶表示沒有特定對象，就跳過此步，`target_reader` 留空即可。
+2. **確認主題**：如果用戶沒有明確主題，引導用戶釐清想寫什麼
+3. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
+4. **確認寫作情境**：參考 `W0_02_SevenScenarios.prompt.md`，問用戶這篇文章屬於哪種情境：
    - 知識文（knowledge_article）
    - 觀點文（opinion）
    - 教學文（tutorial）
@@ -70,7 +75,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 趨勢分析（trend_analysis）
    - 比較文（comparison）
    - 故事型（storytelling）
-4. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter 和 gather-cards 的結果
+5. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
 
 **產出**：Draft 檔建立，含 frontmatter + `## 原始素材`（gather-cards 結果）
 **更新**：`pipeline_stage: "INTAKE"` → `"IDEATION"`
@@ -79,6 +84,8 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 ### Step 2: IDEATION（發想）
 **模式**：全自動
+
+> 💡 若有設定 `target_reader`，以下發想過程應帶入「這個人會在意什麼？什麼角度對他最有感？」的思維，讓素材篩選和觀點深化更聚焦。
 
 1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
 2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位

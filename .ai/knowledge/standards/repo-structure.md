@@ -11,8 +11,8 @@
 - `.ai/memory/decisions.md`
 
 命名規則：
-- `003_1CardsIndex` 需使用 `Idx_<數字>-<名稱>.md`
-- `000Inbox`/`004_1Draft`/`004_2Express` 依各自日期前綴規範
+- `010_CardNotes/01_Index` 需使用 `NN_分類名稱.md`
+- `003_Capture`/`015_Write/Draft`/`015_Write/Publish` 依各自日期前綴規範
 
 橋接規則：
 - `AGENTS.md` 為核心指令源

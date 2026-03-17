@@ -30,7 +30,7 @@
   04_Archives/    - Archives：已完成或不再需要的歷史資料
 
 010_CardNotes/    - Zettelkasten 卡片系統
-  01_Index/       - Distill-索引：知識分類索引（idx_*.md）
+  01_Index/       - Distill-索引：知識分類索引（`NN_分類名稱.md`）
   02_Cards/       - Distill-卡片：已萃取的原子化卡片（永久筆記）
 
 015_Write/        - 寫作輸出流程
@@ -57,7 +57,7 @@
 
 1. **拆解文章**：將 `005_PARA` (Projects/Areas) 中的長文拆解成原子化卡片
 2. **建立卡片文件**：將卡片存放到 `010_CardNotes/02_Cards/{分類資料夾}/`（按主題分類存放）
-3. **更新索引**：在 `010_CardNotes/01_Index/idx_X-類別.md` 中記錄卡片連結
+3. **更新索引**：在 `010_CardNotes/01_Index/{編號}_分類名稱.md` 中記錄卡片連結
 4. **清理原文**：處理完成後將原始檔案重命名為 `YYYYMMDD_CoreNote_原本檔名.md`，以標記為「已提取核心筆記」
 
 ### 建立卡片文件
@@ -120,21 +120,37 @@
 ## AI 輔助工具
 
 ### Skills（自動化流程）
-- `break-cards`：拆解文章成原子化卡片（含編號分類對照表，為分類規則的唯一來源）。拆解完成後將原始檔案重命名為 `YYYYMMDD_CoreNote_原本檔名.md`
-- `gather-cards`：搜集卡片素材與建立連結（雙模式：模式 A 為寫作搜集 5-15 張卡片，模式 B 為當前卡片連結 3-7 張相關卡片）
-- `format-article`：社群媒體排版
-- `fact-check`：查證引用與細節
-- `high-res-summary`：高解析度摘要
-- `create-skill`：建立新的 Agent Skill
+
+技能正式來源：
+- 機器可讀：`.github/skills/_index.yaml`
+- 人類盤點：`.github/skills/README.md`
+
+目前有效技能：
+- `break-cards`：先拆長文成 lite 候選卡，再交給 `refine-cards` 精煉；正式落檔前需 user 確認
+- `refine-cards`：把候選卡精煉成正式卡草稿，並在確認後更新 `010_CardNotes/02_Cards/` 與 `010_CardNotes/01_Index/`
+- `gather-cards`：搜集卡片素材與建立連結（模式 A：寫作素材搜集；模式 B：當前卡片相關連結）
 - `write-pipeline`：寫作自動化主控台（觸發：「寫新文章」「開始寫作」）
 - `resume-draft`：草稿狀態管理器（觸發：「我的草稿」「繼續寫作」）
-- `process-inbox`：Capture 自動處理（觸發：「處理 Capture」「整理收件匣」）
-- `scout-news`：智慧新聞搜集（觸發：「找新聞」「搜集新資訊」）。根據 `000_MyContext/capture_profile.md` 搜尋相關新聞
-- `teardown-article`：文章寫作技法拆解
+- `enrich-capture`：處理 `003_Capture/`，加上標頭元資料後分類移入 `005_PARA/`
+- `scout-news`：智慧新聞搜集（觸發：「找新聞」「搜集新資訊」），根據 `000_MyContext/capture_profile.md` 搜尋並存入 `003_Capture/`
 - `update-profile`：閱讀偏好更新器，分析喜歡的文章並更新 `000_MyContext/capture_profile.md`
+- `fact-check`：查證引用與細節
+- `format-article`：社群媒體排版
 - `filename-prefix-guard`：檔名前綴守門
-- `sync-agent-instructions`：Agent 指令同步（以 AGENTS.md 為主軸同步至 copilot-instructions.md / CLAUDE.md / GEMINI.md）
-- `workspace-stats`：工作區統計與變更回顧（觸發：「統計工作區」「查看最近變動」「工作區回顧」）。快速統計各資料夾檔案數並顯示 git 變更歷史
+- `workspace-stats`：工作區統計與變更回顧（觸發：「統計工作區」「查看最近變動」「工作區回顧」）
+- `repo-healthcheck`：檢查入口文件、技能索引、橋接一致性與命名規範
+- `copilot-sync`：當 `AGENTS.md` 更新後，比對並同步 `.github/copilot-instructions.md`
+- `skill-expand`：將重複性工作流程固化成新 skill
+
+已停用舊稱：
+- `process-inbox` → `enrich-capture`
+- `sync-agent-instructions` → `copilot-sync`
+- `create-skill` → `skill-expand`
+
+目前未安裝：
+- `high-res-summary`
+- `teardown-article`
+- `archive-article`
 
 ### Agents（互動角色，位於 `.github/agents/`）
 - `Editor`：責任編輯（懂程式開發的讀者視角審閱）

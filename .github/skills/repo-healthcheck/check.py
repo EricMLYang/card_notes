@@ -49,11 +49,11 @@ def check_skill_index(issues):
 
 
 def check_cards_index_naming(issues):
-    index_dir = ROOT / "003_1CardsIndex"
+    index_dir = ROOT / "010_CardNotes/01_Index"
     if not index_dir.exists():
-        issues.append(("WARN", "003_1CardsIndex not found"))
+        issues.append(("FAIL", "010_CardNotes/01_Index not found"))
         return
-    pattern = re.compile(r"^Idx_\d+-.+\.md$")
+    pattern = re.compile(r"^(README|\d{2}_.+)\.md$")
     for file in index_dir.glob("*.md"):
         if not pattern.match(file.name):
             issues.append(("WARN", f"index naming anomaly: {file.name}"))
