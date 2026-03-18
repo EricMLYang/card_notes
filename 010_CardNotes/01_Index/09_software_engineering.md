@@ -13,3 +13,6 @@
 
 ## Cards
 
+- [[Code Review 檢視面向]]
+- [[Hook 概念]]
+- [[對外系統開發的隱藏關鍵：Side Event 決定滿意度]]
