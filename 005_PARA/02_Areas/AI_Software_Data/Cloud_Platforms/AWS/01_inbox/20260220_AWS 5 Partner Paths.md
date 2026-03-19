@@ -1,3 +1,19 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-20
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
+
 ## AWS 5 Partner Paths
 
 根據 AWS Partner Paths（夥伴途徑），AWS 夥伴主要分為以下 5 種形式：

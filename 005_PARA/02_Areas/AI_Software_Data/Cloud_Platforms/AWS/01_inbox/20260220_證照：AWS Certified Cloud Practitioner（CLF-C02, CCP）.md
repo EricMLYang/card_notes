@@ -1,3 +1,19 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-20
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
+
 ## **證照：AWS Certified Cloud Practitioner（CLF-C02, CCP）**
 
 ### **1) 證照目的（為什麼考）**

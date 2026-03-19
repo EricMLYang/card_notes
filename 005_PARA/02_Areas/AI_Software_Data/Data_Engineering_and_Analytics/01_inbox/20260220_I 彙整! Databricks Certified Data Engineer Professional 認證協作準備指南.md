@@ -1,3 +1,19 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-20
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
+
 # I 彙整: Databricks Certified Data Engineer Professional 認證協作準備指南
 
 認證考試概述與重要性 🌟

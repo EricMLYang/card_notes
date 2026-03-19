@@ -1,3 +1,19 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-20
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
+
 # 一鍵部署 - **CloudFormation**
 
 - **[Best Practices and Guidance for Cloud Engineers to Deploy Databricks on AWS: Part 3](https://www.databricks.com/blog/best-practices-and-guidance-cloud-engineers-deploy-databricks-aws-part-3)**
