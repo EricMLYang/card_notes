@@ -41,11 +41,10 @@ pipeline_stage: "INTAKE"  # INTAKE | IDEATION | TITLE_HOOK | CP1 | FRAMEWORK | B
 topic: "文章主題"
 target_reader: ""  # 假想的具體寫作對象（一個人），留空表示不設定
 scenario: ""  # knowledge_article | opinion | tutorial | case_study | trend_analysis | comparison | storytelling
-core_claim: ""  # 這篇真正只想講的一句話，必須能直接成立
 selected_cards: []
 chosen_title: ""
 chosen_hook: ""
-chosen_framework: ""  # explosive_formula | direct_opinion | pastor | universal_writing
+chosen_framework: ""  # explosive_formula | opinion_type | pastor | universal_writing
 created: 2026-01-01
 last_updated: 2026-01-01
 status: "drafting"  # drafting | reviewing | polishing | published
@@ -76,11 +75,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 趨勢分析（trend_analysis）
    - 比較文（comparison）
    - 故事型（storytelling）
-5. **先寫一句主張**：在進入發想前，先用一句話寫下 `core_claim`
-   - 格式建議：`我真正想講的是：______`
-   - 這句話必須直接、可反駁、不可同時包 2 個以上主張
-   - 如果是觀點文，後面所有卡片都只允許服務這一句
-6. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`、`core_claim`）和 gather-cards 的結果
+5. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
 
 **產出**：Draft 檔建立，含 frontmatter + `## 原始素材`（gather-cards 結果）
 **更新**：`pipeline_stage: "INTAKE"` → `"IDEATION"`
@@ -92,15 +87,8 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 > 💡 若有設定 `target_reader`，以下發想過程應帶入「這個人會在意什麼？什麼角度對他最有感？」的思維，讓素材篩選和觀點深化更聚焦。
 
-1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 先淘汰，再選卡，不要預設每張卡都要進文章
-   - 觀點文 / 趨勢分析：正文必用卡最多 4 張
-   - 知識文 / 教學文 / 比較文：正文必用卡最多 5 張
-   - 案例分析 / 故事型：正文必用卡最多 3 張，場景敘事優先
-   - 超出的卡片一律列入「備用卡」或「淘汰卡」，不要硬塞
-2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），但一次只選 1-2 個主值
-   - 觀點文預設：`教育 + 啟發`
-   - `共感` 只能當輔助，不能當主軸
-   - `娛樂` 不能作為技術 / 觀點文主值
+1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
+2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位
 3. **乾貨維度發想**：參考 `W2_04_ThreeDryGoods.prompt.md`，從知識、經驗、框架三個維度發想素材
 4. **觀點深化**：依現況選一個 prompt 深化觀點
    - 沒有具體故事 → `W2_06`（niche down 到真實故事再登高提煉）
@@ -108,11 +96,6 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 有草稿但太空洞 → `W2_08`（12 維度橫向擴充）
    - 有材料但缺新觀點 → `W2_09`（五種視角重新發想）
    - 有觀點但論述不深 → `W2_10`（七大心智模型強化邏輯）
-
-5. **主軸檢查**：用下面 3 題檢查文章是否開始發散
-   - 如果砍掉 2 張卡，`core_claim` 還成立嗎？
-   - 哪一段只是「順手想到」但不支撐主張？
-   - 哪一段偏向感想抒發，但沒有新增判斷或資訊？
 
 **產出**：在 Draft 檔追加 `## 素材地圖`（CardWeaver 結果）和 `## 發想筆記`
 **更新**：`pipeline_stage: "IDEATION"` → `"TITLE_HOOK"`
@@ -122,13 +105,9 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 3: TITLE+HOOK（標題與鉤子）
 **模式**：全自動
 
-1. **直白標題優先**：使用 `W3_01_ExplosiveTitle.prompt.md` 時，以「直白陳列法 / 一句話法 / 超具體」為主
-   - 觀點文至少 70% 選項要是直接型標題
-   - 只允許 1-2 個張力型標題作對照，不要整組都在追求反差
-2. **超具體標題 × 3**：使用 `W3_02_UltraSpecificTitle.prompt.md` 補足具體版本
-3. **鉤子 × 6**：使用 `W4_01_HookWriter.prompt.md` 為最合適的 2 個標題各生成 3 個鉤子
-   - 以「真實經驗切入 / 問題拆解 / 明確觀察」為主
-   - 不要把鉤子寫成價值承諾廣告
+1. **爆款標題 × 5**：使用 `W3_01_ExplosiveTitle.prompt.md` 生成 5 個爆款標題
+2. **超具體標題 × 5**：使用 `W3_02_UltraSpecificTitle.prompt.md` 生成 5 個超具體標題
+3. **鉤子 × 9**：使用 `W4_01_HookWriter.prompt.md` 為排名前 3 的標題各生成 3 個鉤子
 4. **整理選項**：將所有標題和鉤子整理成清晰的選項列表
 
 **產出**：在 Draft 檔追加 `## 標題鉤子選項`
@@ -140,8 +119,8 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **模式**：人工決策（~2 分鐘）
 
 **暫停並向用戶呈現**：
-1. 6-8 個標題選項（直接型優先）
-2. 6 個鉤子選項（前 2 標題 × 3 鉤子）
+1. 10 個標題選項（5 爆款 + 5 超具體）
+2. 9 個鉤子選項（前 3 標題 × 3 鉤子）
 3. 文章角度摘要
 
 **等待用戶決定**：
@@ -160,15 +139,10 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 1. **推薦框架**：根據寫作情境（scenario），參考 `W5_01_FrameworkSelector.prompt.md` 推薦合適的框架：
    - 知識文/教學文 → 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
-   - 觀點文/趨勢分析 → 直接觀點框架（`W5_04_DirectOpinionWriting.prompt.md`）
+   - 觀點文/趨勢分析 → 觀點型框架
    - 案例分析/故事型 → 爆文公式（`W5_02_ExplosiveTemplate.prompt.md`）
    - 比較文 → PASTOR 框架
-2. **觀點文特殊規則**：
-   - 開頭 3 段內必須明講 `core_claim`
-   - 主體最多 3 個支撐段，不做 5-7 點大綱
-   - 每個支撐段最多吃 1-2 張卡
-   - 沒有增加判斷的感想段落直接刪掉
-3. **用戶確認**：展示推薦框架和理由，讓用戶確認或更換
+2. **用戶確認**：展示推薦框架和理由，讓用戶確認或更換
 
 **產出**：確認文章框架
 **更新**：記錄 `chosen_framework`，`pipeline_stage: "FRAMEWORK"` → `"BODY_CLOSE"`
@@ -179,14 +153,12 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **模式**：全自動
 
 1. **主體撰寫**：根據選定的框架，使用對應的 W5 prompt 撰寫文章主體
-   - 只嵌入正文必用卡，不要試圖把備用卡也寫進去
-   - 優先寫清楚主張、判斷、因果，不優先追求段落戲劇性
+   - 嵌入 CardWeaver 整理好的卡片素材
+   - 確保框架、論據、類比、案例自然融入
    - 用選定的標題和鉤子作為開頭
-2. **收尾撰寫**：
-   - 觀點文 / 趨勢分析：使用 `W6_02_DirectClose.prompt.md`
-   - 其他類型：可沿用 `W6_01_GoldenQuote.prompt.md`
-   - 收尾要做的是收斂，不是硬做金句
-   - 產出 2 個版本即可：一個更直接，一個更保留
+2. **收尾撰寫**：使用 `W6_01_GoldenQuote.prompt.md` 撰寫文章收尾
+   - 參考 CardWeaver 的 (e) 收尾素材
+   - 產出 2-3 個收尾版本供後續選擇
 
 **產出**：在 Draft 檔追加 `## Draft v1`（完整文章草稿）
 **更新**：`pipeline_stage: "BODY_CLOSE"` → `"CP2"`，`status: "reviewing"`
@@ -200,10 +172,6 @@ status: "drafting"  # drafting | reviewing | polishing | published
 1. 完整的 Draft v1
 2. 文章結構摘要（段落數、字數、使用的卡片）
 3. 收尾版本選項
-4. 主軸檢查：
-   - 哪一段最像在「硬塞卡片」
-   - 哪一段最像「有感但不直接」
-   - 哪一段刪掉後反而更集中
 
 **等待用戶回饋**：
 - 整體方向是否正確
@@ -220,16 +188,11 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 6: POLISH（打磨）
 **模式**：全自動
 
-1. **直接性修稿**：先使用 `W7_07_DirectnessPass.prompt.md`
-   - 先砍掉空話、抒情、鋪墊、討好語氣
-2. **人味化**：再使用 `W7_01_Humanizer.prompt.md`
-   - 只補經驗感，不補文采
+1. **風格轉換**：使用 `W7_05_StyleTransferMyself.prompt.md` 調整文章風格
+2. **人味化**：使用 `W7_01_Humanizer.prompt.md` 增加人味，減少 AI 感
 3. **減少冗贅**：使用 `W7_02_NotButReducer.prompt.md` 精簡文字
-4. **風格轉換**：
-   - 觀點文 / 趨勢分析：預設跳過 `W7_05_StyleTransferMyself.prompt.md`
-   - 只有在文章已經太乾、太硬時才補做一次
-5. **符號排版**：使用 `W7_formatting.prompt.md` 調整標題與段落符號格式
-6. **事實查證**：呼叫 `fact-check` skill 查證文章中的具體細節
+4. **符號排版**：使用 `W7_formatting.prompt.md` 調整標題與段落符號格式
+5. **事實查證**：呼叫 `fact-check` skill 查證文章中的具體細節
 
 **產出**：在 Draft 檔追加 `## Draft v2`（打磨後的文章）+ `## 查證報告`
 **更新**：`pipeline_stage: "POLISH"` → `"CP3"`
