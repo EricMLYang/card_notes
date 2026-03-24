@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-23
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 今天貼點有意思的 side project: MUD + Agent... 我為了研究虛擬角色 Agent 的開發, 打造了 MUD Like 虛擬世界來養 Agent 的故事 XD
 
 --
