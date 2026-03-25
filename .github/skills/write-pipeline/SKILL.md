@@ -160,7 +160,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 嵌入 CardWeaver 整理好的卡片素材
    - 確保框架、論據、類比、案例自然融入
    - 用選定的標題和鉤子作為開頭
-2. 文章格式: 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
+2. 文章排版: 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
 2. **收尾撰寫**：使用 `W6_01_GoldenQuote.prompt.md` 撰寫文章收尾
    - 參考 CardWeaver 的 (e) 收尾素材
    - 產出 2-3 個收尾版本供後續選擇
