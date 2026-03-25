@@ -20,6 +20,15 @@ skills:
     category: zettelkasten
     path: ".github/skills/refine-cards/SKILL.md"
 
+  - name: "筆記快速搜尋"
+    alias: "search-notes"
+    trigger: "當需要以關鍵字搜尋 Capture、Areas 文章或卡片庫時"
+    description: "搜尋 [重點] 片段與卡片核心概念，回傳排序後的相關結果並附後續行動建議"
+    mode: autonomous
+    estimated_effort: low
+    category: zettelkasten
+    path: ".github/skills/search-notes/SKILL.md"
+
   - name: "卡片素材搜集與連結"
     alias: "gather-cards"
     trigger: "當需要為寫作主題搜集相關卡片，或為當前卡片建立連結時"

@@ -40,7 +40,7 @@ Step 4 FRAMEWORK  → Step 5 BODY+CLOSE
 pipeline_stage: "INTAKE"  # INTAKE | IDEATION | TITLE_HOOK | CP1 | FRAMEWORK | BODY_CLOSE | CP2 | POLISH | CP3 | PUBLISH | DONE
 topic: "文章主題"
 target_reader: ""  # 假想的具體寫作對象（一個人），留空表示不設定
-scenario: ""  # knowledge_article | opinion | tutorial | case_study | trend_analysis | comparison | storytelling
+scenario: ""  # insight | experiment | tutorial | methodology | case_study
 selected_cards: []
 chosen_title: ""
 chosen_hook: ""
@@ -60,22 +60,34 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 ### Step 1: INTAKE（進場）
 **模式**：半自動
+ 
+1. **設定假想讀者與確認主題和主軸**：請用戶從以下 3 個常用讀者畫像中選一個，或自行填寫新的對象：
+   | 選項 | 假想讀者 | 適合主題 |
+   |------|----------|----------|
+   | A | 寫 Code 也兼做 PM 的中階軟體工程師 | 開發流程、AI 工具實戰、需求溝通 |
+   | B | 帶 5–10 人小團隊、正在導入 AI 工具的技術主管 | 團隊管理、流程設計、技術決策 |
+   | C | 想在 AI 時代建立個人護城河的知識工作者 | 個人成長、知識管理、思維框架 |
+   | D | **自行填寫**（請描述一位具體的人） | — |
 
-1. **設定假想讀者**：請用戶提供 **1 位具體的寫作對象**（例如：「剛轉職的 PM 朋友小王」「三年經驗的後端工程師」「我老闆」）。
    - 目的：心裡有一個具體的人，能讓文章切入角度更深、語氣更精準，避免寫出「對所有人說話＝對沒有人說話」的空泛文章。
    - **這不是要讓文章去跟該對象互動**，文章的本質和形式不變，只是寫作時心裡假想「這篇是寫給他/她看的」。
-   - 如果用戶表示沒有特定對象，就跳過此步，`target_reader` 留空即可。
-2. **確認主題**：如果用戶沒有明確主題，引導用戶釐清想寫什麼
-3. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
-4. **確認寫作情境**：參考 `W0_02_SevenScenarios.prompt.md`，問用戶這篇文章屬於哪種情境：
-   - 知識文（knowledge_article）
-   - 觀點文（opinion）
-   - 教學文（tutorial）
-   - 案例分析（case_study）
-   - 趨勢分析（trend_analysis）
-   - 比較文（comparison）
-   - 故事型（storytelling）
-5. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
+   - 如果用戶表示沒有特定對象，跳過此步，`target_reader` 留空即可。
+   **確認主題**：根據草稿、假想讀者，建議用戶主題和文章主軸，並引導用戶釐清想寫什麼
+
+
+2. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
+
+3. **人設與寫作情境**：
+  * 基本人設: 「熱衷技術與趨勢的分享者，喜歡將複雜概念簡單化、本質的論述、犀利的觀點、智慧，以自信但樸實的分享、自省、學習、反思，但是有類似巴菲特或蒙格的幽默。」
+   | 情境 | key | 說明 | 佔比 |
+   |------|-----|------|------|
+   | 洞察文 | `insight` | 用框架／類比／閱讀重構認知，得出非顯然判斷（你的招牌文體） | ~52% |
+   | 實驗紀錄 | `experiment` | 第一人稱實作：我做了 X → 過程 Y → 發現 Z | ~16% |
+   | 教學文 | `tutorial` | 教一個可操作的技巧或方法，附 Prompt／步驟 | ~16% |
+   | 方法論 | `methodology` | 呈現完整系統、分級框架、結構化清單 | ~12% |
+   | 案例借鏡 | `case_study` | 分析外部案例，推導出對自己領域的啟示 | ~4% |
+
+4. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
 
 **產出**：Draft 檔建立，含 frontmatter + `## 原始素材`（gather-cards 結果）
 **更新**：`pipeline_stage: "INTAKE"` → `"IDEATION"`
@@ -88,9 +100,8 @@ status: "drafting"  # drafting | reviewing | polishing | published
 > 💡 若有設定 `target_reader`，以下發想過程應帶入「這個人會在意什麼？什麼角度對他最有感？」的思維，讓素材篩選和觀點深化更聚焦。
 
 1. **卡片素材整理**：使用 `W2_01_CardWeaver.prompt.md` 將搜集到的卡片按文章角色組織
-2. **價值維度發想**：參考 `W2_05_FourValues.prompt.md` 的 4 種價值（教育、啟發、共感、娛樂），確定文章的價值定位
-3. **乾貨維度發想**：參考 `W2_04_ThreeDryGoods.prompt.md`，從知識、經驗、框架三個維度發想素材
-4. **觀點深化**：依現況選一個 prompt 深化觀點
+2. **料感發想（價值 × 乾貨）**：使用 `W2_04_MaterialValue.prompt.md`，從外部價值（教育、啟發、共感、娛樂）定位文章價值，並從內部乾貨（知識、經驗、框架）盤點素材與缺口
+3. **觀點深化**：依現況選一個 prompt 深化觀點
    - 沒有具體故事 → `W2_06`（niche down 到真實故事再登高提煉）
    - 問題角度太模糊 → `W2_07`（加關鍵字讓問題可回答）
    - 有草稿但太空洞 → `W2_08`（12 維度橫向擴充）
@@ -105,10 +116,9 @@ status: "drafting"  # drafting | reviewing | polishing | published
 ### Step 3: TITLE+HOOK（標題與鉤子）
 **模式**：全自動
 
-1. **爆款標題 × 5**：使用 `W3_01_ExplosiveTitle.prompt.md` 生成 5 個爆款標題
-2. **超具體標題 × 5**：使用 `W3_02_UltraSpecificTitle.prompt.md` 生成 5 個超具體標題
-3. **鉤子 × 9**：使用 `W4_01_HookWriter.prompt.md` 為排名前 3 的標題各生成 3 個鉤子
-4. **整理選項**：將所有標題和鉤子整理成清晰的選項列表
+1. **標題生成**：使用 `W3_01_TitleGenerator.prompt.md`，以 8 種策略產出標題並強化具體性，最終推薦 5 個標題
+2. **鉤子 × 5**：使用 `W4_01_HookWriter.prompt.md` 為標題各生成 1 個鉤子
+3. **整理選項**：將所有標題和鉤子整理成清晰的選項列表
 
 **產出**：在 Draft 檔追加 `## 標題鉤子選項`
 **更新**：`pipeline_stage: "TITLE_HOOK"` → `"CP1"`
@@ -119,8 +129,8 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **模式**：人工決策（~2 分鐘）
 
 **暫停並向用戶呈現**：
-1. 10 個標題選項（5 爆款 + 5 超具體）
-2. 9 個鉤子選項（前 3 標題 × 3 鉤子）
+1. 推薦標題選項（含具體性強化版）
+2. 鉤子選項（前 3 標題 × 3 鉤子）
 3. 文章角度摘要
 
 **等待用戶決定**：
@@ -138,12 +148,6 @@ status: "drafting"  # drafting | reviewing | polishing | published
 **模式**：半自動
 
 1. **推薦框架**：根據寫作情境（scenario），參考 `W5_01_FrameworkSelector.prompt.md` 推薦合適的框架：
-   - 知識文/教學文 → 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
-   - 觀點文/趨勢分析 → 觀點型框架
-   - 案例分析/故事型 → 爆文公式（`W5_02_ExplosiveTemplate.prompt.md`）
-   - 比較文 → PASTOR 框架
-2. **用戶確認**：展示推薦框架和理由，讓用戶確認或更換
-
 **產出**：確認文章框架
 **更新**：記錄 `chosen_framework`，`pipeline_stage: "FRAMEWORK"` → `"BODY_CLOSE"`
 
@@ -156,6 +160,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 嵌入 CardWeaver 整理好的卡片素材
    - 確保框架、論據、類比、案例自然融入
    - 用選定的標題和鉤子作為開頭
+2. 文章格式: 萬能寫作法（`W5_03_UniversalWriting.prompt.md`）
 2. **收尾撰寫**：使用 `W6_01_GoldenQuote.prompt.md` 撰寫文章收尾
    - 參考 CardWeaver 的 (e) 收尾素材
    - 產出 2-3 個收尾版本供後續選擇
@@ -187,7 +192,6 @@ status: "drafting"  # drafting | reviewing | polishing | published
 
 ### Step 6: POLISH（打磨）
 **模式**：全自動
-
 1. **風格轉換**：使用 `W7_05_StyleTransferMyself.prompt.md` 調整文章風格
 2. **人味化**：使用 `W7_01_Humanizer.prompt.md` 增加人味，減少 AI 感
 3. **減少冗贅**：使用 `W7_02_NotButReducer.prompt.md` 精簡文字
