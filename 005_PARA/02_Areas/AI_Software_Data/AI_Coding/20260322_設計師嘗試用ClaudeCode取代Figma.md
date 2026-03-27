@@ -4,7 +4,7 @@ last_review: 2026-03-23
 ---
 
 ## [重點]
-請貼上你認為的重點
+用 Claude Code 當主要設計工具一個多月以來，他做出了三層式定價頁面（含比較表、testimonial、FAQ）、Tailwind Labs 內部用的金融 dashboard，而且整個過程沒有用任何 skills 或 CLAUDE.md，就是從空白畫面開始對 Claude 講話。
 
 ## [摘要]
 
