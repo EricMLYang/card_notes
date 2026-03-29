@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-03-29
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 cq: Stack Overflow for Agents
 Peter Wilson
 Peter Wilson
