@@ -17,6 +17,7 @@
 - [[Distribution（分發）作為 AI 產品護城河]]
 - [[分發（Distribution）是 AI 產品的數據飛輪入口]]
 - [[垂直 AI 護城河：Domain Know-how + Change Management，不是 API Wrapper]]
+- [[通用AI加編碼判斷力勝過垂直套殼產品]]
 - [[真垂直的三要素判斷框架]]
 - [[新創要避開水平戰場，深耕垂直行業]]
 - [[新創的核心價值是接水管—連接企業數據與雲端AI]]
@@ -59,6 +60,7 @@
 - [[從 10 人業務到 1.2 人 + 20 AI Agent 的 SaaStr 實驗]]
 - [[當工具夠強，你需要更少的流程：Codex 團隊 40 人 1 PM 的運作模式]]
 - [[DecisionOps]]
+- [[兩階段判斷設計_AI自動化的安全模式]]
 
 ### LLM 與模型觀點
 - [[Karpathy：LLM 智慧形狀——召喚幽靈而非培育動物]]
