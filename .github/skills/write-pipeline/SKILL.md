@@ -74,10 +74,12 @@ status: "drafting"  # drafting | reviewing | polishing | published
    - 如果用戶表示沒有特定對象，跳過此步，`target_reader` 留空即可。
    **確認主題**：根據草稿、假想讀者，建議用戶主題和文章主軸，並引導用戶釐清想寫什麼
 
+2. **帶入個人色彩**：詢問用戶是否有想帶入的個人經驗或強烈觀點——簡單描述即可，這會幫助後續發想更聚焦在獨特視角上。
+   - 若用戶未提供，預設到 `000_MyContext/可帶入文章的個人價值觀＿經歷＿色彩.md` 找合適的內容補充（非必要，可跳過）
 
-2. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
+3. **搜集卡片素材**：呼叫 `gather-cards` skill，給定主題搜尋知識庫
 
-3. **人設與寫作情境**：
+4. **人設與寫作情境**：
   * 基本人設: 「熱衷技術與趨勢的分享者，喜歡將複雜概念簡單化、本質的論述、犀利的觀點、智慧，以自信但樸實的分享、自省、學習、反思，但是有類似巴菲特或蒙格的幽默。」
    | 情境 | key | 說明 | 佔比 |
    |------|-----|------|------|
@@ -87,7 +89,7 @@ status: "drafting"  # drafting | reviewing | polishing | published
    | 方法論 | `methodology` | 呈現完整系統、分級框架、結構化清單 | ~12% |
    | 案例借鏡 | `case_study` | 分析外部案例，推導出對自己領域的啟示 | ~4% |
 
-4. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
+5. **建立 Draft 檔**：在 `015_Write/Draft/` 建立新的 `.md` 檔，寫入 frontmatter（含 `target_reader`）和 gather-cards 的結果
 
 **產出**：Draft 檔建立，含 frontmatter + `## 原始素材`（gather-cards 結果）
 **更新**：`pipeline_stage: "INTAKE"` → `"IDEATION"`
