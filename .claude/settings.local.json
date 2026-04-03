@@ -4,7 +4,9 @@
       "Bash(ls:*)",
       "WebSearch",
       "WebFetch(domain:a16z.com)",
-      "WebFetch(domain:eu.36kr.com)"
+      "WebFetch(domain:eu.36kr.com)",
+      "Bash(mv 01_inbox/* Databricks/01_inbox/)",
+      "Bash(rmdir 01_inbox)"
     ]
   }
 }

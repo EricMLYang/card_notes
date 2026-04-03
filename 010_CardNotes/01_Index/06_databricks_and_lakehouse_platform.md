@@ -10,7 +10,21 @@
 - Delta Lake
 - certification
 - deployment
+- governance
+- semantic layer
+- metrics and dimensions
+- lakehouse applications
+- databricks for decision systems
 
 ## Cards
 
+### 平台能力與架構
 - [[Lakebase 作為 AI Agent 記憶層：sub-10ms 狀態管理 + Database Branching 沙盒]]
+
+### Lakehouse 與產品化
+- [[新創的核心價值是接水管—連接企業數據與雲端AI]]
+- [[三層進化：從 GenAI 圖表建議到 Agent]]
+
+### 治理與控制面
+- [[AI Error Analysis：LLM 應用評估方法]]
+- [[DecisionOps]]

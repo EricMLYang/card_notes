@@ -10,6 +10,9 @@
 - RAG
 - evaluation
 - prompt and context engineering
+- agent productization
+- decision automation
+- workflow design
 
 ## Cards
 
@@ -61,6 +64,12 @@
 - [[當工具夠強，你需要更少的流程：Codex 團隊 40 人 1 PM 的運作模式]]
 - [[DecisionOps]]
 - [[兩階段判斷設計_AI自動化的安全模式]]
+
+### Agent 進入真實工作流
+- [[三層進化：從 GenAI 圖表建議到 Agent]]
+- [[Opinionated Agent 產品設計原則]]
+- [[Trust Gap 就是產品機會：AI 能做 5 小時，人類只敢讓它跑 42 分鐘]]
+- [[19 小時人機協作 vs 2 小時 AI 獨立工作的差距]]
 
 ### LLM 與模型觀點
 - [[Karpathy：LLM 智慧形狀——召喚幽靈而非培育動物]]

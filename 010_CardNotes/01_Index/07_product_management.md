@@ -10,6 +10,10 @@
 - PRD
 - roadmap
 - user problem
+- data product
+- vertical AI
+- workflow productization
+- business decision
 
 ## Cards
 
@@ -30,6 +34,13 @@
 - [[AI 工程兩層拆解：技術實現 vs 需求定義]]
 - [[AI 訂閱制的精密賭局：最怕的不是薅羊毛，而是被複製的合理用法]]
 - [[從 GenAI 功能到可收費 Agent 的三層演進]]
+
+### Data Product 與決策產品
+- [[新創要避開水平戰場，深耕垂直行業]]
+- [[真垂直的三要素判斷框架]]
+- [[垂直 AI 護城河：Domain Know-how + Change Management，不是 API Wrapper]]
+- [[Opinionated Agent 產品設計原則]]
+- [[DecisionOps]]
 
 ### 商業思維
 - [[價值鏈免費化效應：某環節降價帶動上下游價值轉移]]

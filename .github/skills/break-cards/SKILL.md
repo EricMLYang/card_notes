@@ -49,7 +49,7 @@ description: 先將長文或筆記拆成候選卡片（lite），再呼叫 refin
 ### 4. 路徑一致
 所有後續正式卡與索引更新，統一使用以下路徑：
 - 索引目錄：`010_CardNotes/01_Index/`
-- 正式卡目錄：`010_CardNotes/02_Cards/{分類資料夾}/`（按索引對應的分類資料夾存放，如 `ai_engineering/`、`mental_models/` 等）
+- 正式卡目錄：`010_CardNotes/02_Cards/{分類資料夾}/`（按索引對應的分類資料夾存放，如 `03_ai_applications_and_productization/`、`01_mental_models/` 等）
 
 ## 執行流程（強制順序）
 

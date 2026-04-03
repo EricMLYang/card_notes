@@ -72,8 +72,8 @@ description: 處理 003_Capture 中的檔案：自動加上標頭元資料並分
 - `AI_Software_Data/AI_Coding/01_inbox/` - AI 輔助 Coding 實踐、vibe coding、AI 寫程式的架構控制、AI 時代的 code review
 - `AI_Software_Data/AI_Trend/inbox/` - AI 產業趨勢、模型發布、策略觀察
 - `AI_Software_Data/Software_Engineering/01_inbox/` - 傳統軟體工程、框架架構、部署、資安、權限管理
-- `AI_Software_Data/BussinessDataScience/inbox/` - 商業資料分析、資料工程
-- `AI_Software_Data/Databricks/inbox/` - Databricks 平台操作與架構
+- `AI_Software_Data/Data_Engineering_and_Analytics/01_inbox/` - 通用資料工程、統計、分析方法
+- `AI_Software_Data/Data_Engineering_and_Analytics/Databricks/01_inbox/` - Databricks 平台、Spark、Delta Lake、Medallion 架構、認證備考
 - `Domains_and_Industries/Edge_and_IoT/01_inbox/` - Edge AI、嵌入式、TinyML、IoT 通訊協議
 - `Domains_and_Industries/Vehicle_and_Mobility/01_inbox/` - 車載、移動出行
 - `Domains_and_Industries/Retail_Media_and_AdTech/01_inbox/` - 零售媒體、廣告科技

@@ -49,6 +49,12 @@ python .github/skills/search-notes/quick_search.py "<核心概念>" --scope card
 2. 比對關鍵字，定位最相關的分類和段落
 3. 記錄命中的索引檔和段落位置
 
+若主題涉及以下語意，優先檢查對應索引：
+- `Business Data Science / 決策系統 / decision loop` → `05_data_engineering_and_analytics.md`
+- `Databricks / Lakehouse / semantic layer / governance` → `06_databricks_and_lakehouse_platform.md`
+- `data product / vertical AI / workflow productization` → `07_product_management.md`
+- `evaluation / validation / guardrails / 上線責任` → `10_testing_operations_and_reliability.md`
+
 ### Step 3: 讀取候選卡片
 1. 從命中的索引段落中，提取所有 `[[卡片名]]` 連結
 2. 讀取這些卡片的完整內容（位於 `/010_CardNotes/02_Cards/`）
@@ -93,7 +99,7 @@ python .github/skills/search-notes/quick_search.py "<核心概念>" --scope card
 - [缺少的素材類型 2]
 
 ### 搜尋摘要
-- 掃描索引：X/14 個
+- 掃描索引：X/15 個
 - 候選卡片：X 張
 - 精選輸出：X 張（核心 X + 跨域 X）
 ```
