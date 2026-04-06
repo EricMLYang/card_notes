@@ -1,0 +1,19 @@
+{
+  "id": "conv-1775345901265-5x3fbhixv",
+  "title": "Visualize knowledge graph",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775345901268,
+  "updatedAt": 1775346011575,
+  "lastResponseAt": 1775346011575,
+  "sessionId": "1e9e792a-169c-40cb-b7b2-22facaadeb45",
+  "sdkSessionId": "1e9e792a-169c-40cb-b7b2-22facaadeb45",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 8,
+    "cacheCreationInputTokens": 3181,
+    "cacheReadInputTokens": 50050,
+    "contextWindow": 200000,
+    "contextTokens": 53239,
+    "percentage": 27
+  }
+}

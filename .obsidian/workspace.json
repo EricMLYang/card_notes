@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "639edfe9809e59d0",
+        "id": "2c61a0c7fc1339af",
         "type": "tabs",
         "children": [
           {
-            "id": "c8ec60eae9fd632b",
+            "id": "7db18c406969935b",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -146,14 +146,23 @@
               "icon": "lucide-list",
               "title": "Outline of 1-產品開發的深刻的洞察"
             }
+          },
+          {
+            "id": "87914730675c4f50",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 658.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -168,8 +177,10 @@
       "claudian:Open Claudian": false
     }
   },
-  "active": "c8ec60eae9fd632b",
+  "active": "7db18c406969935b",
   "lastOpenFiles": [
+    "003_Capture/20260405_從Google釋出Gamma反推EdgeAI爆發時期.md",
+    "_analysis_vault_connections.md",
     "003_Capture/20260307_agent-browser控制桌面Electron.md",
     "003_Capture/20260305_Sidhu地理資訊情報AI產品.md",
     "003_Capture/20260302_設計流程已死_Anthropic設計主管的AI生存報告.md",
@@ -198,8 +209,6 @@
     "015_Write/Publish/20260304_【兩個不同的產品線，靠各自 PM Agent 找到合作交集】.md",
     "015_Write/Publish/20260301_【通用型AI加判斷力：一間兩人律所給我的啟發】.md",
     "015_Write/Publish/20260227_【當計算轉為純執行，評估標準成了唯一的控制介面】.md",
-    "015_Write/Publish/20260226_【當寫 Code 越來越便宜，PM 就變成新瓶頸】.md",
-    "015_Write/Publish/20260223_【產品探索的「模擬器」：如何利用 Repo Context 讓 Agent 產出敢拿去訪談的假設】.md",
     "015_Write/Publish",
     "015_Write/Draft",
     "015_Write",

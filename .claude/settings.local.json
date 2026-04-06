@@ -17,7 +17,8 @@
       "Bash(copilot -p \"你是一位知識管理顧問。以下是一個 Second Brain / Zettelkasten 知識庫 repo 的最近 20 條 commit 紀錄。請根據這些 commit 判斷此用戶的近期活動模式、重點關注領域、以及工作節奏。用繁體中文回答，簡潔有力。\")",
       "Bash(copilot -p '以下是一個 Second Brain / Zettelkasten 知識庫 repo 的最近 20 條 commit 紀錄，請判斷此用戶的近期活動模式、重點關注領域、以及工作節奏。用繁體中文回答，簡潔有力。:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m ':*)"
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)"
     ]
   }
 }
