@@ -18,7 +18,11 @@
       "Bash(copilot -p '以下是一個 Second Brain / Zettelkasten 知識庫 repo 的最近 20 條 commit 紀錄，請判斷此用戶的近期活動模式、重點關注領域、以及工作節奏。用繁體中文回答，簡潔有力。:*)",
       "Bash(git add:*)",
       "Bash(git commit -m ':*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(python .github/skills/break-cards/check_breadcards.py \"015_Write/Draft/20260407_本體論核心論點.md\")",
+      "Bash(echo \"EXIT_CODE=$?\")",
+      "Bash(python3 .github/skills/break-cards/check_breadcards.py \"015_Write/Draft/20260407_本體論核心論點.md\")",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"本體論 ontology 語義層 semantic layer agent 決策系統 數據架構 Palantir Databricks\" --scope cards --format json --limit 20)"
     ]
   }
 }

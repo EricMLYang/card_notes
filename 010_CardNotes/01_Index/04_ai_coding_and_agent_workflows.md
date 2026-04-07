@@ -37,6 +37,8 @@
 - [[Karpathy：Vibe Coding 重塑軟體業——程式變得免費可塑用完即丟]]
 - [[Perplexity 的 AI First 文化：小組 + AI 取代傳統管理]]
 - [[Skill是可編碼的判斷力_從Prompt到Skill的典範轉移]]
+- [[組織設計是context管理——人類集中昂貴Agent輕量可分切]]
+- [[Agent組織化原則——專門context處理專門事情]]
 
 ### 工程師角色轉變
 - [[AI 協作的技能分化：資深工程師獲得槓桿，初級工程師面臨萎縮]]
