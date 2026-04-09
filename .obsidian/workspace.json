@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2c61a0c7fc1339af",
+        "id": "17e5515700676a5a",
         "type": "tabs",
         "children": [
           {
-            "id": "7db18c406969935b",
+            "id": "1fb4b6321f9da6c8",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -74,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 346.5
   },
   "right": {
     "id": "88b54f644723e907",
@@ -177,8 +177,20 @@
       "claudian:Open Claudian": false
     }
   },
-  "active": "7db18c406969935b",
+  "active": "1fb4b6321f9da6c8",
   "lastOpenFiles": [
+    "015_Write/Publish/20260409_【NotebookLM+一個好問題讓我20分鐘搞懂以前學不會的統計概念】.md",
+    "015_Write/Draft/20260409_用AI學統計和業務連結.md",
+    "000_MyContext/產品點子.md",
+    "003_Capture/20260409_anthropic出Coding沙盒幫你做開發.md",
+    "003_Capture/20260409_王璟宏AI策略.md",
+    "015_Write/Publish/20260408_【分析能力從來不缺，缺的是接到行動的那根水管】.md",
+    "015_Write/Draft/20260408_Agent_數據分析價值案例.md",
+    "003_Capture/20260408_AnalysisAgent價值案例.md.md",
+    "003_Capture/20260408_AnalysisAgent價值案例.md",
+    "003_Capture/20260408_判斷的重量：AI時代的品味.md",
+    "2026-04-08.md",
+    "Untitled.canvas",
     "003_Capture/20260405_從Google釋出Gamma反推EdgeAI爆發時期.md",
     "_analysis_vault_connections.md",
     "003_Capture/20260307_agent-browser控制桌面Electron.md",
@@ -195,20 +207,9 @@
     "003_Capture/20260308_別再憑感覺了: 在複雜.txt",
     "005_PARA/01_Projects/AgentCodingFlow/01_inbox/20260309_Agent coding 之後，我開始覺得該看的可能不是「開發速度」，而是「需求到驗證通過」的速度.md",
     "005_PARA/02_Areas/AI_Software_Data/20260309_Claude與Anthropic趨勢整理.md",
-    "005_PARA/01_Projects/AgentCodingFlow/01_inbox/20260307_CoreNote_小團隊全流程AgentCoding.md",
-    "015_Write/Publish/20260309_【6人團隊的AI Coding流程：3級風險分流+3份最小文件，讓70%任務不需要額外文件】.md",
-    "003_Capture/20260309_Claude與Anthropic趨勢整理.md",
-    "015_Write/Draft/20260309_小團隊AgentCoding流程.md",
     "005_PARA/02_Areas/Domains_and_Industries/Retail_Media_and_AdTech",
-    "003_1CardsIndex/Idx_1-ＭyMentalModel.md",
-    "OLD_DIR/100_dev_plan/modify_dir.md",
-    "OLD_DIR/100_dev_plan/modify_chatmodes.md",
     "OLD_DIR/100_dev_plan",
     "OLD_DIR",
-    "015_Write/Publish/20260307_【系統動力學告訴我：Coding Agent消除的不是瓶頸，而是把瓶頸推到你身上】.md",
-    "015_Write/Publish/20260304_【兩個不同的產品線，靠各自 PM Agent 找到合作交集】.md",
-    "015_Write/Publish/20260301_【通用型AI加判斷力：一間兩人律所給我的啟發】.md",
-    "015_Write/Publish/20260227_【當計算轉為純執行，評估標準成了唯一的控制介面】.md",
     "015_Write/Publish",
     "015_Write/Draft",
     "015_Write",
