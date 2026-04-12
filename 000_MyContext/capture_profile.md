@@ -1,6 +1,6 @@
 # 我的閱讀偏好與關注方向
 
-> 最後更新：2026-04-03
+> 最後更新：2026-04-12
 > 更新方式：當寫作主線、閱讀偏好、關注對象或高優先主題改變時，優先更新此檔
 
 ---
@@ -20,6 +20,9 @@
 * 個人職涯定位與長期資產累積：跨領域交集優勢、長期主義、判斷力作為槓桿；特別關注如何把知識變成可複利的系統與輸出
 * AI 成本結構與定價經濟學：訂閱制的統計賭局、compute cost 與定價模型的張力、邊際成本結構對 data product / agent workflow 的約束
 * AI 發展的基準錨點與趨勢轉折：若能連回產品、決策系統或商業假設，則提高優先級；若只是硬體新聞或模型排名，優先級下降
+* DecisionOps / Decision Intelligence 市場動態：Gartner MQ 更新、Nextmv/FlexRule/SAS 等推動者的新論述、繁中圈是否有人開始佔位、相鄰概念（AI Agent × 決策系統）的交叉演化
+* LinkedIn 內容經營與個人品牌方法論：演算法變化、Carousel/Newsletter 最新效果數據、技術領域個人品牌經營案例（特別是 solo consultant / fractional executive 型）、匿名案例寫作技巧
+* 自由接案生態與平台趨勢：Upwork / Toptal / Contra / Fiverr 的機制更新、data/AI 類自由工作者的定價基準與服務包裝案例、台灣接案平台（Tasker / PRO360 / Yourator / Cake）的 AI 類需求變化
 
 ### 視角偏好 (Perspectives)
 
@@ -90,3 +93,17 @@
 * AI 輔助寫作與內容創作工作流：如何在 AI 協作下維持思考密度與個人風格
 * 從工程師到系統建造者 / 創作者的轉型路徑：技術、策略、寫作與產品化能力的整合
 * 語言與表達升級：如何把技術洞見轉成更有說服力、可推動決策的敘事與文件輸出
+
+### 品牌建構與市場定位
+
+* DecisionOps / D2D Architect 品牌經營：繁中圈的概念佔位進度、英文圈 thought leader 動態、Gartner Decision Intelligence 市場報告更新
+* 競爭者與相鄰玩家監測：台灣 BI 派 / MLOps 派 / Analytics Engineering 派 / AI Agent 派 / 資料治理派的內容動向；重點觀察對象包括 dbt 社群、AI Agent 科普圈、四大顧問的 data 論述
+* LinkedIn 內容策略：演算法規則變化、高互動格式（Carousel/Newsletter）的最新數據與案例、技術型創作者的成功模式
+* 內容創作燃料：可作為 LinkedIn 貼文素材的高品質匿名案例範本、SCAR 框架實踐範例、Hook 寫法參考、DecisionOps 英文圈的 thought leadership 文章
+
+### 商業建構與接案情報
+
+* 自由接案平台生態：Upwork / Toptal / Contra / Fiverr 的規則與機制變化、data/AI freelancer 的定價趨勢與成功案例
+* 台灣接案市場訊號：Tasker / PRO360 / Yourator / Cake 上 AI 導入、Dashboard、資料分析類需求的變化趨勢
+* 服務包裝與定價參考：solo consultant / fractional executive 如何包裝 data + AI 服務、三層服務漏斗（診斷→藍圖→導入）的實戰案例
+* 顧問型個人品牌的商業模式：LinkedIn → Newsletter → 諮詢 → 付費服務的轉化漏斗案例、知識變現路徑
