@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-04-16
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 # Software Finally Gets to Work: The Opportunity in Vertical AI — Menlo Ventures
 
 > 來源：Menlo Ventures（Perspective）

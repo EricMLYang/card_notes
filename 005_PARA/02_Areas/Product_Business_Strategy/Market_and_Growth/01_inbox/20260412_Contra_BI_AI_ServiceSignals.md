@@ -1,3 +1,18 @@
+---
+process_level: 1  # [1.找重點  2.摘要  3.重新詮釋]
+last_review: 2026-04-16
+---
+
+## [重點]
+請貼上你認為的重點
+
+## [摘要]
+
+
+## [詮釋]
+
+
+---
 # Contra BI / Intelligent Systems 服務訊號 — 作品集導向的平台正在賣什麼
 
 > 來源：Contra

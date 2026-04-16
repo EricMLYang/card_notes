@@ -24,7 +24,17 @@
       "Bash(python3 .github/skills/break-cards/check_breadcards.py \"015_Write/Draft/20260407_本體論核心論點.md\")",
       "Bash(python3 .github/skills/search-notes/quick_search.py \"本體論 ontology 語義層 semantic layer agent 決策系統 數據架構 Palantir Databricks\" --scope cards --format json --limit 20)",
       "WebFetch(domain:www.philschmid.de)",
-      "WebFetch(domain:menlovc.com)"
+      "WebFetch(domain:menlovc.com)",
+      "Bash(python .github/skills/search-notes/quick_search.py \"AI 優先工程 harness 代理工程師 產線\" --scope cards --format json --limit 20)",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"AI 優先工程 harness 代理\" --scope cards --format json --limit 20)",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"AI coding agent harness CI/CD 測試 技術債\" --scope cards --format json --limit 20)",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"架構師 操作員 初階人才 工程師角色\" --scope cards --format json --limit 15)",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"飛輪 自我強化 迴圈 產品主軸\" --scope cards --format json --limit 10)",
+      "Bash(python3 .github/skills/search-notes/quick_search.py \"瓶頸 組織 治理 AI 導入 初階工程師\" --scope cards --format json --limit 10)",
+      "Bash(sed -i '' 's/pipeline_stage: \"CP2\"/pipeline_stage: \"CP3\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
+      "Bash(sed -i '' 's/status: \"reviewing\"/status: \"polishing\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
+      "Bash(sed -i '' 's/pipeline_stage: \"CP3\"/pipeline_stage: \"DONE\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
+      "Bash(sed -i '' 's/status: \"polishing\"/status: \"published\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")"
     ]
   }
 }
