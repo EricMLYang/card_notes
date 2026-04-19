@@ -101,9 +101,25 @@
 * LinkedIn 內容策略：演算法規則變化、高互動格式（Carousel/Newsletter）的最新數據與案例、技術型創作者的成功模式
 * 內容創作燃料：可作為 LinkedIn 貼文素材的高品質匿名案例範本、SCAR 框架實踐範例、Hook 寫法參考、DecisionOps 英文圈的 thought leadership 文章
 
+### RMN / 實體零售 / 實體廣告
+
+* RMN 平台架構與全球趨勢：零售商自建 RMN 的案例與陷阱、Amazon / Walmart / Instacart 等指標性 RMN 的最新策略
+* 多感測器 → 決策的管路設計：AI 攝影機 + WiFi probe + POS + 廣告投放的資料匯流與決策整合
+* 實體廣告效果歸因：線下廣告的效果衡量、歸因模型、人流 × 廣告 × 销售的閉環驗證
+* Fulfillable RMN 與空間商業數據：廣告投放與供應鏈 / 庫存 / 地點的整合決策、空間數據變現的商業模式
+
 ### 商業建構與接案情報
 
 * 自由接案平台生態：Upwork / Toptal / Contra / Fiverr 的規則與機制變化、data/AI freelancer 的定價趨勢與成功案例
 * 台灣接案市場訊號：Tasker / PRO360 / Yourator / Cake 上 AI 導入、Dashboard、資料分析類需求的變化趨勢
 * 服務包裝與定價參考：solo consultant / fractional executive 如何包裝 data + AI 服務、三層服務漏斗（診斷→藍圖→導入）的實戰案例
 * 顧問型個人品牌的商業模式：LinkedIn → Newsletter → 諮詢 → 付費服務的轉化漏斗案例、知識變現路徑
+
+### PropTech / 工程 AI（低優先觀察）
+
+> 觀察用，非主動搜集。僅在有強訊號時才提升優先級。
+
+* 不動產科技趨勢：PropTech 新創與市場動態、地籍資料 AI 應用、實價登錄 / 都市計畫資料分析
+* 工程計畫書 AI 自動化：水利 / 排水 / 工程計畫書的模板化與 AI 輔助撰寫、工程顧問業痛點
+* 都更 / 危老政策動態：34-1 執行要點更新、都更條例修訂、危老重建統計趨勢
+* GeoAI 與地籍數據：產權碑裂化分析、共有地處分流程自動化、危老 / 都更潛力基地識別
