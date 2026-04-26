@@ -54,3 +54,65 @@ last_review: 2026-04-11
 ### 5. 隱憂與挑戰
 *   **Junior Grit 危機**：初級工程師過度依賴 AI 導致「AI Slop (代碼垃圾)」，缺乏底層架構理解能力。
 *   **技術債積累**：高思考模型傾向於「過度設計」，引入不必要的複雜保護機制。
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Agentic Coding 從「補全」轉向「指揮」，工程師升級為導演。三段式流程（Plan→Act→Validate）+ CLAUDE.md 作為 AI 規範守門人 + Git Worktrees 多代理並發 = 開發效率提升 300%+。2026/3 Claude Code 泄露事件證實核心是 harness 不是 LLM。
+- 作者挑戰的預設：挑戰「AI Coding 的價值在模型本身」「AI 寫 code 必降低品質」兩個慣性；用泄露源碼數據佐證 harness 才是垂直整合的護城河。
+- 個人映射：把「導演 / 指揮」隱喻具體化為三段式流程；CLAUDE.md 的「迭代反饋」呼應 capture profile 的「持續迭代 harness」「人類從盯人轉向設計控制系統」。但 300% 數字無來源，需 fact-check 標記。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：/plan 模式：架構先行的硬性流程，不只是 best practice
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：在 Claude Code 工作流中，第一步必須讓 AI 讀取整個 Repo 並產出詳細技術實作計畫，由人類審核副作用與架構取捨後才進入 Act。/plan 把「人類判斷介入點」固定在最高槓桿位置（架構決策前），而不是事後 review code。
+- 保留理由：是「AI Coding 流程設計」的關鍵錨點，與 20260404（GitHub Copilot 的「先 /plan 再動手」）形成跨文佐證。
+- 待補強處：缺失敗模式——當 plan 本身就錯時，後面 Act 越快錯越大。是否需要 plan 的二次評審？
+- 初步知識鉤子：與 20260404 GitHub Copilot 的 plan→autopilot→agent review→人工 review 完整循環、與 20260414 Pang 的 CI 六階段對接
+
+序號 2
+- 候選標題：CLAUDE.md 是團隊 AI 規範的「迭代式守門人」
+- 分級：Core
+- 類型：Pattern
+- 核心內容：把專案規範、code style、測試要求寫進 CLAUDE.md。當 code review 發現 AI 犯錯時，直接修 CLAUDE.md，AI 下次啟動立即修正。把「人類隱性 harness」外化成「文件可迭代規則」，避免錯誤重複發生。
+- 保留理由：直接呼應 20260407 Fowler 的「human steering loop = 持續迭代 harness」與 capture profile 的「Repo-as-Worker」；可遷移到 AGENTS.md / skills / how-to 文件設計。
+- 待補強處：CLAUDE.md 規模上限？太長 AI 是否會忽略？需要分層？
+- 初步知識鉤子：與 20260407 feedforward controls、20260401 架構約束（規則寫在工具裡而非規範文件）形成張力——CLAUDE.md 屬於「規範文件」還是「執行工具」？
+
+序號 3
+- 候選標題：Git Worktrees + 多代理並發＝把工程師變成多代理 orchestrator
+- 分級：Support
+- 類型：Pattern
+- 核心內容：透過 Git Worktrees 啟動多個 Claude 實例，分別負責重構 / 功能 / 資安掃描並行運作。這是「一人多代理」的具體實作機制，不只是概念。
+- 保留理由：是「角色分配 + 並發」的具體架構，可遷移到自家 repo 設計。
+- 待補強處：多代理間的衝突解決？merge 順序？人類能同時 review 多少並發 PR？
+- 初步知識鉤子：與 20260327 Stripe Minion 並發、20260414 Pang 一天 8 次部署的並發容量
+
+序號 4
+- 候選標題：Claude Code 泄露事件揭露：核心競爭力在 Harness 不在 LLM
+- 分級：Core
+- 類型：Pattern
+- 核心內容：2026/3 泄露的 50 萬行源碼顯示，垂直整合難度集中在工具調用超時、權限分級、複雜 Regex 匹配、跨檔案依賴追蹤等 harness 細節。這證實「模型可替換、harness 是壁壘」的策略判斷。
+- 保留理由：用泄露事件作為「harness 是護城河」的硬證據，可作為策略簡報素材。
+- 待補強處：50 萬行源碼的具體分布？harness 與業務邏輯的比例？需 fact-check。
+- 初步知識鉤子：與 20260401 Atomic Skill、20260407 Fowler harness、20260414 Pang「Harness 是產品其他都是馬」三篇形成共識線
+
+序號 5
+- 候選標題：Junior Grit 危機 + 過度設計——AI Coding 的兩個隱性技術債
+- 分級：Support
+- 類型：Warning
+- 核心內容：(1) 初級工程師過度依賴 AI 導致 AI Slop（代碼垃圾），缺乏底層架構理解；(2) 高思考模型傾向過度設計，引入不必要的複雜保護機制。兩者都是「看似乾淨、累積有毒」的反例。
+- 保留理由：補上失敗模式視角，呼應 20260414 Pang 的「初階人才管線斷裂」與「技術債複利累積」。
+- 待補強處：本文僅列名沒展開機制；過度設計的具體例子缺。
+- 初步知識鉤子：與 20260414 Pang GitClear/CMU/Apiiro 三項研究、capture profile「AI Coding 風險治理」
+
+## C. 建議送 refine 的項目
+- 序號 1、2、4（Core，皆可獨立成卡）
+- 序號 3、5 為 Support，可與 20260327、20260414 合併
+
+## D. 呼叫 refine-cards
+- 將 5 張候選卡交由 refine-cards 精煉；特別注意「300% 效率提升」「50 萬行源碼」等數字需 fact-check 標記；CLAUDE.md vs 20260401「規則寫在工具裡」的張力值得在 refine 階段保留為對話卡。
+

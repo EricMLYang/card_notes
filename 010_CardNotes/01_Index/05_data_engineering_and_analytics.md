@@ -47,3 +47,8 @@
 ### 語意、指標與產品化
 - [[Context Graph 捕獲組織隱性知識]]
 - [[新創的核心價值是接水管—連接企業數據與雲端AI]]
+
+### Decision System 與 Vertical AI 指標（2026-04 batch）
+- [[5-001_Data-Driven路徑在決策閉環的結構性失效]] - BI 在閉環這個目標上結構性失效
+- [[5-002_Engagement_Metric已死_outcome_metric的反共識]] - vertical AI 成功標誌是「使用者花更少時間」
+- [[5-003_Harness_as_Dataset_護城河從Prompt移到Trajectory]] - 軌跡資料集成為 agent 的長期 moat

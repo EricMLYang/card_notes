@@ -155,6 +155,32 @@ tags:
 
 - **跨平台治理與安全更完整**（MLflow observability, AI Gateway, MCP support）
 
+# BreadCards
+
+## A. 主脈絡與個人映射
+- **論證骨架**：Databricks Data + AI Summit 2025 的 Mosaic AI 公告整理，列出 8 個產品方向（Agent Bricks / MLflow 3 / AI Functions in SQL / Storage-Optimized Vector Search / Serverless GPU / High-Scale Model Serving / MCP Support / AI Gateway），每項 2-3 行 bullet，最後總結為三條方向（建 agent 更簡單 / 更快更便宜 / 跨平台治理）。
+- **挑戰的預設**：未挑戰任何主流預設，整篇是 feature list 摘要。
+- **個人映射**：所列方向（MLflow 3、AI Gateway、MCP 支援、ai_parse_document、Vector Search 成本下降）已被其他高訊號文章（MLflow 3 Migration、SiliconAngle、Lakebase）以更具機制與取捨的方式覆蓋。本文作為「事件型新聞」存在，沒有提供取捨、機制、設計理由或失敗模式。
+
+## B. 候選卡（Lite）
+
+**判定：0 卡**
+
+理由（命中多個 blacklist）：
+1. **❌ 純產品發表（feature list）**：8 個項目都是 capability claim（「快 3 倍、便宜 4 倍、降 7 倍」「支援 25 萬 QPS」），沒有對比基準、測試條件、適用情境。
+2. **❌ 純平台宣傳**：完全圍繞「Databricks 又推出什麼」，沒有回到資料、語意、workflow、商業影響的分析。
+3. **❌ 純事件報導**：summit 公告整理，未附帶結構性分析。
+4. **❌ 無支撐的結論**：「3x 快、4x 便宜、7x 成本下降」這類數字無 benchmark 條件，無法形成判斷。
+5. **❌ 中庸論述**：總結「建 agent 更簡單、更快更便宜、治理更完整」是樣板話，無取捨。
+
+同主題的高訊號內容（MLflow 3 控制平面整合、MCP × Unity Catalog 治理邊界、ai_parse_document 的治理意義）已被本批次其他文章以具體機制覆蓋，本文無增量價值。
+
+## C. 建議送 refine 的項目
+- 無
+
+## D. 呼叫 refine-cards
+- 不呼叫，0 卡
+
 
 
 

@@ -58,3 +58,90 @@ Jason Cui 與 Jennifer Li 在 2026-03-10 的這篇文章裡，直接把「chat w
 作者最後的觀察很務實。我們已經看見 context 不足是 agent 失敗的根本原因，但解法仍很早期，還有很多未解問題：context layer 應該住在哪、能否分散存在、會不會變成獨立產品。即便如此，方向已經很清楚了。真正能讓自助式 analytics、BI、data science 進一步被 AI 重寫的，不只是更強的模型，而是更完整、更活的 context infrastructure。
 
 這篇文章的高訊號不在於它發明了新 buzzword，而是把 data agent 無法落地的核心瓶頸，從「模型不夠強」矯正成「上下文資產不夠完整、不夠新、不夠可維護」。如果你在寫「從資料平台到決策系統」，這幾乎就是其中最關鍵的一層中介結構。
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：data agent 失敗的瓶頸不是 text-to-SQL 不夠強，而是缺乏可維護、可演化、帶有業務定義與 tribal knowledge 的 context layer。Semantic layer 只解決指標定義，但 context layer 還需 canonical entities、identity resolution、tribal knowledge 拆解規則、governance guidance、workflow context。建構 context layer 是「技術工程 + 組織知識收集」的混合工程，文章給出五步驟路徑：access data → automated construction → human refinement → agent connection → self-updating flows。
+- 作者挑戰的預設：（1）data agent 失敗 = 模型 SQL 弱 → 真正的 bottleneck 是 context；（2）有 semantic layer 就夠 → semantic layer 只是 context layer 的子集，缺 tribal knowledge 與 governance；（3）context layer 一次建好 → 必須是 living corpus，因為商業定義、資料源、規則持續變動。
+- 個人映射：直接等同於你長期的「context-as-asset」「Context Graph 捕獲組織隱性知識」「context 是增值型投資」主軸；補上「人工 refinement 處理 conditional / historical / tribal knowledge」這個你之前沒明確命名的關鍵步驟；同時把 data agent 失敗原因從「模型」糾正到「context」對應你的「Repo as Worker / Context as Capability」橋接寫作。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：Data Agent 失敗的真正瓶頸不是 SQL，而是 Context
+- 分級：Core
+- 類型：Principle
+- 核心內容：早期假設「text-to-SQL 再進步一點 data agent 就會成功」是只說對一小部分。真正的問題是：agent 無法解模糊問題、不懂業務定義、無法跨異質資料源穩定推理。「上季營收成長」表面是 BI 問題，實際牽涉 revenue 定義（run rate / ARR / gross / net）、quarter 邏輯、semantic layer 是否被棄用、新產品線是否包含等多重 context 陷阱。
+- 保留理由：把整個資料 agent 失敗論述從技術問題轉到組織知識問題，是這篇文章的母命題；對你「從資料平台到決策系統」的核心論述是基石。
+- 待補強處：何時 SQL 能力仍是真正瓶頸（pre-paradigm 階段、純結構化資料）？context 不足與 SQL 不足的鑑別診斷？
+- 初步知識鉤子：[[Context-as-Asset]]、[[Semantic Layer]]、[[Decision System]]
+
+序號 2
+- 候選標題：Context Layer ⊃ Semantic Layer：四件需要補上的東西
+- 分級：Core
+- 類型：Principle
+- 核心內容：Modern context layer 是 semantic layer 的超集。Semantic layer 處理 revenue / churn / ARPU 等指標定義，主要服務 BI tool；要支撐 agent 自主推理，還需要：（1）canonical entities + identity resolution；（2）tribal knowledge 的拆解規則；（3）governance guidance；（4）workflow 與決策脈絡。前者是手工 YAML，後者是 living corpus。
+- 保留理由：明確區分了兩個常被混為一談的概念，並給出 context layer 必須補的四件套清單。對你做 data product 設計與 RMN context 整合非常實用。
+- 待補強處：四件套的優先順序？小團隊資源有限時應先做哪一件？
+- 初步知識鉤子：[[Semantic Layer]]、[[Context Graph]]、[[Tribal Knowledge]]、[[Identity Resolution]]
+
+序號 3
+- 候選標題：Context Layer 必須是 Self-Updating Living Corpus，不是一次性建好
+- 分級：Core
+- 類型：Principle
+- 核心內容：資料系統永遠不會靜止——上游欄位變、資料格式變、商業定義變、團隊持續對 agent 補規則。如果 agent 回錯，修正不能停在單次對話，要回灌到 context layer 讓系統下次更準。這對應你關心的「context 是增值型投資、隨 AI 進步複利成長」主張。
+- 保留理由：把 context 從「文件 / 配置」抬升到「持續演化資產」的概念躍遷；對你寫「Context Engineering 的長期主義」是核心拼圖。
+- 待補強處：self-updating 的觸發機制（每次失敗都更新？還是要批次審核？）；如何避免 context drift 累積偏誤？
+- 初步知識鉤子：[[Context 是增值型投資]]、[[Living Corpus]]、[[Repo as Worker]]、[[Self-Updating Flow]]
+
+序號 4
+- 候選標題：人工 Refinement 處理 Conditional / Historical / Tribal Knowledge
+- 分級：Core
+- 類型：Pattern
+- 核心內容：context layer 五步驟的第三步「human refinement」很關鍵，因為最重要的脈絡常常是隱性、條件式、歷史形成的——不是模型自動掃一圈就會懂。例：「2025 年後 USCAN 的新 deals 看 Affinity，之前的 global leads 看 Salesforce」。這類規則需要人工補進 context layer。
+- 保留理由：把「人為什麼還必須介入 context」說得最具體；對應你關心的「Agent 落地是技術 + 組織知識的混合工程」主張。
+- 待補強處：refinement 的 SOP？誰負責（業務 / 工程 / 數據治理）？版本管理？
+- 初步知識鉤子：[[Tribal Knowledge]]、[[Conditional Rules]]、[[Human-in-the-Loop Curation]]
+
+序號 5
+- 候選標題：建構 Context Layer 是技術工程 + 組織知識收集的混合工程
+- 分級：Support
+- 類型：Principle
+- 核心內容：作者明確指出 data agent 工程不只是技術問題，而是「technical engineering + organizational knowledge gathering」的混合工程。這意味資料工程團隊必須擴大職責範圍，或與業務 / RevOps / GTM 等角色形成新的協作模式。
+- 保留理由：把 data agent 落地從「資料工程任務」拉高到「跨職能組織任務」，影響團隊組成與責任分工。對你關心的「Solo / 小團隊如何在資源約束下落地 data product」很有用。
+- 待補強處：跨職能協作的具體機制？哪些角色必須加入？外部顧問可不可以替代部分職責？
+- 初步知識鉤子：[[Solo Consultant 服務包裝]]、[[小團隊資源約束]]、[[組織知識]]
+
+序號 6
+- 候選標題：Context Layer 市場三類玩家：Data Gravity / AI Data Analyst / Dedicated Context
+- 分級：Support
+- 類型：Pattern
+- 核心內容：作者把市場分成三類：（1）data gravity platforms（Databricks、Snowflake，從資料源頭往上延伸做 AI data analyst）；（2）既有 AI data analyst 公司（從 chat with data 往下深化做 context layer）；（3）新興 dedicated context layer 公司（從零專做 context）。三類路徑不同、優劣勢不同。
+- 保留理由：給出一個觀察 data + AI 市場演化的清晰分類，對你做 D2D Architect 定位 / 競爭分析 / 客戶選擇有用。
+- 待補強處：三類玩家在哪些客戶情境分別更有優勢？台灣 / 亞太市場是否同樣分類成立？
+- 初步知識鉤子：[[Databricks 生態]]、[[Modern Data Stack 演化]]、[[市場結構分析]]、[[D2D Architect 競品定位]]
+
+序號 7
+- 候選標題：未解問題：Context Layer 應該住在哪裡？會變成獨立產品嗎？
+- 分級：Question
+- 類型：Question
+- 核心內容：作者誠實指出方向已清楚但解法仍早期，幾個未解問題：context layer 的物理位置（雲端集中？分散在各應用層？）、能否分散存在、會不會變成獨立產品類別、與既有 catalog / lineage 工具的關係。值得長期追蹤。
+- 保留理由：作者沒給答案的開放問題，正好是寫作 hook 的好材料；可作為追蹤命題持續累積觀察。
+- 待補強處：自己對這幾個問題的初步傾向是什麼？
+- 初步知識鉤子：[[Context Layer 演化]]、[[Data Catalog]]、[[追蹤命題]]
+
+## C. 建議送 refine 的項目
+- 序號 1（Core）：Data Agent 真正瓶頸是 Context
+- 序號 2（Core）：Context Layer ⊃ Semantic Layer 四件套
+- 序號 3（Core）：Self-Updating Living Corpus
+- 序號 4（Core）：人工 Refinement 處理隱性知識
+- 序號 5（Support）：技術 + 組織知識的混合工程
+- 序號 6（Support）：市場三類玩家
+- 序號 7（Question）：保留作為追蹤命題
+
+## D. 呼叫 refine-cards
+- 上述 7 張候選卡交由 refine-cards 精煉；refine 階段需檢查與既有「[[Context 是增值型投資]]」「[[一切都是 Context]]」「[[Context Graph 捕獲組織隱性知識]]」三張現有卡的去重 / 連結關係——可能某些 lite 卡片應強化既有卡而非新建。
+

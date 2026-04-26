@@ -70,3 +70,58 @@ Databricks AI/ML 產品 senior director Craig Wiley：
 > 我們的目標是讓 organizations 把 agents 放進高風險、高價值的 use case path
 
 並指出治理讓他們可以「從 pilot project 走到 production，同時保持 control。」
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- **論證骨架**：報導以「Databricks 一次釋出四件治理工具」為主軸，串成一個 Databricks 對外宣示的方向——把 agent 從 pilot 帶到 production 必須補的能力（外部工具治理、文件結構化、多 agent 協調、可調 judge），全部掛回 Unity Catalog 的權限/audit/lineage 邊界。
+- **挑戰的預設**：「外部工具呼叫（MCP）跟治理是兩回事」「文件解析是 ETL 工具不是治理問題」「judge 是固定 metric 不需要客製化」。
+- **個人映射**：直接補強我關注的「AI workflow 上線責任邊界」與「Repo-as-Worker」兩條主線。MCP × Unity Catalog 是一個具體可寫的架構卡——把 Anthropic 標準與 Databricks 治理層綁起來，意味著未來 agent 即使呼叫外部工具，也能納入同一套權限/audit。對 RMN 場景特別有用：第三方資料、外部 API、廣告投放工具呼叫的治理一直是難題。但要小心：報導沒有採用數字、沒有對比 Snowflake/Bedrock，需謹慎不過度推論。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：MCP × Unity Catalog — 把外部工具呼叫拉進治理邊界的架構模式
+- 分級：Core
+- 類型：Pattern
+- 核心內容：Databricks 透過 AI Gateway + MCP Catalog/Marketplace 把外部工具治理納入 Unity Catalog，所有 model endpoint 與外部 MCP server 都繼承 logging、access control、rate limiting 與 audit trail。這是一個值得遷移的架構模式：用「協議 + 治理層」把外部依賴拉回控制平面，而不是讓 agent 直接呼叫外部 API 造成治理黑洞。
+- 保留理由：這是少見的「外部工具 × 治理」整合做法，可作為 AI 上線責任邊界的具體彈藥
+- 待補強處：rate limiting / audit 對 MCP server 真實效能的影響、跨組織 MCP 呼叫的權限傳遞、failure mode 處理
+- 初步知識鉤子：[[Unity Catalog 作為 AI 控制平面]]、AWS Shared Responsibility、API Gateway pattern、Service Mesh × Identity、[[從資料平台到決策系統]]
+
+序號 2
+- 候選標題：Tunable Judges 取代固定 metric — 評估從通用走向 domain-specific
+- 分級：Support
+- 類型：Pattern
+- 核心內容：MLflow 開源「judges」並支援可調參，讓團隊用 domain-specific 標準評估 agent 表現，而不是套通用 metric。這個方向呼應「scorer 必須是團隊資產」的趨勢——好的 agent 評估不是來自更強的固定模型 judge，而是來自可調、可治理的 domain rule。
+- 保留理由：與 MLflow 3 篇的訊號互相印證，顯示 Databricks 整體在把 evaluation 變成可治理資產
+- 待補強處：tunable 的具體 API 範圍、judge 本身如何被 review 與版本化、誰負責定義 ground truth
+- 初步知識鉤子：[[AI時代評估能力成為關鍵槓桿點]]、LLM-as-judge 限制、scorer-as-asset
+
+序號 3
+- 候選標題：ai_parse_document — 文件結構化的 SQL 化是「資料如何進 agent」的最後一哩
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Databricks 把 PDF → 結構化資料做成 SQL 函式（ai_parse_document），意味著 unstructured ingestion 從 ETL 工具變成資料平台原語。這對 RMN / 保單 / 合約類資料特別有用——這些資料以前要走獨立 pipeline，現在可以用 SQL 直接拉進 lakehouse 並繼承治理。
+- 保留理由：把「unstructured ingestion」從邊角工程升級為治理層原語，是平台化轉型的訊號
+- 待補強處：抽取準確率、與 LLM extractor 的 cost / latency 對比、結構不一致時的 schema evolution
+- 初步知識鉤子：[[Unstructured to Structured]]、Document AI、[[從專案交付到平台化]]
+
+序號 4
+- 候選標題：Multi-Agent Supervisor 仍是 beta — 平台廠的 agent 編排架構觀點
+- 分級：Question
+- 類型：Question
+- 核心內容：Databricks 推出 Multi-Agent Supervisor（beta）做跨 agent 與 MCP server 的協調，雖然功能未定型但揭示一個架構觀點：平台廠認為 agent 編排不應是 application 層 ad-hoc 寫的 LangGraph，而該是平台級服務。這個取捨值得追蹤——Supervisor 是否會成為 agent 編排的 control plane，還是只是另一個 vendor lock-in 元件？
+- 保留理由：作為追蹤型問題卡，記錄產業方向的不確定點
+- 待補強處：beta 階段功能完整性、與 LangGraph / CrewAI / OpenAI Swarm 的取捨對比、Supervisor 對 trace 的可見度
+- 初步知識鉤子：[[Agent Orchestration]]、Harness 設計、Platform vs Framework 的取捨
+
+## C. 建議送 refine 的項目
+- 序號 1（MCP × Unity Catalog）：Core，可獨立成架構卡
+- 序號 2（Tunable Judges）：與 MLflow 3 篇序號合併潛力高
+- 序號 3（ai_parse_document）：可作為「資料如何進 Agent」系列的卡
+- 序號 4（Multi-Agent Supervisor）：保留為 Question 追蹤卡
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉
+

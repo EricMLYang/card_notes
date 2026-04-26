@@ -28,3 +28,6 @@
 ### 治理與控制面
 - [[AI Error Analysis：LLM 應用評估方法]]
 - [[DecisionOps]]
+
+### Agent Eval 與 Medallion 遷移（2026-04 batch）
+- [[6-001_Trace_Scorer_Labeling_Dataset是同一個閉環]] - Bronze/Silver/Gold 思維遷移到 agent eval

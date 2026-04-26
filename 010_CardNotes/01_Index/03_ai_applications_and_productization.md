@@ -83,3 +83,17 @@
 ### Edge AI
 - [[Edge AI 甜蜜點：NPU ≥30 TOPS ≤5W]]
 - [[Edge AI 甜蜜點：NPU ≥30 TOPS 與 ≤5W 搭配 7B 模型]]
+
+### Vertical AI 與部署競爭力（2026-04 batch）
+- [[3-001_部署能力是企業AI的真競爭軸]] - 競爭軸從 model benchmark 切換到 deployment success
+- [[3-002_Frontier飛輪_模型平台工作流的lock-in]] - 模型/平台/workflow 三段遞迴鎖死
+- [[3-003_Stateful_Runtime是企業AI新基礎設施單位]] - 基礎設施單位從 API call 演化成 stateful runtime
+- [[3-004_Forward-Deployed_Engineering是vertical_AI的隱性必要條件]] - 服務含量 + 軟體含量混合包裝
+- [[3-005_F.D.A.找Agent題目的三維篩選]] - Friction × Data Nexus × Actionable Outcome 三軸
+
+### Harness 工程與 Agent 控制（2026-04 batch）
+- [[3-006_Harness六層構成_Agent系統工程的解構]] - 迴圈/工具/上下文/持久化/驗證/限制六層
+- [[3-007_四種Agent控制方式適用矩陣_Prompt_SOP_Workflow_SteeringHooks]] - 四種控制方式可疊加使用
+- [[3-008_Agent分層記憶4層_不要預設用VectorDB]] - 工作記憶/摘要/任務製品/長期偏好
+- [[3-009_Eval的對象是Stack不是模型本身]] - 評的是 model + harness + tools + environment
+- [[3-010_Eval-Driven_Development_Eval是組織協作介面]] - eval 是 PM/Eng/Researcher 的高頻寬協作語言

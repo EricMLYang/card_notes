@@ -209,3 +209,75 @@ In my personal usage of AI-assisted coding, I also often spend time on carefully
 But the term “spec-driven development” isn’t very well defined yet, and it’s already semantically diffused. I’ve even recently heard people use “spec” basically as a synonym for “detailed prompt”.
 
 Regarding the tools I’ve tried, I have listed many of my questions about their real world usefulness here. I wonder if some of them are trying to feed AI agents with our existing workflows too literally, ultimately amplifying existing challenges like review overload and hallucinations. Especially with the more elaborate approaches that create lots of files, I can’t help but think of the German compound word “Verschlimmbesserung”: Are we making something worse in the attempt of making it better?
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：SDD 不是單一概念，要拆成三層成熟度——spec-first（規格寫一次後丟）、spec-anchored（規格隨功能演化維護）、spec-as-source（規格才是主檔，code 由生成）。Kiro/spec-kit 都還在 spec-first，只有 Tessl 試 spec-as-source。但工具規模對齊問題嚴重（小 bug 被 Kiro 變成 4 個 user story、16 個驗收條件），且 spec-as-source 可能重蹈 MDD 失敗的覆轍：把 MDD 的不彈性與 LLM 的非決定性結合在一起。
+- 作者挑戰的預設：規格寫越多越好、SDD 是個統一概念、上下文視窗變大就能讓 spec-driven 跑得起來。實際上 agent 仍會忽略指令或過度遵從、verbose markdown 反而比 review code 更累。
+- 個人映射：補強「規格作為 AI 控制介面」主軸，但也加入歷史警告（MDD）這一橫向參照，提醒在 DecisionOps / data product 設計中避免把 spec 當成新的 model definition 重蹈覆轍。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：SDD 三層成熟度模型（spec-first / spec-anchored / spec-as-source）
+- 分級：Core
+- 類型：Pattern
+- 核心內容：把 spec-driven development 拆成三層：① spec-first（規格寫在前，task 完成即可丟）；② spec-anchored（規格貫穿功能演化，持續維護）；③ spec-as-source（規格是主檔，人類只編規格不碰生成 code）。多數工具自稱 SDD 但其實只做到 spec-first；釐清層級才能避免「我以為我在做 SDD，但其實只在用更詳細的 prompt」的混淆。
+- 保留理由：清楚定義邊界的分層框架，可遷移到所有「規格 → 自動生成」設計討論。
+- 待補強處：每層的維護成本／適用場景未列。
+- 初步知識鉤子：Spec as Interface、MDD 對照、AI 工程控制權。
+
+序號 2
+- 候選標題：SDD 工具規模不匹配警告：用大砲打小蚊子會製造 review 疲勞
+- 分級:Core
+- 類型：Warning
+- 核心內容：Kiro 把一個小 bug 轉成 4 個 user story、16 個驗收條件；spec-kit 對中型功能也產生大量重複 markdown。問題不是工具不會做，而是工具沒提供「不同問題規模對應不同工作流」的彈性。SDD 工具的有效性取決於規模匹配；大型 framework 套小任務會製造比直接寫還高的 review 成本。
+- 保留理由：高遷移性的反模式警告，可遷移到所有「方法論套小團隊」場景。
+- 待補強處：規模分級的具體判準未列。
+- 初步知識鉤子：Methodology Sizing、Cynefin、過度工程、Verschlimmbesserung。
+
+序號 3
+- 候選標題：spec-as-source 可能重蹈 MDD 覆轍：結合不彈性與非決定性
+- 分級：Core
+- 類型：Warning
+- 核心內容：Model-Driven Development（MDD）過去用 UML/DSL 描述模型再生成 code，最終因不彈性與高 overhead 失敗。LLM 解掉了「不能用自然語言寫 spec」的限制，但代價是非決定性。spec-as-source 若不留意，可能把 MDD 的不彈性（被 spec 形狀綁死）與 LLM 的非決定性（同樣 spec 跑出不同 code）疊加起來，變成最壞組合。
+- 保留理由：跨世代的歷史類比，提供罕見的反例視角。
+- 待補強處：缺乏「什麼條件下 spec-as-source 才不會重蹈覆轍」的具體判準。
+- 初步知識鉤子：MDD 失敗史、AI 設計的歷史類比、判斷對與管不管用。
+
+序號 4
+- 候選標題：context window 變大不等於 agent 會遵守指令
+- 分級：Support
+- 類型：Warning
+- 核心內容：spec-driven 工具經常假設「context window 變大就能塞下所有 spec、agent 自然會遵守」。實測 spec-kit 的 agent 仍會：① 忽略 research 階段註明「這是既有類別」的提示，把它當新 spec 重新生成造成 duplicate；② 過度依從 constitution 條款做出超過範圍的事。窗口變大 ≠ 注意力均勻分布，必須補設計級的強制檢查。
+- 保留理由：糾正主流誤解，補上「窗口 vs 注意力」差異。
+- 待補強處：缺乏對應的補救設計（chunking、checklists 強制執行）。
+- 初步知識鉤子：Context Engineering、Attention Decay、Agent Compliance。
+
+序號 5
+- 候選標題：Memory Bank vs Spec：兩種 agent context 要分開管理
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Birgitta 區分兩類 context：① Memory Bank（AGENTS.md、project.md、architecture.md 等，跨所有 session 都相關的高層描述）；② Spec（只跟「正在創建或修改某功能」相關的細節）。混在一起會讓 agent 誤把功能級 spec 當成全局規則，或把全局規則當成本次任務細節。
+- 保留理由：可遷移的 context 分層原則，呼應 CLAUDE.md / Skills 設計。
+- 待補強處：兩者重疊區的處理（例如「這個架構決策只適用某 module」）未交代。
+- 初步知識鉤子：Memory Bank、CLAUDE.md、Skills 拓撲、Repo-as-Worker。
+
+序號 6
+- 候選標題：Review markdown spec 比 review code 還累，是 SDD 真實使用體驗的反例
+- 分級：Support
+- 類型：Warning
+- 核心內容：SDD 的賣點之一是「review spec 比 review code 容易」。但作者實測 spec-kit 產出大量重複、verbose、有時還含 code 的 markdown，反而比直接 review code 更痛。「審查負荷的轉移 ≠ 減輕」，工具必須提供良好的 spec review 體驗，否則 SDD 會變成 review overhead 的放大器。
+- 保留理由：對 SDD 樂觀論的具體反例，提醒「介面替換 ≠ 認知負擔減少」。
+- 待補強處：什麼樣的 spec 結構才會讓 review 真的變輕未討論。
+- 初步知識鉤子：Review UX、Cognitive Load、Document Bloat。
+
+## C. 建議送 refine 的項目
+- 序號 1、2、3 為主軸
+- 序號 4、5、6 為補強
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。

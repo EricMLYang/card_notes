@@ -309,3 +309,74 @@ ACTICO、Aera Technology、CRIF、Decisions、Faculty、FICO、FlexRule、IBM、
 
 ---
 ---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Gartner 在 2026-01 首次發布 Decision Intelligence Platforms MQ，把「決策」從 BI / 規則引擎 / AI 模型 / BPM 之間拉成一個獨立的 enterprise 採購類別；17 家入選廠商集中在 4 種能力組合（規則系統化、上下文聚合、決策接執行、scenario 最佳化）；Gartner 把市場定位為 late-stage emerging。
+- 作者挑戰的預設：「決策能力是 BI / MLOps / BPM 的延伸」 → DI 派主張它是獨立 category，因為 data-driven 路徑在「持續做出更好決策」這個目標上會失效（資料看得到、決策做不出）。
+- 個人映射：對 Eric「DecisionOps / D2D Architect」品牌定位是最關鍵的時間錨點 —— Gartner 把「decision-centric」變成全球共用採購語言，繁中圈第一波「DI 是什麼」的搜尋需求即將出現。FlexRule 的「Decision-Centric Approach 填補 data-driven 失效 gap」幾乎可直接平移到 D2D 論述。需要明確區分：DecisionOps（運維 / loop / 治理視角）vs Decision Intelligence（採購 / 平台視角），決定要佔哪個詞，或如何把兩者橋接。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：DI 首次進入 Gartner MQ 是 DecisionOps 佔位的時間錨點（2026-01）
+- 分級：Core
+- 類型：Pattern
+- 核心內容：Gartner 在 2026-01-26 首次發布 Decision Intelligence Platforms MQ，是該類別第一次被正式列為獨立採購象限。對 enterprise 採購而言，這代表 decision-centric 進入「可被標準化評估」的階段；對品牌經營者而言，這是繁中圈搜尋需求即將被點燃前的最後窗口期 —— 一旦 Gartner 報告流入台灣顧問圈，第一波「DI 是什麼」的論述位置會在 6–12 個月內被佔走。
+- 保留理由：時間錨點 + 採購語言形成 + 個人品牌時間窗口三重訊號交集。
+- 待補強處：第二波繁中圈 DI 文章何時會大量出現？要追蹤哪些訊號（顧問業 newsletter、四大、台灣 BI 派轉向）？
+- 初步知識鉤子：[[繁中圈 DecisionOps 佔位策略]]、Gartner Hype Cycle、品牌類別命名權、late-stage emerging market 採購行為
+
+序號 2
+- 候選標題：Data-Driven 路徑在「決策閉環」目標下的結構性失效
+- 分級：Core
+- 類型：Principle
+- 核心內容：BI / dashboard 回答「發生了什麼」，但企業真正卡住的是「接下來怎麼做、怎麼自動執行、怎麼治理一致性」。FlexRule CEO 的判斷是：data-driven 路徑無法閉合「決策建模 → 執行 → 監控 → 學習」這個 loop，因為 BI 沒有顯性的 decision model、沒有執行通路、沒有 outcome feedback。這不是 BI 做不好，而是 BI 的 product surface 不在這條路徑上。
+- 保留理由：給「為什麼 BI 之上還要有一層 DecisionOps」一個機制化、非情緒化的解釋。
+- 待補強處：哪些情境下 BI + 人工判斷其實夠用，不需要 DI 平台？失效閾值在哪？
+- 初步知識鉤子：[[從資料平台到決策系統]]、decision loop、SCQA 中的「Question」位置、John Cutler 的產品系統思考
+
+序號 3
+- 候選標題：DI 平台的 4 種能力原型（規則化 / 上下文化 / 執行化 / 最佳化）
+- 分級：Support
+- 類型：Pattern
+- 核心內容：17 家 DI 廠商可拆成 4 種抽象用途：(1) 把判斷規則系統化（FICO/SAS/FlexRule/ACTICO）；(2) 把分散資料拼成 decision context（Quantexa/o9/RelationalAI）；(3) 把決策接上執行通路（Aera/Decisions/Pegasystems）；(4) 在複雜情境下做 scenario 最佳化（Aera/Rulex/Faculty）。這個 4 分法可以反過來幫 Eric 在做客戶診斷時，定位對方真正缺的是「規則表達層」「上下文層」「執行層」還是「最佳化層」。
+- 保留理由：可遷移成診斷框架，幫客戶定位 gap，不只是市場 mapping。
+- 待補強處：4 種能力之間的依賴順序？大多數企業會從哪一種起步？
+- 初步知識鉤子：D2D Architect 診斷流程、Crux 思維、Adapter Pattern、entity resolution
+
+序號 4
+- 候選標題：Late-stage emerging 市場的供應商 vs 客戶不對稱訊號
+- 分級：Support
+- 類型：Warning
+- 核心內容：Gartner 把 DI 定位為「late-stage emerging」，但目前熱度集中在供應商新聞稿與分析師頁面，終端客戶大規模標準化採購訊號還在累積中。這個 gap 很重要：供應商視角看到的「市場已成熟」可能比真實客戶採購週期早 12–24 個月。對個人品牌經營者，這是「市場敘事窗口」開了但「客戶預算窗口」還沒開的階段 —— 適合佔內容位，不適合預期短期合約轉換。
+- 保留理由：避免 Eric 因品牌策略過度樂觀，誤判合約轉換的時間點。
+- 待補強處：late-stage emerging → mainstream 的典型時間長度？什麼訊號代表客戶端真的開始採購？
+- 初步知識鉤子：Crossing the Chasm、enterprise 採購週期、品牌建構 vs 業務轉換的時間錯位
+
+序號 5
+- 候選標題：FlexRule「Decision-Centric Approach 填補 data-driven gap」可平移成 D2D Architect 論述母句
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：「X-Centric Approach 填補 Y-driven 路徑失效的 gap」是一個強力的品牌定位句型 —— 它同時做了三件事：(1) 承認舊路徑（建立信任）、(2) 指出失效（製造急迫）、(3) 命名替代（佔有語言）。Eric 可把這個句型平移為「D2D / DecisionOps Approach 填補 dashboard-driven 路徑在 24/7 自動化決策上的失效 gap」。可進一步追問：自己要佔的「失效命名」是哪一個？dashboard-driven？report-driven？insight-driven？
+- 保留理由：可直接成為一篇定位文章的鉤子，且對應 Eric 寫作風格偏好。
+- 待補強處：失效命名的實際選詞測試（搜尋量、情緒共鳴、敵我區分度）。
+- 初步知識鉤子：SCQA、品牌類別命名、Andy Grove 輸出導向、定位文撰寫流程
+
+序號 6
+- 候選標題：DecisionOps vs Decision Intelligence 詞位選擇問題
+- 分級：Question
+- 類型：Question
+- 核心內容：Gartner 用的是「Decision Intelligence」（偏採購 / 平台 / 廠商視角），Eric 自己用的是「DecisionOps」（偏運維 / loop / 治理視角）。兩個詞會搶同一群讀者注意力，但服務不同採購心智。要決定：(a) 全部收斂到 DI 蹭 Gartner 流量、(b) 堅守 DecisionOps 並把 DI 當「採購視角的下游」、(c) 雙詞並用但定義清楚分工。每個選擇有不同的內容策略代價。
+- 保留理由：直接影響後續 12 個月內容主軸與 SEO 結構。
+- 待補強處：繁中圈兩個詞的搜尋量與既有佔位者；英文圈兩派 thought leader 的關係。
+- 初步知識鉤子：品牌類別命名、定位、競品 mapping、Eric 個人 Newsletter / LinkedIn 內容策略
+
+## C. 建議送 refine 的項目
+- 1（時間錨）、2（data-driven 失效機制）、3（4 種能力原型）、5（論述母句）為主力 KEEP 候選
+- 4（late-stage warning）建議併入 1 或單獨成 warning 卡
+- 6（詞位選擇）建議保留為 Question 卡，作為 Eric 個人決策追蹤節點
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉，重點放在「Vertical AI / DecisionOps 品牌主軸」這條線上的整合與去重。

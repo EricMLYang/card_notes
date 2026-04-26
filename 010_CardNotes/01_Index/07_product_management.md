@@ -57,3 +57,10 @@
 - [[產品開發的深刻的洞察]]
 - [[後設工作（Meta-work）的回饋鏈條過長問題]]
 - [[程式碼品質與產品成功無關（YouTube vs Google Video）]]
+
+### Vertical AI 機會評估與護城河（2026-04 batch）
+- [[7-001_Vertical_AI的ROI從IT預算搬到人力預算]] - 市場 sizing 從 IT spend 換成 labor spend
+- [[7-002_Clone_Test_判斷vertical_AI護城河的單句判準]] - frontier model 重現問句作為 moat 判準
+- [[7-003_Defensive_Moat與Generative_Moat的本質差異]] - 時間 moat vs 自動拉開差距 moat
+- [[7-004_Workflow_Embedding的4個目標特徵checklist]] - Menlo 4 個篩選器的 AND 條件
+- [[7-005_Outcome-based_Pricing不是趨勢全勝]] - burstable reserve 為務實混合解

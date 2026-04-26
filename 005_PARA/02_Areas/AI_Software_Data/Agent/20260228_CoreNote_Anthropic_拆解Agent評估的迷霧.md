@@ -442,3 +442,83 @@ Braintrust is a platform that combines offline evaluation with production observ
 LangSmith offers tracing, offline and online evaluations, and dataset management with tight integration into the LangChain ecosystem. Langfuse provides similar capabilities as a self-hosted open-source alternative for teams with data residency requirements.
 
 Many teams combine multiple tools, roll their own eval framework, or just use simple evaluation scripts as a starting point. We find that while frameworks can be a valuable way to accelerate progress and standardize, they’re only as good as the eval tasks you run through them. It’s often best to quickly pick a framework that fits your workflow, then invest your energy in the evals themselves by iterating on high-quality test cases and graders.
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Anthropic 把 Agent 評估從「測 LLM 輸出」升級為「測整個 harness × 環境 × outcome」，並用 Tasks/Trials/Graders/Transcripts/Outcomes 五元素重構 eval 的詞彙；強調 transcript ≠ outcome，pass@k ≠ pass^k，以及小樣本（20–50 個真實失敗）就能啟動。
+- 挑戰的預設：「等覆蓋率夠了再做 eval」「graders 越自動越好」「benchmark 分數能直接代表能力」。指出這些都會讓團隊陷入 reactive loop。
+- 個人映射：把 eval 從「品質檢查工具」拉高為「產品/研究團隊間的高頻寬溝通通道」與「規格定義機制」——這直接補強 Vertical AI 的 outcome-based pricing 護城河，因為 outcome-based 必須有可信的 outcome 量測。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：Transcript ≠ Outcome — Agent 評估必須驗環境狀態，不能只讀對話
+- 分級：Core
+- 類型：Principle
+- 核心內容：訂機票 Agent 在 transcript 結尾說「已訂位」不算成功；要查資料庫裡是否真的有訂單。Agent 評估的最小單位從「文字輸出」改為「世界狀態變化」。任何只讀 trace 不查 outcome 的 eval 都會高估 Agent。
+- 保留理由：是 outcome-based 收費、24/7 自動化判斷權設計、護欄設計的共同前提。
+- 待補強處：當「outcome」本身就是文字產出（如報告）時要怎麼定義；副作用回滾的設計。
+- 初步知識鉤子：RaaS 成果定義、Policy as Code、控制迴路裡的 deterministic state update。
+
+序號 2
+- 候選標題：pass@k vs pass^k — Agent 非確定性的兩個互補量化指標
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：pass@k 衡量「至少一次成功」，pass^k 衡量「k 次都成功」。同一個 75% 成功率的 Agent，pass@10 趨近 100%、pass^10 趨近 0%。Coding 類「找到一次解就贏」用 pass@k；客戶端「每次都要對」用 pass^k。生產級 customer-facing Agent 真正要過的是 pass^k。
+- 保留理由：是「能上線 vs 只能 demo」的最尖銳判準；可直接寫進產品 SLA 設計。
+- 待補強處：跨多步任務的 step-level pass^k 該怎麼算。
+- 初步知識鉤子：可靠性工程、SLO 設計、AI 24/7 自動化判斷權分級。
+
+序號 3
+- 候選標題：20–50 個真實失敗就能啟動 eval — 完美覆蓋率是延遲投資的藉口
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：團隊常以為 eval 要上百題才有意義，實際上早期 Agent 變動大、effect size 大，20–50 個從 bug tracker 與 support queue 真實生出的失敗，就能啟動評估循環。等越久越難建——你會被迫從 live system 反推成功標準。eval 是越早越便宜的投資。
+- 保留理由：直接打掉「沒資源做 eval」的常見藉口，可作為 small team 的啟動 SOP。
+- 待補強處：何時該擴張到較大樣本；如何避免初始 20–50 題過度擬合。
+- 初步知識鉤子：MVP 演進、回歸測試 vs capability test、failure-driven development。
+
+序號 4
+- 候選標題：三類 grader 的取捨 — Code-based / Model-based / Human 不是替代而是分層防線
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Code-based 快、便宜、客觀但脆；Model-based 處理開放輸出但需與人類校準；Human 是 gold standard 但慢且貴。實務是混搭：以 deterministic 為主，必要時加 LLM rubric，並用 human 偶發抽樣校準 LLM judge。Swiss Cheese Model 思維——沒有單層能擋掉所有問題。
+- 保留理由：給「我們應該用哪種 eval」的常見問題一個結構化答案。
+- 待補強處：何時 LLM judge 會被 prompt injection 或 grader hacking 攻破。
+- 初步知識鉤子：Defense in depth、AI 評估護欄、calibrated rubrics。
+
+序號 5
+- 候選標題：Eval Harness ≠ Agent Harness — 評估的是「harness × model」整體，不是模型本身
+- 分級：Core
+- 類型：Principle
+- 核心內容：原文明確區分 evaluation harness（跑 eval 的基礎設施）與 agent harness（讓模型成為 agent 的 scaffold）。當你說「我們在評估 Claude」，其實在評估「scaffold + Claude」的組合。換 scaffold 同一個模型分數可以從 42% 跳到 95%（Opus 4.5 / CORE-Bench 案例）。
+- 保留理由：直接對接 harness is key 主軸；解釋為什麼 benchmark 排名容易誤判。
+- 待補強處：怎麼設計可比較的 harness baseline。
+- 初步知識鉤子：harness 是真正槓桿、跨模型遷移風險、模型不是可隨意替換的零件。
+
+序號 6
+- 候選標題：Eval Saturation 警報 — 100% 通過代表測量失效，不是能力滿點
+- 分級：Support
+- 類型：Warning
+- 核心內容：當 Agent 穩定通過所有可解任務，eval 就失去 capability signal、只剩 regression signal。SWE-Bench Verified 從 30% → 80% 後，progress 看似停滯，其實是測量飽和。對策：定期 audit task 與 grader、刻意加入長尾困難題、把已飽和 capability eval「畢業」成 regression suite。
+- 保留理由：避免團隊用過時 eval 做產品決策。
+- 待補強處：飽和判斷的量化訊號（連續 N 次 100% 才算？）。
+- 初步知識鉤子：Capability vs Regression eval 分流、Goodhart's Law。
+
+序號 7
+- 候選標題：Eval-Driven Development — 用 eval 把產品需求逼到可執行
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：兩個工程師讀同一份 spec 對 edge case 的解讀往往不同，eval suite 就是「強迫共識的可執行規格」。在 Anthropic，eval 是產品團隊與研究團隊之間最高頻寬的溝通通道；產品 PM、CSM、銷售都能用 Claude Code 提交 eval task PR。Eval 不是研究產物，是組織層的協作介面。
+- 保留理由：把 eval 拉到「組織決策語言」高度，對 D2D Architect 定位很有用。
+- 待補強處：小團隊怎麼在沒有 dedicated eval team 時還能維持這個 ritual。
+- 初步知識鉤子：規格驅動開發、PM × Engineer 跨界協作、用 eval 做向上管理。
+
+## C. 建議送 refine 的項目
+- 序號 1, 2, 3, 5（最高優先：是 Agent 工程化主線的核心節點）
+- 序號 6, 7（次優先：補完 eval 生命週期視角）
+- 序號 4（可考慮合併入 6 或獨立保留為 grader 取捨參考）
+
+## D. 呼叫 refine-cards
+- 將上述 7 張候選卡交由 refine-cards 精煉。

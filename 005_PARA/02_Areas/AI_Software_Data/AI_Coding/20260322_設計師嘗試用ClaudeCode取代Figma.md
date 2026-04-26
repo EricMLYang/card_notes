@@ -117,3 +117,57 @@ UI.SH 和設計師的下一步
 這個方向很有意思，Schoger 的影片證明了一件事：AI 生成的初版網頁和專業設計師的成品之間，差距不在程式碼，在設計判斷。AI 會用 indigo 當預設色、會把所有東西置中、會用 solid border 配 shadow 製造混濁效果。設計師知道該把它改成什麼，但以前需要自己動手寫 CSS 或在 Figma 裡畫。現在只需要說出來就好。
 
 Schoger 的 before/after 對比很有說服力。同一個 prompt 生成的初版，經過大約 50 次設計師主導的迭代，變成了一個看起來完全不同的網站。差異不在技術，在眼光。
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Tailwind 設計師 Steve Schoger 用 Claude Code 一個多月當主要設計工具，沒有 skills、沒有 CLAUDE.md，只用設計語言對話 50 輪左右就能把 AI 預設輸出（置中、indigo、solid border + shadow 混濁）調成專業水準。中間穿插 18 條設計技巧，本質上每一條都是 AI 抓不到、必須由設計師補上的「眼光」。最後指出：AI 與專業作品的差距不在 code，在設計判斷。
+- 作者挑戰的預設：取代 Figma 需要工程能力或 prompt 工程訓練。實際上需要的是「眼光」——知道哪裡不對、知道用什麼語彙描述。
+- 個人映射：強化「AI 把執行門檻降低，把判斷門檻凸顯」的主軸，可串接到 Stitch 削弱 SaaS 護城河、Coding Agent 角色重定義；同時帶出「設計品味作為 AI 時代護城河」的個人定位視角。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：AI 與專業作品的差距不在 code，在設計判斷
+- 分級：Core
+- 類型：Principle
+- 核心內容：同一個 prompt 生成的初版頁面，經過 50 輪設計師主導迭代，變成完全不同的成品。差異不是技術，而是「知道哪裡不對、知道該改成什麼」。AI 會用 indigo、會置中、會用 solid border 配 shadow（製造 muddy 效果），這些是無人挑就會發生的預設。設計師的價值從「會畫」變成「能挑」與「能描述要什麼」——眼光成為新時代的核心資產。
+- 保留理由：高遷移性的「執行 vs 判斷」原則，可套到寫作、資料分析、PM。
+- 待補強處：缺乏「眼光如何系統化訓練給新進設計師」的延伸。
+- 初步知識鉤子：判斷力 vs 執行力、AI 把執行門檻降低、Vertical AI 護城河、品味作為降噪器。
+
+序號 2
+- 候選標題：對 AI 講「設計語言」的三類有效模式：具體值、模糊方向、風格遷移
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Schoger 的 prompt 三種有效模式：① 具體值（「改成 38 像素」「改成 gray-950」）；② 模糊方向（「再大一點點」「再緊一點」）；③ 全站同步（「把這個樣式套用到下面所有區塊」）。第三種特別有意思——AI 會自己學風格一致性，不需要每次重複指示。這把「跟 AI 說設計」從工程語言解放出來，回到設計師原生詞彙。
+- 保留理由：把「跟 AI 對話」具體化為三種可遷移模式。
+- 待補強處：模糊方向何時會失敗（如品味落差大時）未討論。
+- 初步知識鉤子：自然語言介面、Style Transfer、Prompt Vocabulary、AI 與專業協作。
+
+序號 3
+- 候選標題：AI 預設輸出的三大反模式：置中、indigo、solid border + shadow
+- 分級：Support
+- 類型：Warning
+- 核心內容：AI 生成 UI 有三個反覆出現的預設反模式：① 所有東西置中（缺乏視覺層次）；② 預設用 indigo 配色（caused by training data 偏誤）；③ solid border + shadow 同時用造成 muddy 邊緣。設計師的第一輪迭代多半在改這三件事。識別這些「AI 預設陷阱」可以快速 raise 整體品質，是 AI 輔助設計的 baseline 修補清單。
+- 保留理由：可遷移成「AI 預設反模式清單」這類診斷工具的範本。
+- 待補強處：其他領域（寫作、資料分析）的 AI 預設反模式對照未列。
+- 初步知識鉤子：AI Default Bias、Diagnostic Checklist、Style Anti-pattern。
+
+序號 4
+- 候選標題：AI 一邊做一邊學風格一致性，不需要 CLAUDE.md
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Schoger 全程沒用 skills 或 CLAUDE.md，但 Claude 會自己從前面對話學到「這個專案用 outer ring 不用 border」並套到後面新增的元件。這提示一件事：對於相對短期、單人、單一檔案的設計工作流，session 內 context 已足以維持風格一致性，不一定需要先做完整的 skill / config。在「先把工作做完」與「先把流程系統化」之間，需要根據規模選擇。
+- 保留理由：補上「不需要 over-engineering 設定」的反例，與 Superpowers 強紀律形成有意義對照。
+- 待補強處：什麼規模、什麼期間後就需要 CLAUDE.md 介入未說。
+- 初步知識鉤子：Context Persistence、Skill vs Session、過度工程警示、Methodology Sizing。
+
+## C. 建議送 refine 的項目
+- 序號 1（Core Principle）為主軸
+- 序號 2、3、4 為補強
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。

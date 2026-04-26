@@ -200,3 +200,66 @@ The future isn't about AI replacing developers. It's about developers working fa
 👋 Knut from the developer education team here: if you're curious why Sanity makes AI-assisted development particularly effective: it's all code-based configuration. Schemas, workflows, and even the editorial UI are defined in TypeScript, which means AI tools can actually understand and generate the entire stack. No clicking through web UIs to configure things. Here's a course on that specific workflow if you want to go deeper.
 
 And back to our regular programming.
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：把 AI 視為「永遠學不會的 Junior Developer」，承認三次嘗試模型（95%→50%→可用起點）才是常態，並用 CLAUDE.md + MCP 整合把「context」外部化，讓每次新對話都從第二輪起跑。配合三段式 review（AI 自審 → 人類審架構/業務 → 團隊一般 review）與多 agent 並行管理，把開發者從寫手轉型成 orchestrator。
+- 作者挑戰的預設：期待 AI 一次到位、把 AI 當成會記憶會學習的同事。實際上 AI 每天失憶，所以「context 外部化」與「迭代心態」才是 ROI 的關鍵。
+- 個人映射：強化「AI 是無記憶 junior、harness 才是真正的學習器」這個視角，呼應 Repo-as-Worker 與 CLAUDE.md / 個人化 context 檔的設計主張。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：把 AI 當「每天失憶的 junior」是最有用的 mental model
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：與其期待 AI 學習，不如預設它每次對話都從零開始。所有「context」必須外部化到 CLAUDE.md、MCP 整合、ticket 系統，否則你會反覆解釋同樣的限制。這個心智模型同時解釋了為什麼 prompt 要寫詳細、為什麼第一次輸出 95% 垃圾是常態、為什麼 review 不能省。
+- 保留理由：高遷移性的決策心智模型，可直接套到 Coding Agent / RAG / Workflow Agent。
+- 待補強處：哪些 context 該放 CLAUDE.md、哪些該放 MCP，邊界未說。
+- 初步知識鉤子：Repo-as-Worker、Context Engineering、CLAUDE.md 設計、Memory vs Skill。
+
+序號 2
+- 候選標題：三次嘗試迭代模型（95%→50%→可用起點）
+- 分級：Support
+- 類型：Pattern
+- 核心內容：AI 寫 code 通常要三輪才能得到可用基底：第一輪 95% 垃圾（建 context、發現真實挑戰）、第二輪 50% 垃圾（理解 nuance、明確方向）、第三輪才是「可被人類繼續迭代的起點」，不是最終答案。把這個節奏顯性化能避免「一次到位」的期待落差，也讓 token 預算與時程預期更務實。
+- 保留理由：把模糊的「AI 試錯」變成可預期的三段式節奏，方便排計畫。
+- 待補強處：不同任務複雜度下的三段比例調整未交代。
+- 初步知識鉤子：迭代式開發、Plan-Execute-Verify Loop、AI 工作預期管理。
+
+序號 3
+- 候選標題：三段式 Code Review：AI 自審 → 人類審架構與業務 → 團隊一般 review
+- 分級：Support
+- 類型：Pattern
+- 核心內容：AI 寫的 code 走三段審查：① AI 先自審（補測試、抓明顯 bug）；② 人類只審「會 ship 的責任」（可維護性、架構決策、業務邏輯正確性、整合點）；③ 團隊照常 review（不告知是 AI 寫的、品質標準不變）。這把人類注意力從低槓桿的 lint/語法挪到高槓桿的判斷。
+- 保留理由：把 review 流程切到判斷層級，可直接接續到「AI 治理判斷權歸屬」框架。
+- 待補強處：人類審查的具體 checklist 未列。
+- 初步知識鉤子：Code Review 判斷層級、judgement ownership、AI Coding 風險治理。
+
+序號 4
+- 候選標題：多 agent 並行的核心紀律：絕不在同一個 problem space 平行
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：同時跑多個 Claude 像帶一個小團隊，但有兩條紀律：① 不在同一個 problem space 平行（容易混淆解到一半的問題）；② 用 Linear 等專案工具追蹤每個 agent 的任務狀態；③ 明確標記人類修改過的 code，避免 AI 把人類修改誤當作自己寫的。
+- 保留理由：多 agent 平行是趨勢，但失敗模式被低估，這條把「能不能平行」收斂到具體規則。
+- 待補強處：跨 agent 衝突解決流程未交代。
+- 初步知識鉤子：Multi-agent Orchestration、Cursor 雲端 agent、judgement load。
+
+序號 5
+- 候選標題：「沒有 code 主權感」反而帶來更客觀的 review
+- 分級：Support
+- 類型：Pattern
+- 核心內容：當 code 不是親手敲出來的，工程師對「我的 code」失去情感依附，反而能更快刪掉不好的解、做更客觀的 review、零自尊重構。這是 AI 時代少被提到的「正向副作用」，也解釋了為什麼資深工程師反而更願意拋棄 AI 寫的草稿。
+- 保留理由：反直覺的個人能力轉變，補強「角色重定義」主軸。
+- 待補強處：何時這種抽離會反過來變成「不在意品質」的風險未討論。
+- 初步知識鉤子：Code Ownership、Sunk Cost、AI 時代工程心態、Kent Beck AI 角色重估。
+
+## C. 建議送 refine 的項目
+- 序號 1、2、3 為主軸
+- 序號 4、5 為補強
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。

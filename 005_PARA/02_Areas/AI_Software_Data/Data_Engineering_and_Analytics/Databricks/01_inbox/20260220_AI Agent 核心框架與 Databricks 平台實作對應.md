@@ -165,4 +165,29 @@ last_review: 2026-03-20
 
 Databricks 平台為 AI Agent 核心框架的每一個元件都提供了原生、深度整合的解決方案。從底層的數據治理 (Unity Catalog)、記憶儲存 (Delta Lake, Vector Search)，到核心的工具執行 (UC Functions) 和推理 (Model Serving)，再到上層的流程編排 (Workflows) 與品質評估 (Agent Evaluation)，構成了一個端到端、生產級的 AI Agent 開發與部署平台。
 
+# BreadCards
+
+## A. 主脈絡與個人映射
+- **論證骨架**：本文把 AI Agent 八大抽象框架（推理引擎 / 工具 / 記憶 / 規劃控制流 / 感知 / 行動 / 評估反思 / 治理）與 Databricks 對應服務逐一映射，最後附三個場景應用實例與總結。
+- **挑戰的預設**：未挑戰任何主流預設，整篇是「框架 + 平台元件」的逐格填空。
+- **個人映射**：八大框架本身是業界通用抽象（不是本文獨創），對應表單純是 Databricks 產品 marketing matrix。沒有取捨（為什麼用 UC Function 而不用 LangChain Tool）、沒有邊界（什麼情境下這個元件不適用）、沒有失敗模式、沒有真實案例細節。對我已有的 [[3-API 思維轉 Agent 思維]] 等卡片無補充訊號。
+
+## B. 候選卡（Lite）
+
+**判定：0 卡**
+
+理由（命中多個 blacklist）：
+1. **❌ 通用名詞介紹**：八大框架是業界通用 agent 抽象（reasoning / tools / memory / planning…），本文是教科書式重述。
+2. **❌ 純平台宣傳**：每格都直接填入 Databricks 服務名，沒有與其他平台（OpenAI / LangGraph / Bedrock Agents）對比、沒有為什麼選這個元件的取捨論證。
+3. **❌ 只有框架沒有落地**：三個「場景應用實例」（每日報表 / 異常偵測 / 互動查詢）只列服務名，沒有真實實作細節、效能數據、失敗模式。
+4. **❌ 只有結論沒有代價**：未交代任何成本、限制、選型風險。
+5. **❌ 中庸論述**：「Databricks 為每個元件都提供原生整合」是廠商樣板話，沒有條件性。
+
+對我關心的 Harness 設計、AI workflow 治理、評估能力等主線，本文沒提供新機制、新取捨、新數據；同主題已由 MLflow 3 篇、SiliconAngle 篇、治理篇等具體機制文章覆蓋。
+
+## C. 建議送 refine 的項目
+- 無
+
+## D. 呼叫 refine-cards
+- 不呼叫，0 卡
 

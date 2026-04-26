@@ -31,3 +31,6 @@
 
 ### 半導體與硬體
 - [[蔡力行 2026 基準展望：半導體路線圖只到 2030，能源戰爭是結構性瓶頸]]
+
+### Decision Intelligence 與 Vertical AI 趨勢（2026-04 batch）
+- [[14-001_DI首次進入Gartner_MQ是DecisionOps佔位時間錨點]] - DI 進 MQ 是 DecisionOps 佔位的最後窗口期

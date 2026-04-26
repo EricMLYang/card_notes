@@ -81,3 +81,51 @@ Managed Agents 採用消費制計費。標準的 Claude Platform token 費率適
 Managed Agents 現已在 Claude Platform 上提供。你可以閱讀文件了解更多，前往 Claude Console，或使用全新的 CLI 部署你的第一個 Agent。
 
 開發者還可以使用最新版的 Claude Code 及其內建的 claude-api Skill 來使用 Managed Agents 進行開發。只需輸入「start onboarding for managed agents in Claude API」即可開始。
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Anthropic 推出 Claude Managed Agents——把 sandbox、auth、檢查點、scoped permissions、長時程 session、多 agent 協調、execution trace 等基礎設施全部 managed 化，讓開發者只需定義任務、工具、guardrails，從原型到生產從數月縮為數天。Notion、Rakuten、Asana、Sentry 等夥伴案例顯示部署速度提升 10x；Rakuten 一週內完成單個專業 Agent 部署。
+- 作者挑戰的預設：（1）做生產級 Agent 必須先做幾個月基礎設施 → 不必，managed 已替你做了；（2）只有 RD 才能部署 Agent → 非 RD 角色（PM、銷售、設計、財務）也可部署；（3）Agent harness 與基礎設施是個別公司各自重造的 → 應該被 commodity 化。但這是平台宣傳文，論證骨架較弱。
+- 個人映射：對應你的「Repo as Worker」「Agent harness 工程化」主軸；同時呼應 Rakuten 案例中「進階使用者跨越單一專業在多領域貢獻」與你關心的「分析師 / PM 可獨立部署 Agent」主題。但這篇主要是平台宣傳，需謹慎挑出真有結構性洞察的點。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：Agent Harness 基礎設施正在被 commodity 化
+- 分級：Core
+- 類型：Pattern
+- 核心內容：Anthropic 把 sandbox 程式執行、檢查點、憑證管理、scoped permissions、長時程 session（斷線後可恢復）、多 agent 協調、execution trace 全部 managed 化。這意味「自建 agent infra」這個過去 6-12 個月的工作，正被平台層吸收。對自建 agent stack 的小團隊而言，這是一個架構決策的轉折點。
+- 保留理由：把「該不該自建 agent harness」從技術選擇升級為 build vs buy 的策略決策；對你關心的「小團隊資源約束 + 平台化能力」直接相關。
+- 待補強處：什麼情況下仍應自建 harness（vendor lock-in 風險、客製需求、隱私）？managed 與 self-hosted 的真實成本對比？
+- 初步知識鉤子：[[Harness Engineering]]、[[Build vs Buy]]、[[Vendor Lock-in]]、[[Repo as Worker]]
+
+序號 2
+- 候選標題：非 RD 角色（銷售、財務、PM）部署 Agent 的可行性訊號
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Rakuten 在產品、銷售、行銷、財務各部門部署企業級 Agent，整合到 Slack 和 Teams，每個專業 Agent 一週內完成部署。Notion 讓非工程師也能把工作委派給 Claude（製作網站、簡報、知識工作交付）。這是「Agent 操作門檻下降」的具體訊號，呼應 Jenny Wen 那篇的「Cowork 取代 Claude Code 在非 RD 場景」觀察。
+- 保留理由：跨來源印證的趨勢觀察；對你關心的「非 RD 操作 Agent」「Solo 顧問如何替小團隊建 Agent」直接相關。
+- 待補強處：「一週內部署」的實際工作分工（誰寫 prompt、誰設權限、誰測試）？非 RD 角色可獨立到什麼程度？
+- 初步知識鉤子：[[非 RD 操作 Agent]]、[[Anthropic Cowork]]、[[Solo Consultant 服務包裝]]
+
+序號 3
+- 候選標題：定義「目標 + 成功標準」讓 Claude 自我評估迭代（vs 傳統 prompt-response）
+- 分級：Question
+- 類型：Question
+- 核心內容：Managed Agents 提供的新模式——只定義 goal + success criteria，Claude 自我評估反覆迭代直到達成（目前 research preview）。這是從「prompt 對話」到「outcome-driven autonomous loop」的範式轉換。Anthropic 內部測試顯示結構化檔案生成任務成功率比標準 prompt loop 高出 10 個百分點。
+- 保留理由：值得追蹤的設計範式——把 eval criteria 從 prompt 外圍移進 agent 內部循環；對你寫「Agent 工程化下一步」是重要訊號。
+- 待補強處：success criteria 的設計門檻（如何寫得 Claude 能自我評估而不亂解讀）？哪些任務適用、哪些不適用？10 個百分點是哪些任務的什麼 baseline？
+- 初步知識鉤子：[[Anthropic Eval]]、[[Plan-Generate-Evaluate Loop]]、[[Outcome-Driven Agent]]
+
+## C. 建議送 refine 的項目
+- 序號 1（Core）：Agent Harness 被 commodity 化
+- 序號 2（Support）：非 RD 角色部署 Agent 的可行性
+- 序號 3（Question）：保留作為追蹤命題（outcome-driven loop）
+
+注：本篇大部分是平台宣傳與案例條列，無太多結構性洞察可萃取；只挑出 3 張具有跨來源 / 結構性意義的候選卡。
+
+## D. 呼叫 refine-cards
+- 上述 3 張候選卡交由 refine-cards 精煉；refine 階段需檢查序號 2 是否與 Jenny Wen 那篇的「Cowork 取代 Claude Code」合併；序號 3 是否與「Anthropic Eval」「Stripe Benchmark」串成「Eval-as-Inner-Loop」主題群。

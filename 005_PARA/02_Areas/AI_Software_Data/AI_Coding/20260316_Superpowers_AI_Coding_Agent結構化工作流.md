@@ -109,3 +109,76 @@ Superpowers is open source under the MIT license and designed for contributions 
 After that, your coding agent just has Superpowers. It asks better questions, makes plans you can actually review, tests before it builds, and stays on track. It’s what happens when someone decides that the problem with coding agents isn’t that they can’t code — it’s that nobody taught them how to work.
 
 Related
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：Coding Agent 的瓶頸不是模型智能，是缺乏紀律。Superpowers 把人類團隊行之有年的工程實踐（code review、TDD、設計文件）「編碼成 skills」，讓 agent 在符合條件時被強制觸發。三階段流程：設計（蘇格拉底式 brainstorm）→ 規劃（2–5 分鐘微任務、清楚到「沒判斷力的 junior」也能做）→ 執行（強制 red-green-refactor TDD，先寫 test，違反就刪掉重來）。chardet 7.0.0 重寫案例（41x 速度、96.8% 準確、單人完成）證明結構化流程能撐起複雜專案。
+- 作者挑戰的預設：解 agent 問題要靠更強的模型。實際上是給它紀律，不是給它能力。
+- 個人映射：強化「judgement ownership / agent harness 是設計問題不是模型問題」主軸，補上「skill 是把組織紀律編碼進 agent 的單位」這一新視角，可直接連到 Repo-as-Worker、CLAUDE.md、Card Notes 的 skill 系統。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：Coding Agent 的瓶頸是紀律，不是智能
+- 分級：Core
+- 類型：Principle
+- 核心內容：Agent 寫 code 的問題不是「不會寫」，是「不會工作」——它太急、不問清楚需求、不討論 trade-off、不先 plan。給更強的模型只會讓它更快地寫錯東西。真正的解法是把人類團隊已驗證有效的實踐（code review、TDD、design doc）強制套到 agent 身上。「discipline > capability」是當前 agentic coding 的關鍵設計原則。
+- 保留理由：高遷移性的設計原則，反直覺且有具體落地工具佐證。
+- 待補強處：哪些實踐遷移會失敗、哪些是 agent 特有的紀律待補。
+- 初步知識鉤子：Harness Engineering、AI 24/7 控制集、Repo-as-Worker、judgement ownership。
+
+序號 2
+- 候選標題：Skills 是把組織紀律「編碼」給 agent 的單位
+- 分級：Core
+- 類型：Pattern
+- 核心內容：Superpowers 的 skill 是 markdown 檔案，包含「當條件成立時 agent 必須遵循的工作流」。重點是 must——不是建議。Agent 在做事前先檢查是否有匹配 skill，有就強制觸發。這把組織的「我們這樣做事」從工程師口口相傳變成可被 agent 執行的紀律單位，而且可以持續被新 skill 擴充（包括「如何寫 skill」這個 meta skill）。
+- 保留理由：把 skill 從工具升級為組織知識資產，遷移性極高。
+- 待補強處：skill 衝突的解決機制、skill 失效模式未交代。
+- 初步知識鉤子：Card Notes Skills 系統、Repo-as-Worker、Organizational Knowledge Codification。
+
+序號 3
+- 候選標題：Plan 的標準：清楚到「沒判斷力的 junior」也能照做
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：Superpowers 把 plan 的目標讀者定義為「熱心但品味差、無判斷力、無專案 context、討厭測試的 junior」。如果 plan 對這個人夠清楚，對 subagent 就夠清楚。這個 mental model 把「plan 寫到多細」這個模糊問題變成可檢核的具體標準，避免 plan 寫得太抽象讓 subagent 自由發揮。
+- 保留理由：可遷移的 plan 寫作判準，可套到 spec、ticket、handover 文件。
+- 待補強處：哪些細節寫太細反而會限制 agent 探索未討論。
+- 初步知識鉤子：Spec Quality、Plan-Execute-Verify、AI 操控介面。
+
+序號 4
+- 候選標題：紅綠重構強制執行：寫 code 早於 test 就刪掉重來
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Superpowers 對 TDD 不是建議而是強制——若 agent 在 test 之前寫了 code，工具會直接刪掉並逼它從頭來過。這把「TDD 紀律」從人類良心問題變成機械約束。能做到這件事的關鍵是「skill 是強制流程而非提示」。也是「discipline > capability」的具體執行樣本。
+- 保留理由：罕見的「機械化執行紀律」案例，可遷移到其他 agent guardrails 設計。
+- 待補強處：哪些任務不適合 TDD-first（如 prototyping）的處理機制未討論。
+- 初步知識鉤子：TDD as Harness、Guardrail Design、Forced Compliance。
+
+序號 5
+- 候選標題：chardet 7.0.0 案例：結構化流程讓單人完成 12 年積債的重寫
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Dan Blanchard 用 Superpowers 重寫 chardet，產出 12 階段 detection pipeline、bigram 模型、2,161 個測試檔涵蓋 99 種編碼／48 語言；最終版本快 41x、準確率 96.8%、一次釋出關掉的 issue 比過去十年總和還多。這不是 vibe coding，是「結構化、計畫驅動、單人 + agent」的成功範本，證明紀律化流程能撐起複雜專案。
+- 保留理由：可量化的存在證明，作為 discipline > capability 的具體案例。
+- 待補強處：他在哪些步驟仍需人類介入未明寫。
+- 初步知識鉤子：Solo + Agent、AI 工程槓桿、Repo-as-Worker。
+
+序號 6
+- 候選標題：bootstrap 成本只有 2,000 token，Skill 按需載入是設計關鍵
+- 分級：Support
+- 類型：Pattern
+- 核心內容：Superpowers 全套 skills 並非全部塞入 context，bootstrap 只 < 2,000 token，其他 skills 在 agent 搜尋時才載入。完整 brainstorm + plan + 實作的 session 通常控制在 100k token 內。這個設計避開了「skill 越多越累」的陷阱，呼應 agent-browser 的精簡原則：context 預算是 agentic 系統的真實貨幣，按需載入是規模化的關鍵。
+- 保留理由：與 agent-browser 主題互相印證，補上 token 經濟學視角。
+- 待補強處：skill 搜尋失敗時的 fallback 未說明。
+- 初步知識鉤子：Context Engineering、Lazy Loading、Skill Topology。
+
+## C. 建議送 refine 的項目
+- 序號 1、2 為主軸（兩個 Core）
+- 序號 3、4、5、6 為補強
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。
+

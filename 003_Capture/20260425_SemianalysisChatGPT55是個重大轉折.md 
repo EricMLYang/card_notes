@@ -1,0 +1,3 @@
+Semianalysis：「自從我們在 2 月 5 日指出 Claude Code 的轉折點 以來，我們看到了大量模型的發佈。包含 Opus、Mythos、Codex、Gemini、DeepSeek、Kimi、Qwen、GLM、MiniMax、Composer、Muse Spark 等等。今天我們將解析所有這些主要的模型發佈，解釋何時可以以及何時不能信任基準測試，並對代理式程式碼（agentic coding）市場的未來給出我們的預測。
+
+首先，我們必須強調來自 OpenAI 的 GPT-5.5。在我們看來，GPT-5.5 現在在某些任務上明顯優於所有其他模型。我們相信 GPT-5.5 已經達到了技術前沿。這與 11 月 Opus 4.5 發佈時相比是一個巨大的變化。當時，以及隨後的 6 個月裡，OpenAI 的程式碼模型在大多數指標上都不是世界頂尖的，這使得 Opus 成為我們日常使用的首選。而現在，GPT-5.5 已整合進我們的日常工作中。」

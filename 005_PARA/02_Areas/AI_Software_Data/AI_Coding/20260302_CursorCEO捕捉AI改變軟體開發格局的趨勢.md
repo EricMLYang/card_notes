@@ -41,3 +41,57 @@ Cursor 內部實踐：
 挑戰：在工業規模下，一個 flaky test 或壞掉的環境會中斷每一個 Agent 的運行，還需要確保 Agent 能完整存取所需的工具 and 上下文。
 
 一句話總結：開發者正在從「寫程式碼的人」變成「建造生產軟體的工廠的人」，而工廠裡跑的是一群 Agent 隊友。
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：AI 編程演化三時代：① Tab 自動補全（低熵重複）→ ② 同步 Agent（對話式，2025 年起 Agent 用量超越 Tab 並暴增 15 倍）→ ③ 雲端長時間運行 Agent（在獨立 VM 跑數小時，回傳可審查產出而非 diff，讓多 Agent 並行成為主流）。Cursor 內部已有 35% PR 由雲端 Agent 自主完成。
+- 作者挑戰的預設：AI 編程是「更快的補完」。實際上編程模式正在從「逐行引導」轉成「定義問題＋設計審查標準」，人變成工廠老闆。
+- 個人映射：補強「Harness Engineering / Repo-as-Worker」主軸，特別是「審查產物（log、錄影、預覽）而非 diff」這個介面層的轉變，可串接 dogfood / agent-browser 的 verify loop。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：AI 編程三時代框架（Tab → 同步 Agent → 雲端長時 Agent）
+- 分級：Core
+- 類型：Pattern
+- 核心內容：AI 編程演化分三階段：Tab 補全（低熵重複，持續約兩年）→ 同步 Agent（對話式、單次任務多步工具，2025 年起用戶數超越 Tab）→ 雲端長時間運行 Agent（VM 上獨立跑數小時、回傳可審查產出）。每代的「人類介入點」被推得越來越後面，定義了開發者角色的演化路徑。
+- 保留理由：明確的階段框架，便於判斷自己的工作流位於哪一代、下一步該補什麼。
+- 待補強處：每一代的失效條件、回退情境未說明。
+- 初步知識鉤子：AI 工程角色遷移、Andrej Karpathy 軟體開發範式、判斷力 vs 執行力。
+
+序號 2
+- 候選標題：Agent 回傳「可審查產出」而非 diff，是雲端 Agent 的關鍵介面創新
+- 分級：Core
+- 類型：Principle
+- 核心內容：雲端 Agent 不交 diff，而是交 log、錄影、即時預覽等可快速驗收的成品。這個介面讓人類不需要重建每次對話的上下文就能判斷成敗，因此「同時跑多個 Agent」才從口號變成可行做法。介面決定了 verify loop 的速度，而 verify loop 速度才是 agentic workflow 的真正瓶頸。
+- 保留理由：點出「介面設計 = 多 agent 可行性」的因果，是高槓桿的橋接洞見。
+- 待補強處：哪些任務適合產出回傳、哪些仍需 diff 審查未交代。
+- 初步知識鉤子：agent-browser dogfood、Verify Loop、Trace as Interface、Repo-as-Worker。
+
+序號 3
+- 考選標題：採用新工作方式的開發者三特徵（100% Agent 寫 / 拆問題與審查 / 多 Agent 並行）
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：Cursor 觀察到能享受到雲端 Agent 紅利的開發者有三個共同點：① Agent 寫了幾乎全部 code；② 人花時間在拆解問題、審查產出、給回饋；③ 同時啟動多個 Agent。可作為自我檢核：如果只做了 1，沒做 2、3，就還停在第二代用法。
+- 保留理由：可遷移的自我診斷檢查表。
+- 待補強處：缺乏「不適合採這種模式」的反例情境。
+- 初步知識鉤子：Orchestrator 工作流、judgement ownership、AI 工程能力轉型。
+
+序號 4
+- 候選標題：工業規模 Agent 的單點失效：flaky test 與壞掉環境會擊垮整批 Agent
+- 分級：Support
+- 類型：Warning
+- 核心內容：當 N 個 Agent 並行運行，一個 flaky test 或損壞的環境會中斷每一個 Agent。這把「測試穩定性」與「環境一致性」從工程衛生問題升級成 agentic 規模化的瓶頸——個別 agent 可以重試，但批量規模下會讓整體吞吐崩盤。
+- 保留理由：補上規模化的隱性成本，呼應 brownfield 測試債主題。
+- 待補強處：應對策略（環境快照、test isolation）尚未列出。
+- 初步知識鉤子：Test Flakiness、Environment as Code、Agentic Workflow 的失效模式。
+
+## C. 建議送 refine 的項目
+- 序號 1、2 為主軸
+- 序號 3、4 為補強
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。

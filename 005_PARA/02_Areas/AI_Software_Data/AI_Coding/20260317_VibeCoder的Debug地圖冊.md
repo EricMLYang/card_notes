@@ -178,3 +178,52 @@ https://github.com/onestardao/WFGY/blob/main/ProblemMap/wfgy-ai-problem-map-trou
 
 最後，謝謝您願意看我的作品 
 (  如果有缺資料也可點我頭像，我也有在我粉專發文，歡迎追蹤 )
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：AI debug 真正的痛點不是修不好，是「第一刀切錯」——一旦初步診斷的錯誤分類錯了，後面整條修復路線都會被帶歪。Problem Map 3.0 的核心是建立一套跨領域的 failure taxonomy（錯誤分類表），讓 AI 在開始修之前先把問題「路由」到正確類別，再呼叫對應 fix。Atlas 負責分類、Router 負責定位、Fixes 負責修復、Demos 負責示範。
+- 作者挑戰的預設：AI debug 加快 = 模型更聰明或工具更多。實際上瓶頸是「沒有人在做錯誤的初步分類」，AI 只能憑上下文猜下一步。
+- 個人映射：補強「AI debug 是分類問題不是修補問題」這個視角，可橋接到 DecisionOps「決策前先把問題定位到正確層」的同構思路；也提醒寫卡時要重視「分類骨架」而非「答案清單」。
+- 注意：本文有強烈推廣語氣（粉專邀請、SaaS/開源敘事、量化 before/after 細節未公開來源），萃取時需嚴守訊號層。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：AI debug 的瓶頸是「第一刀切錯」，不是修不好
+- 分級：Core
+- 類型：Principle
+- 核心內容：AI debug 的失敗大多不是修補能力不夠，而是初步診斷把問題切到錯的層。一旦第一刀方向錯，後面所有 patch 都會跟著漂掉，副作用累積、系統越修越亂。所以「先把問題正確分類」比「給 AI 更多 context」更關鍵；這也是為什麼純 prompt 微調或加 observability 都解不了根本問題。
+- 保留理由：把 debug 從「修補」重新定義為「分類」，是高遷移性的視角轉換。
+- 待補強處：缺乏「如何判斷自己第一刀切對了沒」的反饋機制。
+- 初步知識鉤子：Failure Taxonomy、Routing Grammar、AI debug、SCAR 診斷。
+
+序號 2
+- 候選標題：Atlas-Router-Fixes-Demos 四層結構：分類、定位、修復、示範
+- 分級：Support
+- 類型：Pattern
+- 核心內容：把 AI debug 工具拆成四個職責：① Atlas 負責失敗分類；② Router 負責把當下問題定位到分類；③ Fixes 提供修復步驟；④ Demos 給可重現範例。這個職責拆分把「debug」從一個模糊任務變成可分階段檢核的 pipeline，每一層都可以獨立改善與替換。
+- 保留理由：可遷移到非 debug 場景的問題拆解結構（例如資料品質問題分類、客訴根因分析）。
+- 待補強處：四層之間的 contract、責任邊界未交代。
+- 初步知識鉤子：Pipeline Decomposition、Decision Routing、Atlas/Router 模式。
+
+序號 3
+- 候選標題：「失敗分類表」是少有人正面處理的市場空白
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：作者觀察到 RAG 16 問題清單比底層引擎更容易推廣，因為它切進的是 failure taxonomy 這個「少有人正面處理」的領域。從產品策略角度看，這提示一個遷移性高的判斷：當主流都在拼能力（更強模型、更多 tool），可能反而是「錯誤地圖」「失敗清單」「反例庫」這類分類性資產更容易形成獨特定位與護城河。
+- 保留理由：罕見的「拼分類而非拼能力」定位視角，可遷移到 data product 與品牌策略。
+- 待補強處：缺乏「分類資產是否真的有持續性護城河」的反例討論。
+- 初步知識鉤子：Failure Taxonomy as Asset、Vertical AI 定位、Latent Demand。
+
+## C. 建議送 refine 的項目
+- 序號 1（Core Principle）
+- 序號 2（Support Pattern）
+- 序號 3（Support Heuristic，含定位視角）
+
+注意：原文宣傳語、量化評估數據（Claude debug ↓55% 等）來源不明，refine 階段建議只保留視角與框架，不引用具體百分比。
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉。

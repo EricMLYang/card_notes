@@ -92,3 +92,64 @@ c. 我覺得應該有什麼：
 在這種強況下，我肯定只用強 ai 。
 
 跟AI合作的過程，絕大多數都是知識點的盤點，然後確認自己還不知道的必要知識是什麼，只要必要的知識湊足了，不管是你自己還是AI，大多都能水到渠成。
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：作者用「從遊戲 APK 抽美術素材」12 小時 18 輪知識盤點的實戰，示範 unknown unknown 場景下的人機協作流程。核心心智模型：每輪先盤點「我知道 / 我不知道 / 我覺得應該有但不知道」三類，先做 30 分鐘內可驗證的快解（free food，命中率 10-15%），fail 後重新盤點，把人與 AI 的已知拼起來推進未知，循環直到找出答案。在 unknown 環境下「肯定只用強 AI」。
+- 作者挑戰的預設：挑戰「prompt 寫得好就行」「先動手再說」「AI 自主探索」三個慣性。主張人機協作的瓶頸在「知識盤點的清晰度」而非 prompt 技巧或模型能力。
+- 個人映射：直接補強 capture profile 的「人機協作流程設計」「判斷權歸屬」「24/7 自動化的反例：unknown 領域人主導」三條主軸；與 20260403/20260404 的「/plan 模式」形成對比——這篇是「/plan 之前的 know-what 盤點」。也是 capture profile 中 Pang 案例（known、可確定性流水化）的反例對照。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：人機協作的核心動作是「知識盤點」而非「寫 prompt」
+- 分級：Core
+- 類型：Principle
+- 核心內容：作者主張：跟 AI 合作絕大多數時間是「知識點盤點」+「確認自己還不知道的必要知識是什麼」。只要必要知識湊足，不管是你自己還是 AI，大多能水到渠成。把人機協作的瓶頸從「prompt 工藝」拉到「know-what 清晰度」。
+- 保留理由：與「prompt engineering」「context engineering」「harness engineering」並列為人機協作的另一視角——「knowledge inventory engineering」；對 unknown unknown 場景特別有效。
+- 待補強處：適用邊界——在 known 流水線（CREAO 式 AI 優先）這個盤點有沒有縮減空間？
+- 初步知識鉤子：與 20260403 /plan 模式（屬「先盤點再動手」）、Donald Rumsfeld「unknown unknowns」、與 20260414 Pang 對話張力（known 確定性 vs unknown 探索）
+
+序號 2
+- 候選標題：知識盤點三分法：我知道 / 我不知道 / 我覺得應該有但我不知道
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：每輪盤點分三類：(a) 我知道什麼（已具備的工具/概念）；(b) 我不知道什麼（明確缺口）；(c) 我覺得應該有什麼（基於常識推論的「應該存在的可能性」，例如「遊戲能 render 必有讀取點，知識一定在裡面」）。第三類是 unknown unknown 探索的關鍵切入點——它把直覺顯性化。
+- 保留理由：是 Step 1 之後可立即操作的具體 framework；第三類「應該有但不知道」很少被框架化，補上重要空白。
+- 待補強處：第三類如何避免被「合理化的猜測」誤導？是否需要證據門檻？
+- 初步知識鉤子：與 Karl Popper conjecture、與「假說驅動分析」、與 capture profile「事件定義+語意層」（已知/未知的邊界）
+
+序號 3
+- 候選標題：30 分鐘 free food 原則——先取已知快解再進入 unknown 探索
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：盤點完後先做能壓在 30 分鐘內驗證的「已知嘗試」（包括問強模型 + 把自己已知方案列入選項）。命中率有 10-15%，「很多時候滿懷雄心壯志要開始他就結束了」。先把 free food 拿回來，fail 才往 unknown 走。避免一開始就過度投資 unknown 探索。
+- 保留理由：是「探索成本管理」的具體判斷法，可遷移到任何研究/除錯/設計流程；30 分鐘 + 10-15% 是有量化的 heuristic。
+- 待補強處：30 分鐘是否需要根據任務複雜度調整？「強模型」與「自己已知方案」的優先順序？
+- 初步知識鉤子：與 explore vs exploit、與 20260327 Stripe「啟動成本歸零」（free food 變多）、與 expected value of exploration
+
+序號 4
+- 候選標題：把人與 AI 的已知拼起來推進未知，迭代到必要知識湊足
+- 分級：Core
+- 類型：Pattern
+- 核心內容：在加殼/加密反例中，作者把自己已知（要在程式呼叫加密工具的時間點注入、特定檔名是好時間點）+ AI 已知（如何用記憶體探勘軟體 dump 記憶體）拼起來，推進到「我不知道」（如何抽出來），然後 loop。協作不是「AI 給答案」，而是「人 + AI 各補一塊缺失」。18 輪盤點 12 小時找到答案。
+- 保留理由：給「人機協作」的具體互動結構——不是 prompt → answer，而是 inventory → assemble → advance → re-inventory。
+- 待補強處：何時該停止 loop？沒有明確終止條件可能變成無限迭代。
+- 初步知識鉤子：與 20260414 Pang 的「自我修復回饋迴圈」（已知環境的 loop）形成對照；與 Polya「How to Solve It」、與 capture profile「decision loop」
+
+序號 5
+- 候選標題：Unknown unknown 場景下「肯定只用強 AI」——強弱模型的任務分流
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：在 unknown 場景下，token 與時間消耗都是未知，需要極考驗對知識盤點邏輯的耐心。這種情況「肯定只用強 AI」。隱含一個任務分流：known/可流水化用便宜模型，unknown unknown 探索必用前沿模型。模型選擇對應「任務的不確定性類型」，不是只看成本。
+- 保留理由：對「模型選擇＝成本最佳化」的窄化理解提供修正；可作為 model routing 設計的判準。
+- 待補強處：known vs unknown 的中間光譜如何切分？是否有任務特徵清單可判斷？
+- 初步知識鉤子：與 20260414 Pang「Opus 4.5 做不到 4.6 做到」、與 model routing、與 capture profile compute cost 經濟學
+
+## C. 建議送 refine 的項目
+- 序號 1、2、3、4（Core，皆為高密度方法卡）
+- 序號 5 為 Support，可與 20260414 Pang 模型依賴卡形成對話
+
+## D. 呼叫 refine-cards
+- 將 5 張候選卡交由 refine-cards 精煉；本文最大價值是補上「unknown unknown 場景的人機協作流程」這個被多數 AI Coding 文章忽略的視角。refine 時建議：(a) 序號 2「三分法」可作為獨立常青卡；(b) 與 20260414 Pang 的 known 流水線形成「known vs unknown」雙卡對照組；(c) 注意第一人稱實戰細節（加殼/dump 記憶體）作為案例綁定，避免抽象化過頭丟失故事力。

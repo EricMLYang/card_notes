@@ -58,3 +58,8 @@
 - [[Code 是表達系統設計意圖最精準的語言，放棄它就放棄了必要性]]
 - [[人是新瓶頸_Token吞吐量最大化的指揮者心態]]
 - [[高開發成本曾是天然過濾器：AI 降低門檻後的四大組織副作用]]
+
+### Harness 控制與 Atomic Skill（2026-04 batch）
+- [[4-001_Harness控制二維框架_Guides×Sensors_Computational×Inferential]] - Fowler 兩條正交軸的控制策略矩陣
+- [[4-002_Atomic_Skill判準_一行說完邊界乾淨可單測可替換]] - skill 像 Unix tool 的形狀判準
+- [[4-003_Agent真正的瓶頸是Ambiguous_Situations下的驗證與恢復能力]] - 槓桿在 verification + recovery loop

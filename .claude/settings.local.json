@@ -34,7 +34,30 @@
       "Bash(sed -i '' 's/pipeline_stage: \"CP2\"/pipeline_stage: \"CP3\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
       "Bash(sed -i '' 's/status: \"reviewing\"/status: \"polishing\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
       "Bash(sed -i '' 's/pipeline_stage: \"CP3\"/pipeline_stage: \"DONE\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
-      "Bash(sed -i '' 's/status: \"polishing\"/status: \"published\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")"
+      "Bash(sed -i '' 's/status: \"polishing\"/status: \"published\"/' \"015_Write/Draft/20260416_AIFirst工程心得_產線主軸與Harness.md\")",
+      "Bash(git commit -m ' *)",
+      "Bash(gh repo *)",
+      "WebFetch(domain:github.com)",
+      "Bash(python .github/skills/search-notes/quick_search.py \"agent skill 工程紀律 workflow spec TDD\" --scope cards --format json --limit 20)",
+      "Bash(bash .github/skills/search-notes/run.sh \"agent skill 工程紀律 workflow spec TDD\" --scope cards --format json --limit 20)",
+      "Bash(bash .github/skills/search-notes/run.sh \"vibe coding 骨架 control 流程\" --scope cards --format json --limit 15)",
+      "Bash(bash .github/skills/search-notes/run.sh \"spec 驗收 規格 需求 判斷\" --scope cards --format json --limit 15)",
+      "Bash(bash .github/skills/search-notes/run.sh \"Skill 典範 可編碼 判斷力\" --scope cards --format json --limit 10)",
+      "Bash(bash .github/skills/search-notes/run.sh \"context 管理 組織 bottleneck 瓶頸\" --scope cards --format json --limit 10)",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_DecisionIntelligence_GartnerMQ_FlexRule.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_CoreNote_DecisionIntelligence_GartnerMQ_FlexRule.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_VerticalAI2026好壞醜_VCCafe.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_CoreNote_VerticalAI2026好壞醜_VCCafe.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_VerticalAI機會_Menlo.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260412_CoreNote_VerticalAI機會_Menlo.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260414_OpenAI營收長Denise的策略方向.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260414_CoreNote_OpenAI營收長Denise的策略方向.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260401_人工智慧時代的軟體末日論.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Trend/inbox/20260401_CoreNote_人工智慧時代的軟體末日論.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/20260302_agent_haress_is_key.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/20260302_CoreNote_agent_haress_is_key.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/20260316_AI_Agent生產架構_工具記憶評估護欄.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/20260316_CoreNote_AI_Agent生產架構_工具記憶評估護欄.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/20260321_agent控制流程不能只靠長prompt.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/20260321_CoreNote_agent控制流程不能只靠長prompt.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Coding/01_inbox/20260401_從HarnessEng看skills的原子性.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Coding/01_inbox/20260401_CoreNote_從HarnessEng看skills的原子性.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/AI_Coding/01_inbox/20260407_Harness_Engineering_給Coding_Agent的外部控制系統.md\" \"005_PARA/02_Areas/AI_Software_Data/AI_Coding/01_inbox/20260407_CoreNote_Harness_Engineering_給Coding_Agent的外部控制系統.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/20260228_Anthropic_拆解Agent評估的迷霧.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/20260228_CoreNote_Anthropic_拆解Agent評估的迷霧.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/inbox/20260407_Stripe用真實Benchmark測AI整合能力.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/inbox/20260407_CoreNote_Stripe用真實Benchmark測AI整合能力.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Agent/inbox/20260412_AIAgentEvals_Anthropic.md\" \"005_PARA/02_Areas/AI_Software_Data/Agent/inbox/20260412_CoreNote_AIAgentEvals_Anthropic.md\")",
+      "Bash(mv \"005_PARA/02_Areas/AI_Software_Data/Data_Engineering_and_Analytics/Databricks/01_inbox/20260412_MLflow3_AgentEvalMigration_Databricks.md\" \"005_PARA/02_Areas/AI_Software_Data/Data_Engineering_and_Analytics/Databricks/01_inbox/20260412_CoreNote_MLflow3_AgentEvalMigration_Databricks.md\")"
     ]
   }
 }

@@ -56,3 +56,79 @@ last_review: 2026-04-11
 文章也沒有忽略風險。A2A 主要處理安全通信與互操作；MCP 則因為會把外部能力接進來，所以伴隨 prompt injection、tool poisoning、未授權資料存取等風險。換句話說，分層帶來擴充性，但同時也要求更清楚的治理與權限設計。這點對你在想的「哪些判斷能交給 agent、哪些一定要保留控制介面」特別重要。
 
 最終，這篇文章最值得收的地方，在於它不是把 agent 看成一個會做事的單體，而是把 agent 系統視為一種新的架構分層：A2A 處理協作，MCP 處理能力暴露，orchestrator 處理目標分解，specialists 處理局部責任。這種結構非常適合拿來思考未來的 decision workflow、analysis workflow，甚至 coding workflow 要怎麼從單體 prompt flow 進化成可維護的多代理系統。
+
+---
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- 論證骨架：A2A 與 MCP 不是替代關係，而是分層關係——A2A 是 agent 之間的 communication bus（誰跟誰說、怎麼找對方、怎麼委派），MCP 是 agent 對工具/資源/資料的能力存取介面。把兩者疊成 layered architecture，能 decouple orchestration logic from execution logic：規劃者不需要知道執行者怎麼做，執行者不需要懂整個 workflow，只需透過 MCP 找適合工具完成任務。
+- 作者挑戰的預設：（1）Agent 系統設計是 prompt + tool 的事 → 是分層架構問題，與 microservices 早期挑戰同構；（2）一個強的 orchestrator 就夠了 → 強的 orchestrator + agent discovery + capability exposure 才是可擴充的；（3）MCP 只是「工具接口」 → MCP 是讓能力被定義 / 命名 / 暴露 / 發現的標準介面（USB-C for AI）。
+- 個人映射：直接補強你的「從 monolithic prompt flow 到 multi-agent system」主軸；引入「Agent Card」概念補上你之前沒明寫的「discovery layer 是多 agent 可維護性的前提」。同時 prompt injection / tool poisoning 風險呼應你關心的「AI Coding 風險治理」。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：A2A 與 MCP 是分層關係：通訊層 vs 能力層
+- 分級：Core
+- 類型：Principle
+- 核心內容：A2A 解決「agent 之間如何發現、溝通、委派」；MCP 解決「agent 接到任務後如何發現、使用工具與資源」。兩者不應該被視為競爭協議，而是不同職責的分層：A2A 在上層處理協作 routing，MCP 在下層處理能力 routing。把兩層分開後，可以新增 capability 而不改 communication logic。
+- 保留理由：解決一個目前圈子裡常見的混淆（A2A vs MCP「該選哪個」），把它從選擇題變成架構分層題。對你做 Agentic Workflow productization 是基礎概念。
+- 待補強處：實際工程上兩層的邊界如何劃分？是否有反例（某些情境下分層反而是 over-engineering）？
+- 初步知識鉤子：[[Agentic Workflow]]、[[MCP as USB-C]]、[[Microservices Pattern]]
+
+序號 2
+- 候選標題：Decouple Orchestration from Execution：可擴充 Agent 系統的核心原則
+- 分級：Core
+- 類型：Principle
+- 核心內容：Orchestrator 不需要知道每個 specialist agent 內部怎麼做事；specialist agent 也不必懂整個 workflow，只需透過 MCP 發現適合的 tools / resources 完成自己那段。這個分離讓系統可以新增 specialist 不影響 orchestrator、修改 specialist 不影響其他 agent。
+- 保留理由：是把單體 prompt flow 演化成可維護多代理系統的核心 architectural decision。可遷移到 decision workflow / analysis workflow / coding workflow 三條主線。
+- 待補強處：何時 decoupling 反而拖慢迭代（小規模快速 prototype 階段）？orchestrator 對 specialist 內部需要多少觀測權才能保持可靠？
+- 初步知識鉤子：[[Microservices vs Monolith]]、[[Agent Workflow Productization]]、[[Capability Composition]]
+
+序號 3
+- 候選標題：Agent Card 是 Multi-Agent 系統的 Discovery Layer
+- 分級：Support
+- 類型：Pattern
+- 核心內容：每個 agent 都有一張 Agent Card，描述它能做什麼、支援哪些 request 類型、有哪些協定。本質上是 discovery layer——讓其他 agent 在不暴露敏感內部細節的前提下，知道它能不能處理某件事。沒有 Agent Card，多 agent 系統會退化成手工硬接每對連結。
+- 保留理由：把「discovery」從一個 service registry 概念，落地到 agent 場景的具體中介結構。對你長期關心的「Repo as Worker / Skill 公開介面」是可借鏡的設計。
+- 待補強處：Agent Card 的版本管理、權限控制、能力測試（不只 self-declaration 還需驗證）如何設計？
+- 初步知識鉤子：[[Service Discovery]]、[[Skill 規格]]、[[MCP Capability Exposure]]
+
+序號 4
+- 候選標題：MCP 三件式：tools / resources / prompts 的能力暴露 primitives
+- 分級：Support
+- 類型：Pattern
+- 核心內容：MCP server 暴露三種主要實體——tools（可被呼叫的動作）、resources（可查詢或載入的結構化資料）、prompts（引導 agent 行為的預設模板）。因為這三種 primitive 有共同定義，相容 client 都能在不寫 custom glue code 的情況下發現並使用。命名 / 暴露 / 發現的標準化是關鍵。
+- 保留理由：把 MCP 從一個「協議」具象化成「三類可發現實體」，方便評估自己系統哪些能力應暴露成哪一類。
+- 待補強處：何時用 tool vs prompt（兩者邊界模糊）？resources 的權限模型如何設計？
+- 初步知識鉤子：[[MCP Server 設計]]、[[Capability Definition]]、[[Tool vs Prompt 邊界]]
+
+序號 5
+- 候選標題：分層架構帶來擴充性，但同時要求更明確的治理與權限
+- 分級：Support
+- 類型：Warning
+- 核心內容：A2A 帶來安全通信與互操作問題；MCP 因為要把外部能力接進來，伴隨 prompt injection、tool poisoning、未授權資料存取等風險。換句話說，分層不是免費的——它要求清楚的權限模型、能力 scope、執行追蹤等治理機制。否則擴充性會放大攻擊面。
+- 保留理由：是少數明確處理「分層後的安全成本」的觀點；對你關心的「AI Coding 風險治理」與 AWS Shared Responsibility Model 直接接軌。
+- 待補強處：具體治理模式（per-tool ACL、per-agent identity、call-level audit）的設計範式？
+- 初步知識鉤子：[[Prompt Injection]]、[[Tool Poisoning]]、[[Shared Responsibility Model]]、[[Agent 治理]]
+
+序號 6
+- 候選標題：能力編排取代靜態 pipeline：商業邏輯變動時的可演化性
+- 分級：Support
+- 類型：Pattern
+- 核心內容：傳統 orchestrator 雖然強大但僵硬，商業邏輯一變整條 pipeline 常需重寫重部署。分層 agent 架構更像「能力編排系統」，要適應新需求時不是改靜態流程，而是新增或重組可發現的能力。這對應 modern data stack 從 hard-coded ETL 到模組化轉型的舊故事，只是換到 agent 層。
+- 保留理由：跨領域類比（資料 pipeline 演化 vs agent pipeline 演化）的清晰範例；對你寫「從專案到產品的平台化轉型」可借用的論述骨架。
+- 待補強處：能力編排在實作初期的成本是否高於靜態 pipeline？切換的觸發條件（規模、變動頻率）？
+- 初步知識鉤子：[[Modern Data Stack 演化]]、[[Adapter Pattern]]、[[Configuration Driven]]
+
+## C. 建議送 refine 的項目
+- 序號 1（Core）：A2A vs MCP 分層
+- 序號 2（Core）：Decouple Orchestration from Execution
+- 序號 3（Support）：Agent Card / Discovery Layer
+- 序號 5（Support）：分層架構的治理成本
+- 序號 4 / 6：refine 階段判斷是否合併到序號 1 或 2
+
+## D. 呼叫 refine-cards
+- 上述 6 張候選卡交由 refine-cards 精煉；建議與「20260403 HOTL」的序號 4（結構化 orchestration）做去重 / 合併判斷，可能可以共構一張更大的「Agent 系統工程化原則」卡。
+

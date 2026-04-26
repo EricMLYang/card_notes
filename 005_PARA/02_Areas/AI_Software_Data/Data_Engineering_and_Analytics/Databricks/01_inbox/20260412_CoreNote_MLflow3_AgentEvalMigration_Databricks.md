@@ -306,3 +306,87 @@ Scorer 不是寫完 agent 之後的額外工作，它本身就是產品定義。
 如果你和我一樣在做數據分析 agent，我認為現在最值得投入的，不是再學一個新的 LLM framework，而是 **把評估能力變成團隊的肌肉記憶**。模型會變，framework 會換，但「怎麼定義好、怎麼發現壞、怎麼持續改進」這套思維框架不會過時。
 
 這也是為什麼我會說，這份文件不是一份 migration guide——它是一份 **產業方向的訊號文件**。看懂它的人，下一步就知道該投資什麼。
+
+# BreadCards
+
+## A. 主脈絡與個人映射
+- **論證骨架**：表面是 API migration guide，但作者把它讀成「Databricks 把 trace + eval + labeling + scorer 收斂為單一 GenAI / agent 控制平面」的訊號文件，並推出五個關鍵設計轉變：統一 UI、統一 API、production-scale tracing backend、streamlined human feedback、顯性 scorer 指定。同時心得文延伸出「Agent 品質瓶頸已從模型能力轉到評估能力」的判斷與五條學習路線。
+- **挑戰的預設**：「evaluation 是離線一次性工作」「judge 是黑箱自動跑」「observability 與 evaluation 是兩個工具兩種資料模型」。
+- **個人映射**：直接命中我關注的 Harness 視角、AI 評估能力作為複利槓桿、以及「analysis workflow productization」三條主線。trace-based 統一資料模型的論點特別有用——把 production traces / human labeling / golden dataset 對應成 Bronze / Silver / Gold，是把 Medallion 思維遷移到 agent eval 的精彩類比。也補強我對 RMN 場景的應用思考：agent 出錯時必須能 span-level 拆解 retrieval / generation / SQL，否則 debug 會死循環。
+
+## B. 候選卡（Lite）
+
+序號 1
+- 候選標題：Agent 品質瓶頸正從「模型能力」轉移到「評估能力」
+- 分級：Core
+- 類型：Principle
+- 核心內容：模型會持續變強，但換模型對 agent 整體品質提升有限；真正拉開團隊差距的是「能否定義什麼叫好、能否快速發現它壞在哪、能否讓 production 錯誤持續回餵」。這個判斷把投資焦點從「追新模型」轉到「建評估基礎設施」，是面對「LLM 排名變動快」時的穩定錨點。
+- 保留理由：明確的視角翻轉與投資判準，可作為個人 / 團隊技能投資的指南針
+- 待補強處：何時這個論點會失效（例如真的有跨代模型躍升時）、評估能力的具體量化指標
+- 初步知識鉤子：[[AI時代評估能力成為關鍵槓桿點]]、[[Harness 是把模型變成 Agent 的關鍵（不是模型本身）]]、複利能力 vs 一次性能力
+
+序號 2
+- 候選標題：顯性 scorer 取代自動 judge — 從「自動評」到「自己定義要評什麼」的產品哲學轉變
+- 分級：Core
+- 類型：Principle
+- 核心內容：MLflow 2 時代只要欄位對得上就自動跑一批 judge；MLflow 3 強制顯性指定 Correctness() / Safety() / Guidelines() / RetrievalGroundedness() 等 scorer。這背後是哲學轉變：評估標準不再是黑箱預設，而是團隊責任；scorer 與 judge 變成可治理資產，而非 evaluator_config 的副作用。對有治理要求的資料團隊，這種顯性化反而提升信任。
+- 保留理由：把「顯性化」視為治理升級的具體做法，可遷移到其他評估 / 監控場景
+- 待補強處：對 onboarding 友善度的衝擊、預設 scorer 模板的最佳實務、scorer 演進的 backward compatibility
+- 初步知識鉤子：[[顯性化是治理的基礎]]、Configuration as Code、[[scorer 作為團隊資產]]
+
+序號 3
+- 候選標題：Trace + Scorer + Labeling + Dataset 是同一個閉環（不該分開想）
+- 分級：Core
+- 類型：Pattern
+- 核心內容：MLflow 3 把 evaluation 結果存成 trace + assessment，意味著 production trace 和 eval trace 共用資料模型，同一組 scorer 可同時跑離線 golden set 與線上抽樣。Production 發現的 bad case 可直接變 golden case（觀察 → 標記 → 寫回 dataset → regression test）。這個閉環讓 agent 品質呈複利成長，每個使用者 bug 都在訓練系統。
+- 保留理由：把 evaluation 與 observability 合流的趨勢說清楚，且帶具體 loop
+- 待補強處：抽樣策略、trace 儲存成本、跨團隊共用 dataset 的權限模型
+- 初步知識鉤子：[[Evaluation 與 Observability 合流]]、CI/CD × Production Monitoring、[[DecisionOps]]
+
+序號 4
+- 候選標題：Production Traces / Human Labeling / Golden Dataset = Bronze / Silver / Gold（Medallion 思維遷移到 agent eval）
+- 分級：Core
+- 類型：Pattern
+- 核心內容：用 Medallion 架構類比 agent eval 資料層次：production traces 是 Bronze（原始且大量）、human labeling 是 Silver（清洗過、有判斷）、curated golden dataset 是 Gold（高信任、可重複測試）。過去這三層是三套工具三種格式，現在 trace-based 資料模型讓它們在同一條 pipeline 流動。這個類比對熟悉 lakehouse 的工程師遷移認知極有效。
+- 保留理由：跨領域類比，從資料工程遷移到 agent eval，遷移性極高
+- 待補強處：Bronze → Silver → Gold 的具體升級規則與 SLA、各層的 schema 設計
+- 初步知識鉤子：[[Medallion Architecture]]、Data Engineering 思維遷移到 AI Eval、[[Lakehouse for AI]]
+
+序號 5
+- 候選標題：Span-level Debug 是 agent 工程的分水嶺（不是看 trace 就好）
+- 分級：Core
+- 類型：Heuristic
+- 核心內容：agent 出錯時，先看 retrieval span 抓到什麼 context（context 錯，prompt 再好也沒用）；再看 SQL 生成 span 產出什麼 query（SQL 錯，generation 才是要修的點）；最後看最終 LLM 拿到什麼輸入（輸入對輸出錯，才是 prompt 或模型問題）。這個習慣能把 debug 時間從一下午壓到十分鐘，因為知道該修哪一層。直接對應 PySpark 的 stage / task 拆解思維。
+- 保留理由：高度可執行的工作習慣卡，對日常 agent debug 立即有用
+- 待補強處：自動化 span-level 異常檢測規則、span 命名與 schema 一致性
+- 初步知識鉤子：[[分層 debug 思維]]、PySpark stage debug、Distributed Tracing、[[Harness × Observability]]
+
+序號 6
+- 候選標題：Binary pass/fail 比 1-5 評分穩定（先及格線、後分等級）
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：LLM judge 用 1-5 分時分數飄移嚴重，同一答案今天 3 分明天 4 分；改成 binary 「可接受嗎？yes/no」反而穩定。最佳實務是先用 binary 建立及格線，等團隊對「什麼叫可接受」有共識後再細分 excellent / acceptable / poor。這個原則和帶團隊訂規範一樣——新規範先訂能不能過，不要一開始就訂 ABCD。
+- 保留理由：罕見但重要的設計 heuristic，可遷移到其他人類 / AI 評估場景
+- 待補強處：何時可從 binary 升級到多級、「可接受」標準的 calibration 方法
+- 初步知識鉤子：[[評估設計 heuristic]]、Likert scale 限制、漸進式標準化
+
+序號 7
+- 候選標題：Eval-first 開發流程（先寫 golden case → 寫 scorer → 才動手實作）
+- 分級：Support
+- 類型：Heuristic
+- 核心內容：傳統「寫 code → 看結果 → 覺得 OK 就交」要逆轉成：先寫 10-20 筆 golden case → 寫 scorer 定義「可接受」→ 才實作 agent → 每次改動都跑 eval。先寫 eval 會逼你想清楚「這個 agent 到底要達到什麼」，這個問題在只寫 prompt 的流程裡經常被跳過。對應 TDD 思維但放在 agent 場景。
+- 保留理由：可立即套用的工作流程改變，與 TDD 的類比有遷移性
+- 待補強處：早期不確定情境下 golden case 的界定、eval 與探索性開發的取捨
+- 初步知識鉤子：TDD vs Eval-Driven Development、[[先寫驗收條件再寫程式]]
+
+## C. 建議送 refine 的項目
+- 序號 1（評估能力 = 真正瓶頸）：Core，主線投資判準
+- 序號 2（顯性 scorer 取代自動 judge）：Core，治理升級的具體做法
+- 序號 3（Trace + Scorer + Labeling + Dataset 閉環）：Core，與 4 相關但角度不同
+- 序號 4（Medallion 類比 agent eval）：Core，跨領域遷移性高
+- 序號 5（Span-level debug 分水嶺）：Core，立即可用工作習慣
+- 序號 6（Binary pass/fail）：可保留為設計 heuristic
+- 序號 7（Eval-first 流程）：可保留為流程 heuristic
+
+## D. 呼叫 refine-cards
+- 將上述候選卡交由 refine-cards 精煉
